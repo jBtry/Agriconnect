@@ -7,7 +7,7 @@ Ce système permet, par l’intermédiaire de capteurs, de surveiller deux param
 - l’humidité du sol
 - température de l’air.
 
-Grace à l’utilisation d’actionneurs, le système pourra déclencher l’arrosage des cultures si besoin.
-Le tout pourra être surveillé (et géré) par l’agriculteur sur une application cliente.
+Grâce à l’utilisation d’actionneurs, le système pourra déclencher l’arrosage des cultures si besoin.
+Le tout pourra être surveillé et géré par l’agriculteur sur une application cliente.
 
 L'application sera réalisé en Java
