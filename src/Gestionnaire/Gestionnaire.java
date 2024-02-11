@@ -1,20 +1,25 @@
 package Gestionnaire;
 
+import java.sql.SQLException;
+
 public interface Gestionnaire extends java.rmi.Remote {
 
     /**
-     * Permet d'enregistrer un capteur dans la base de donnée du gestionnaire contenant la liste des capteurs.
-     * @param gps tableau contenant la position du capteur (latitude et longitude)
-     * @return une chaine de caractère indiquant au capteur si l'enregistrement a réussi.
+     * Permet d'enregistrer un capteur dans la base de données du gestionnaire contenant la liste des capteurs.
+     * @param id  chaine de caractère identifiant le capteur ayant fait le relevé.
+     * @param gps tableau contenant la position du capteur (latitude et longitude).
+     * @throws SQLException si erreur lors de l'insertion dans la base de données.
+     * @throws java.rmi.RemoteException si erreur lors de la communication.
      */
-    public String enregistrerCapteur(String idCapteur, float[] gps);
+    public void enregistrerCapteur(String id, float[] gps) throws java.rmi.RemoteException, SQLException;
 
     /**
-     * Permet de retirer un capteur dans la base de donnée du gestionnaire contenant la liste des capteurs.
+     * Permet de retirer un capteur dans la base de données du gestionnaire contenant la liste des capteurs.
      * @param id chaine de caractère identifiant le capteur ayant fait le relevé.
-     * @return une chaine de caractère indiquant au capteur s'il a bien été retiré.
+     * @throws SQLException si erreur lors de l'insertion dans la base de données.
+     * @throws java.rmi.RemoteException si erreur lors de la communication.
      */
-    public String retirerCapteur(String id);
+    public void retirerCapteur(String id) throws java.rmi.RemoteException, SQLException;
 
 
     /**
@@ -22,7 +27,10 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @param id  chaine de caractère permettant d'identifier le capteur ayant fait le relevé.
      * @param temp flottant représentant la température relevé par le capteur.
      * @param tauxH flottant représentant le taux d'humidité relevé par le capteur.
+     * @param horodatage date et heure du relevé
+     * @throws SQLException si erreur lors de l'insertion dans la base de données.
+     * @throws java.rmi.RemoteException si erreur lors de la communication.
      */
-    public void enregistrerValeur(String id, float temp, float tauxH);
+    public void enregistrerValeur(String id, float temp, float tauxH, String horodatage) throws java.rmi.RemoteException, SQLException;
 
 }
