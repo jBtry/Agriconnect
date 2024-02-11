@@ -11,19 +11,11 @@ public class Capteur implements Runnable {
     String identifiant;
 
     /** Un capteur possède des coordonnées GPS */
-    double[] gps;
+    float[] gps;
 
-    public Capteur(String identifiant, double latitude, double longitude) {
+    public Capteur(String identifiant, float latitude, float longitude) {
         this.identifiant = identifiant;
-        gps = new double[] {latitude,longitude};
-    }
-
-    public void seDeclarer() {
-
-    }
-
-    public void seRetirer() {
-
+        gps = new float[] {latitude,longitude};
     }
 
 
