@@ -39,7 +39,7 @@ public class Capteur implements Runnable {
         return  "identifiant='" + identifiant + '\'' +
                 ", gps=" + Arrays.toString(gps) +
                 ", leGestionnaire=" + infoGestionnaire +
-                "-----------------------------------------------\n\n}";
+                "\n-----------------------------------------------\n\n}";
     }
 
     /**
@@ -68,7 +68,7 @@ public class Capteur implements Runnable {
     /**
      * Le capteur relève la température ambiante et le taux d'humidité à instant T.
      */
-    public Releve releve() {
+    public Releve faireUnRelever() {
 
         /* Génération de la température */
         float temp = Outils.genererTemperatureAleatoire();
@@ -76,7 +76,6 @@ public class Capteur implements Runnable {
         float tauxH = Outils.genererTauxHumiditeAleatoire();
         /* Génération de l'horodatage */
         String horodatage = Outils.horodatage();
-        System.out.println(temp+" "+tauxH+" "+ horodatage);
         return new Releve(temp,tauxH,horodatage);
     }
 
@@ -87,10 +86,10 @@ public class Capteur implements Runnable {
     @Override
     public void run() {
         for (int i = 0 ; i < 10; i++) {
-            Releve unReleve = releve();
+            Releve unReleve = faireUnRelever();
             try {
                 leGestionnaire.enregistrerValeur(this.identifiant, unReleve.temperature(),unReleve.tauxHumidite(), unReleve.Horodatage());
-                System.out.println("Relevé de " + this.identifiant + " => " + releve().toString()+"\n");
+                System.out.println("Relevé de " + this.identifiant + " => " + unReleve.toString()+"\n");
                 Thread.sleep(5000); // 5000 ms = 5 sec.
             } catch (InterruptedException | SQLException | RemoteException e) {
                 System.out.println("Erreur lors d'un relevé, celui-ci n'a pas été enregistré");
