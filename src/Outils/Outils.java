@@ -45,7 +45,7 @@ public abstract class Outils {
 
     /**
      * @return un taux d'humidité aléatoire
-     */ //TODO : tester et corriger le prb, on a des taux < 0 .... ça craint mdrr merci les méthodes foireuses de chatGPT beurk ....
+     */
     public static float genererTauxHumiditeAleatoire() {
         int minHumidite = 0;   // Humidité minimale en pourcentage
         int maxHumidite = 100; // Humidité maximale en pourcentage

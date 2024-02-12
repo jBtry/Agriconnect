@@ -74,6 +74,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     @Override
     public void enregistrerValeur(String id, float temp, float tauxH, String horodatage) throws RemoteException, SQLException  {
         PreparedStatement instructions = c.prepareStatement(INSERTION_RELEVE); // On utilise PreparedStatement pour éviter les injections SQL
+        System.out.println(id+" "+" "+temp+" "+tauxH+" "+horodatage);
         instructions.setString(1, id);
         instructions.setFloat(2,temp);
         instructions.setFloat(3,tauxH);

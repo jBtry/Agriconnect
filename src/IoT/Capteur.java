@@ -76,7 +76,7 @@ public class Capteur implements Runnable {
         float tauxH = Outils.genererTauxHumiditeAleatoire();
         /* Génération de l'horodatage */
         String horodatage = Outils.horodatage();
-
+        System.out.println(temp+" "+tauxH+" "+ horodatage);
         return new Releve(temp,tauxH,horodatage);
     }
 
@@ -89,7 +89,7 @@ public class Capteur implements Runnable {
         for (int i = 0 ; i < 10; i++) {
             Releve unReleve = releve();
             try {
-                leGestionnaire.enregistrerValeur(this.identifiant, unReleve.tauxHumidite(), unReleve.temperature(), unReleve.Horodatage());
+                leGestionnaire.enregistrerValeur(this.identifiant, unReleve.temperature(),unReleve.tauxHumidite(), unReleve.Horodatage());
                 System.out.println("Relevé de " + this.identifiant + " => " + releve().toString()+"\n");
                 Thread.sleep(5000); // 5000 ms = 5 sec.
             } catch (InterruptedException | SQLException | RemoteException e) {
