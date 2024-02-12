@@ -36,7 +36,7 @@ public abstract class Outils {
     /**
      * @return une température en °C aléatoire
      */
-    public static float genererTemperatureAleatoire() {
+    public static float genererTemperatureAleatoire() { //TODO : arrondir le resultat à 1 chiffre après la virgule
         float minTemp = -10; // Température minimale
         float maxTemp = 50;  // Température maximale
         return minTemp + (maxTemp - minTemp) * random.nextFloat();
@@ -46,7 +46,7 @@ public abstract class Outils {
     /**
      * @return un taux d'humidité aléatoire
      */
-    public static float genererTauxHumiditeAleatoire() {
+    public static float genererTauxHumiditeAleatoire() { //TODO : arrondir le resultat à 1 chiffre après la virgule
         int minHumidite = 0;   // Humidité minimale en pourcentage
         int maxHumidite = 100; // Humidité maximale en pourcentage
         return minHumidite + (maxHumidite - minHumidite) * random.nextFloat();
