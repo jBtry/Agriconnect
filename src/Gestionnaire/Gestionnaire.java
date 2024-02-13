@@ -1,5 +1,6 @@
 package Gestionnaire;
 
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 
 public interface Gestionnaire extends java.rmi.Remote {
@@ -11,7 +12,7 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @throws SQLException si erreur lors de l'insertion dans la base de données.
      * @throws java.rmi.RemoteException si erreur lors de la communication.
      */
-    public void enregistrerCapteur(String id, float[] gps) throws java.rmi.RemoteException, SQLException;
+    public void enregistrerCapteur(String id, float[] gps) throws RemoteException, SQLException;
 
     /**
      * Permet de retirer un capteur dans la base de données du gestionnaire contenant la liste des capteurs.
@@ -19,7 +20,7 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @throws SQLException si erreur lors de l'insertion dans la base de données.
      * @throws java.rmi.RemoteException si erreur lors de la communication.
      */
-    public void retirerCapteur(String id) throws java.rmi.RemoteException, SQLException;
+    public void retirerCapteur(String id) throws RemoteException, SQLException;
 
 
     /**
@@ -31,6 +32,6 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @throws SQLException si erreur lors de l'insertion dans la base de données.
      * @throws java.rmi.RemoteException si erreur lors de la communication.
      */
-    public void enregistrerValeur(String id, float temp, float tauxH, String horodatage) throws java.rmi.RemoteException, SQLException;
+    public void enregistrerValeur(String id, float temp, float tauxH, String horodatage) throws RemoteException, SQLException;
 
 }

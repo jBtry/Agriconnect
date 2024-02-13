@@ -18,7 +18,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     private Connection c;
 
     /** Un gestionnaire est caractérisé par un nom */
-    String nom;
+    private String nom;
 
     public GestionnaireImpl() throws RemoteException, SQLException, ClassNotFoundException {
         super();

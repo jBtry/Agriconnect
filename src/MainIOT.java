@@ -14,7 +14,7 @@ public class MainIOT {
 
     /**
      * Crée 5 capteurs, affiche leurs informations
-     * Récupère le gestionnaire (objet) distant
+     * Récupère le gestionnaire (objet) distant et l'affecte aux 5 cpateurs
      * Lance un relevé toutes les 5 secondes sur les 5 capteurs
      * Au bout de 10 relevé on arrête.
      * On vide la table contenant la liste des capteurs sur le serveur

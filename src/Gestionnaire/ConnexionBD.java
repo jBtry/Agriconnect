@@ -20,7 +20,7 @@ public abstract class ConnexionBD {
     /** Nom de la base de données contenant les tables */
     private static final String NOM_BD = "Agriconnect.db";
     /** URL de la base de données */
-    private static final String URL = "jdbc:sqlite:"+PWD+"/"+ NOM_BD;
+    private static final String URL = "jdbc:sqlite:"+PWD+"/"+NOM_BD;
 
     /**
      * Crée une connexion à la base de données SQLite "Capteurs"

@@ -1,5 +1,11 @@
 package Gestionnaire;
 
+
+/**
+ * Contient toutes les requêtes SQL
+ * utilisées par le Gestionnaire pour donner
+ * des ordres à la base de données
+ */
 public abstract class RequeteSQL {
 
     private static final String NOM_TABLE_CAPTEUR = "capteurs";

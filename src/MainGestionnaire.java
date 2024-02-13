@@ -22,7 +22,8 @@ public class MainGestionnaire {
             locateRegistry.createRegistry(1099);
             GestionnaireImpl leGestionnaire = new GestionnaireImpl();
             Naming.rebind("LeGestionnaire", leGestionnaire);
-            System.out.println("Le Gestionnaire a été créée et déclaré auprès du serveur de noms");
+            System.out.println("Le Gestionnaire a été créée et déclaré auprès du serveur de noms"
+                               +"\n"+leGestionnaire.toString());
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         } catch (MalformedURLException e) {
