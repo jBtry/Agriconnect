@@ -35,7 +35,7 @@ SGBD</panel_attributes>
       <h>240</h>
     </coordinates>
     <panel_attributes>&lt;&lt;device&gt;&gt;
-Capteur</panel_attributes>
+Capteur (Client)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -59,7 +59,7 @@ JVM</panel_attributes>
       <h>240</h>
     </coordinates>
     <panel_attributes>&lt;&lt;device&gt;&gt;
-Gestionnaire</panel_attributes>
+Gestionnaire (Serveur)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
