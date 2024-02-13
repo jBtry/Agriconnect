@@ -3,48 +3,157 @@
   <help_text/>
   <zoom_level>10</zoom_level>
   <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>900</x>
+      <y>530</y>
+      <w>340</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+Serveur hébergeant la base de données</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>930</x>
+      <y>590</y>
+      <w>270</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+SGBD</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>120</x>
+      <y>90</y>
+      <w>340</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+Capteur</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>160</x>
+      <y>150</y>
+      <w>270</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+JVM</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>420</x>
+      <y>530</y>
+      <w>340</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+Gestionnaire</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>280</y>
+      <w>140</w>
+      <h>440</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+
+API JAVA RMI
+basé sur TCP/IP</panel_attributes>
+    <additional_attributes>10.0;420.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>690</y>
+      <w>230</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>210.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>460</x>
+      <y>590</y>
+      <w>270</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+JVM</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>480</x>
-      <y>290</y>
+      <x>990</x>
+      <y>640</y>
       <w>140</w>
-      <h>80</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>symbol=component
-Component</panel_attributes>
+
+
+Agriconnect.db</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLDeployment</id>
+    <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>120</y>
-      <w>110</w>
+      <x>680</x>
+      <y>680</y>
+      <w>330</w>
       <h>50</h>
     </coordinates>
-    <panel_attributes>Capteur</panel_attributes>
+    <panel_attributes>lt=&lt;-&gt;
+
+API JDBC</panel_attributes>
+    <additional_attributes>310.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>490</x>
+      <y>650</y>
+      <w>200</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+&lt;&lt;Artifact&gt;&gt;
+Programme Java Serveur
+
+MainGestionnaire.jar</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLDeployment</id>
+    <id>UMLGeneric</id>
     <coordinates>
-      <x>610</x>
-      <y>120</y>
-      <w>110</w>
-      <h>50</h>
+      <x>180</x>
+      <y>210</y>
+      <w>200</w>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>Capteur</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLDeployment</id>
-    <coordinates>
-      <x>800</x>
-      <y>120</y>
-      <w>110</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>Capteur</panel_attributes>
+    <panel_attributes>symbol=artifact
+&lt;&lt;Artifact&gt;&gt;
+Programme Java Client
+
+MainIOT.jar</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
