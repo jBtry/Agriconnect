@@ -14,13 +14,13 @@ import java.util.Random;
  */
 public abstract class Outils {
 
-    private static final Random random = new Random();
+    private static final Random ALEATOIRE = new Random();
 
     /** Génère une latitude aléatoirement
      * @return un flottant représentant une latitude
      */
     public static float genererLatitudeAleatoires() {
-        float latitude = -90 + (90 - (-90)) * random.nextFloat();
+        float latitude = -90 + (90 - (-90)) * ALEATOIRE.nextFloat();
         return latitude;
     }
 
@@ -28,7 +28,7 @@ public abstract class Outils {
      * @return flottant représentant une longitude
      */
     public static float genererLongitudeAleatoires() {
-        float longitude = (-180 + (180 - (-180)) * random.nextFloat());
+        float longitude = (-180 + (180 - (-180)) * ALEATOIRE.nextFloat());
         return longitude;
     }
 
@@ -39,7 +39,7 @@ public abstract class Outils {
     public static float genererTemperatureAleatoire() { //TODO : arrondir le resultat à 1 chiffre après la virgule
         float minTemp = -10; // Température minimale
         float maxTemp = 50;  // Température maximale
-        return minTemp + (maxTemp - minTemp) * random.nextFloat();
+        return minTemp + (maxTemp - minTemp) * ALEATOIRE.nextFloat();
     }
 
 
@@ -49,7 +49,7 @@ public abstract class Outils {
     public static float genererTauxHumiditeAleatoire() { //TODO : arrondir le resultat à 1 chiffre après la virgule
         int minHumidite = 0;   // Humidité minimale en pourcentage
         int maxHumidite = 100; // Humidité maximale en pourcentage
-        return minHumidite + (maxHumidite - minHumidite) * random.nextFloat();
+        return minHumidite + (maxHumidite - minHumidite) * ALEATOIRE.nextFloat();
     }
 
 

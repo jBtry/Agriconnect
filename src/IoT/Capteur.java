@@ -16,13 +16,13 @@ import java.util.Objects;
 public class Capteur implements Runnable {
 
     /** Un capteur est identifié par un code unique */
-    String identifiant;
+    private String identifiant;
 
     /** Un capteur possède des coordonnées GPS */
-    float[] gps;
+    private float[] gps;
 
     /** Un capteur possède un gestionnaire */
-    Gestionnaire leGestionnaire;
+    private Gestionnaire leGestionnaire;
 
     public Capteur(String identifiant, float latitude, float longitude) {
         this.identifiant = identifiant;
