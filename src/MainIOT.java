@@ -11,6 +11,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainIOT {
+
+    /**
+     * Crée 5 capteurs, affiche leurs informations
+     * Récupère le gestionnaire (objet) distant
+     * Lance un relevé toutes les 5 secondes sur les 5 capteurs
+     * Au bout de 10 relevé on arrête.
+     * On vide la table contenant la liste des capteurs sur le serveur
+     * Le programme s'arrête
+     * @param args non utilisé
+     */
     public static void main(String args[]) {
         // TODO : Mieux gérer les exceptions ...
         /* Contient les 5 capteurs */
