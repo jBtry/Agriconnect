@@ -16,9 +16,8 @@ public class MainGestionnaire {
      */
     public static void main(String args[]) {
     // TODO : Mieux gérer les exceptions dans les prochaines versions ...
-        LocateRegistry locateRegistry = null;
         try {
-            locateRegistry.createRegistry(1099);
+            LocateRegistry.createRegistry(1099);
             GestionnaireImpl leGestionnaire = new GestionnaireImpl();
             Naming.rebind("LeGestionnaire", leGestionnaire);
             System.out.println("Le Gestionnaire a été créée et déclaré auprès du serveur de noms"
