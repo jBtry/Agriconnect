@@ -22,7 +22,7 @@ public class MainIOT {
      * @param args non utilisé
      */
     public static void main(String args[]) {
-        // TODO : Mieux gérer les exceptions ...
+        // TODO : Mieux gérer les exceptions dans les prochaines versions ...
         /* Contient les 5 capteurs */
         ArrayList<Capteur> capteurs = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
