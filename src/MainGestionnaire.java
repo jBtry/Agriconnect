@@ -15,8 +15,7 @@ public class MainGestionnaire {
      * @param args non utilisé
      */
     public static void main(String args[]) {
-    // TODO : Mieux gérer les exceptions ...
-        // Partie RMI
+    // TODO : Mieux gérer les exceptions dans les prochaines versions ...
         LocateRegistry locateRegistry = null;
         try {
             locateRegistry.createRegistry(1099);
