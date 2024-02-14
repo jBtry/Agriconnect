@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>154</x>
-      <y>539</y>
+      <x>189</x>
+      <y>553</y>
       <w>119</w>
       <h>56</h>
     </coordinates>
@@ -19,8 +19,8 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>546</x>
-      <y>525</y>
+      <x>581</x>
+      <y>539</y>
       <w>119</w>
       <h>56</h>
     </coordinates>
@@ -34,8 +34,8 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>784</x>
-      <y>140</y>
+      <x>819</x>
+      <y>154</y>
       <w>462</w>
       <h>539</h>
     </coordinates>
@@ -48,8 +48,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>812</x>
-      <y>567</y>
+      <x>847</x>
+      <y>581</y>
       <w>406</w>
       <h>63</h>
     </coordinates>
@@ -61,24 +61,10 @@ Gestionnaire pour donner des ordres à la base de données</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLPackage</id>
-    <coordinates>
-      <x>336</x>
-      <y>49</y>
-      <w>245</w>
-      <h>168</h>
-    </coordinates>
-    <panel_attributes>Outils
---
-
-fg=GRAY</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>140</x>
-      <y>315</y>
+      <x>175</x>
+      <y>329</y>
       <w>322</w>
       <h>154</h>
     </coordinates>
@@ -102,19 +88,19 @@ fg=GRAY</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>259</x>
-      <y>238</y>
+      <x>476</x>
+      <y>98</y>
       <w>21</w>
-      <h>91</h>
+      <h>245</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;330.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>224</x>
-      <y>217</y>
+      <x>448</x>
+      <y>77</y>
       <w>91</w>
       <h>28</h>
     </coordinates>
@@ -126,8 +112,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>574</x>
-      <y>357</y>
+      <x>609</x>
+      <y>371</y>
       <w>112</w>
       <h>70</h>
     </coordinates>
@@ -142,10 +128,10 @@ Horodatage : String</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>119</x>
-      <y>287</y>
+      <x>154</x>
+      <y>119</y>
       <w>602</w>
-      <h>196</h>
+      <h>378</h>
     </coordinates>
     <panel_attributes>IOT
 --
@@ -156,8 +142,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1127</x>
-      <y>84</y>
+      <x>1162</x>
+      <y>98</y>
       <w>91</w>
       <h>28</h>
     </coordinates>
@@ -169,8 +155,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1162</x>
-      <y>105</y>
+      <x>1197</x>
+      <y>119</y>
       <w>21</w>
       <h>84</h>
     </coordinates>
@@ -180,8 +166,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>819</x>
-      <y>315</y>
+      <x>854</x>
+      <y>329</y>
       <w>406</w>
       <h>133</h>
     </coordinates>
@@ -200,8 +186,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>819</x>
-      <y>175</y>
+      <x>854</x>
+      <y>189</y>
       <w>406</w>
       <h>77</h>
     </coordinates>
@@ -217,8 +203,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1162</x>
-      <y>245</y>
+      <x>1197</x>
+      <y>259</y>
       <w>21</w>
       <h>84</h>
     </coordinates>
@@ -228,8 +214,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1267</x>
-      <y>231</y>
+      <x>1302</x>
+      <y>245</y>
       <w>133</w>
       <h>21</h>
     </coordinates>
@@ -240,8 +226,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1204</x>
-      <y>245</y>
+      <x>1239</x>
+      <y>259</y>
       <w>105</w>
       <h>84</h>
     </coordinates>
@@ -251,8 +237,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>343</x>
-      <y>70</y>
+      <x>203</x>
+      <y>161</y>
       <w>217</w>
       <h>112</h>
     </coordinates>
@@ -271,8 +257,8 @@ _+horodatage() : String_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>812</x>
-      <y>476</y>
+      <x>847</x>
+      <y>490</y>
       <w>406</w>
       <h>84</h>
     </coordinates>
@@ -289,8 +275,8 @@ _+ connexion() : Connection_</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>441</x>
-      <y>623</y>
+      <x>476</x>
+      <y>637</y>
       <w>308</w>
       <h>42</h>
     </coordinates>
@@ -301,8 +287,8 @@ et enregistre celui-ci.</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>28</x>
-      <y>623</y>
+      <x>63</x>
+      <y>637</y>
       <w>357</w>
       <h>77</h>
     </coordinates>
@@ -317,8 +303,8 @@ et enregistre celui-ci.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>210</x>
-      <y>588</y>
+      <x>245</x>
+      <y>602</y>
       <w>21</w>
       <h>49</h>
     </coordinates>
@@ -328,8 +314,8 @@ et enregistre celui-ci.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>455</x>
-      <y>364</y>
+      <x>490</x>
+      <y>378</y>
       <w>133</w>
       <h>35</h>
     </coordinates>
@@ -343,8 +329,8 @@ m1=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>574</x>
-      <y>574</y>
+      <x>609</x>
+      <y>588</y>
       <w>21</w>
       <h>63</h>
     </coordinates>
@@ -354,8 +340,8 @@ m1=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>455</x>
-      <y>189</y>
+      <x>490</x>
+      <y>203</y>
       <w>378</w>
       <h>175</h>
     </coordinates>
