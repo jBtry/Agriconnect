@@ -1,6 +1,10 @@
 package Test;
 import IoT.Outils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Contient les tests unitaires sur les méthodes de la classe Outils.
  */
@@ -9,6 +13,8 @@ public abstract class TestOutils {
     private static int compteurReussite = 0;
     private static float valeurIncorrecte = 0;
     private final static int NOMBRE_ESSAI = 100;
+    private static String raison = "";
+    private static String dernierHorodatage = "";
 
    /* Test de la méthode genererLatitudeAleatoires()
     * On vérifie la méthode en générant 100 valeurs aléatoirement,
@@ -51,7 +57,7 @@ public abstract class TestOutils {
             System.out.println("Réussite du test : toutes les longitudes générées sont valides.");
             compteurReussite = 0;
         } else {
-            System.out.println("Echec du test : une des longitudes générées est valide."
+            System.out.println("Echec du test : une des longitudes générées est hors de l'intervalle valide."
                     + "Valeur incorrecte => : " + valeurIncorrecte);
         }
     }
@@ -102,8 +108,23 @@ public abstract class TestOutils {
         }
     }
 
+    /* Test de la méthode horodatage()
+     * On vérifie la méthode en générant une valeur,
+     * si elle n'a pas le bon format le test échoue.
+     */
+    public static void testHorodatage() {
 
-
+        String horodatage = Outils.horodatage();
+        try {
+            LocalDateTime.parse(horodatage, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            System.out.println("Réussite du test : l'horodatage a bien été généré. "
+                    + "Vérifez si la valeur est correcte");
+        } catch (DateTimeParseException e) {
+            raison = "Le format de l'horodatage n'est pas correct.";
+            System.out.println("Echec du test : il y a une erreur dans la génération des horadatages."
+                    + "Raison => : " + raison);
+        }
+    }
 
 
 
@@ -120,6 +141,9 @@ public abstract class TestOutils {
         System.out.println("-------------------------------------------------");
         System.out.println("Test de la méthode genererTauxHumiditeAleatoire()");
         testGenererTauxHumiditeAleatoire();
+        System.out.println("-------------------------------------------------");
+        System.out.println("Test de la méthode horodatage()");
+        testHorodatage();
         System.out.println("-------------------------------------------------");
     }
 }
