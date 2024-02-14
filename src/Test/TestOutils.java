@@ -1,5 +1,5 @@
 package Test;
-import Outils.*;
+import IoT.Outils;
 
 /**
  * Contient les tests unitaires sur les méthodes de la classe Outils.

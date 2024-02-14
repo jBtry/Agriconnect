@@ -1,7 +1,6 @@
 package IoT;
 
 import Gestionnaire.Gestionnaire;
-import Outils.Outils;
 
 import java.rmi.RemoteException;
 import java.sql.SQLException;
