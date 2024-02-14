@@ -8,12 +8,12 @@ import IoT.Releve;
  */
 public class TestCapteur {
 
-    /* Teste le constructeur et les getters de la classe Capteur. */
+    /* Test des méthodes de la classe Capteur. */
     public static void testConstructeurEtGetters() {
         System.out.println("Test du constructeur et des getters...");
         Capteur capteur = new Capteur("C123", 45.77689f, 4.85764f);
         int nbrTestValide = 0;
-        final int nbrTestTotal = 3;
+        final int NBR_TEST_TOTAL = 3;
 
         if (capteur.getIdentifiant().equals("C123")) {
             nbrTestValide++;
@@ -33,21 +33,23 @@ public class TestCapteur {
             System.out.println("Échec à l'étape de vérification de la méthode toString.");
         }
 
-        if (nbrTestValide == nbrTestTotal) {
+        if (nbrTestValide == NBR_TEST_TOTAL) {
             System.out.println("Tous les tests du constructeur et des getters ont réussi.");
         } else {
-            System.out.println("Échec, " + nbrTestValide + " sur " + nbrTestTotal + " tests ont réussi.");
+            System.out.println("Échec, " + nbrTestValide + " sur " + NBR_TEST_TOTAL + " tests ont réussi.");
         }
     }
 
-    /* Teste la méthode faireUnRelever de la classe Capteur. */
+    /* Test de la méthode faireUnRelever() de la classe Capteur.
+     * Comme les valeurs sont aléatoires, nous ne pouvons pas vérifier leurs exactitudes.
+     * Nous pouvons seulement vérifier que le relevé n'est pas null.
+     * Les valeurs générées sont deja testées dans TestOutils.
+     */
     public static void testFaireUnRelever() {
         System.out.println("Test de la méthode faireUnRelever...");
         Capteur capteur = new Capteur("C123", 45.77689f, 4.85764f);
         Releve releve = capteur.faireUnRelever();
 
-        // Comme les valeurs sont aléatoires, nous ne pouvons pas vérifier leurs exactitudes.
-        // Nous pouvons seulement vérifier que le releve n'est pas null.
         if (releve != null) {
             System.out.println("Le test de faireUnRelever a réussi.");
         } else {
