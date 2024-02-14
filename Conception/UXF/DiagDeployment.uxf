@@ -73,7 +73,8 @@ Gestionnaire (Serveur)</panel_attributes>
     <panel_attributes>lt=-&gt;
 
 API JAVA RMI
-basé sur TCP/IP</panel_attributes>
+basé sur TCP/IP
+Port 1099</panel_attributes>
     <additional_attributes>10.0;260.0;10.0;10.0</additional_attributes>
   </element>
   <element>
