@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>189</x>
+      <y>553</y>
+      <w>119</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>MainIOT
+--
++main()
+fg=BLACK
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>581</x>
+      <y>539</y>
+      <w>119</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>MainGestionnaire
+--
++main()
+fg=BLACK
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>819</x>
+      <y>154</y>
+      <w>462</w>
+      <h>539</h>
+    </coordinates>
+    <panel_attributes>Gestionnaire
+--
+
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>847</x>
+      <y>581</y>
+      <w>406</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+/RequeteSQL/
+--
+Cette classe contient toutes les requêtes SQL utilisées par le 
+Gestionnaire pour donner des ordres à la base de données</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>175</x>
+      <y>329</y>
+      <w>322</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>Capteur
+--
+- identifiant : String
+- gps : float[]
+- leGestionnaire : Gestionnaire
+--
++ Capteur(String identifiant, float latitude, float longitude) 
++ toString() : String
++ getIdentifiant() : String
++ getGps() : float[]
++ setGestionnaire(Gestionnaire leGestionnaire) : void
++ faireUnRelever() : Releve
++ run() : void  
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>476</x>
+      <y>98</y>
+      <w>21</w>
+      <h>245</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;330.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>448</x>
+      <y>77</y>
+      <w>91</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+/Runnable/
+bg=BLUE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>609</x>
+      <y>371</y>
+      <w>112</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Record&gt;&gt;
+/Releve/
+--
+temperature : float
+tauxHumidite : float
+Horodatage : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>154</x>
+      <y>119</y>
+      <w>602</w>
+      <h>378</h>
+    </coordinates>
+    <panel_attributes>IOT
+--
+
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1162</x>
+      <y>98</y>
+      <w>91</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+/Remote/
+bg=BLUE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1197</x>
+      <y>119</y>
+      <w>21</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>854</x>
+      <y>329</y>
+      <w>406</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>GestionnaireImpl
+--
+- c : Connection
+- nom : String
+--
++ GestionnaireImpl()
++ enregistrerCapteur(String id, float[] gps) : void
++ retirerCapteur(String id) : void
++ enregistrerValeur(String id, float temp, float tauxH, String horodatage) : void
++ toString() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>854</x>
+      <y>189</y>
+      <w>406</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+/Gestionnaire/
+--
+--
++ enregistrerCapteur(String id, float[] gps) : void
++ retirerCapteur(String id) : void
++ enregistrerValeur(String id, float temp, float tauxH, String horodatage) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1197</x>
+      <y>259</y>
+      <w>21</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1302</x>
+      <y>245</y>
+      <w>133</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>UnicastRemoteObject
+bg=BLUE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1239</x>
+      <y>259</y>
+      <w>105</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>203</x>
+      <y>161</y>
+      <w>217</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+/Outils/
+--
+_ - ALEATOIRE : RANDOM _
+--
+_+genererLatitudeAleatoires() : float_
+_+genererLongitudeAleatoires() : float_
+_+genererTemperatureAleatoire() : float_
+_+genererTauxHumiditeAleatoire() : float_
+_+horodatage() : String_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>847</x>
+      <y>490</y>
+      <w>406</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+/ConnexionBD/
+--
+_- PWD = System.getProperty("user.dir")_ : String
+_- NOM_BD = "Agriconnect.db"_ : String
+_- URL = "jdbc:sqlite:"+PWD+"/"+NOM_BD_ : String
+--
+_+ connexion() : Connection_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>476</x>
+      <y>637</y>
+      <w>308</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Crée le registre RMI, ensuite crée un objet gestionnaire
+et enregistre celui-ci.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>63</x>
+      <y>637</y>
+      <w>357</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>- Crée 5 capteurs et affiche leurs informations
+- Récupère le gestionnaire (objet) distant et l'affecte aux 5 capteurs
+- Lance un relevé toutes les 5 secondes sur les 5 capteurs
+- Au bout de 10 relevé sur les 5 capteurs, on arrête.
+- Vide la table contenant la liste des capteurs sur le serveur
+- Le programme s'arrête</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>245</x>
+      <y>602</y>
+      <w>21</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>378</y>
+      <w>133</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=-
+Génère
+m2=*
+m1=1
+</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>609</x>
+      <y>588</y>
+      <w>21</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>203</y>
+      <w>378</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>lt=-
+sont gérés par
+m2=1
+m1=1..* 
+</panel_attributes>
+    <additional_attributes>10.0;220.0;80.0;220.0;80.0;90.0;360.0;90.0;360.0;10.0;520.0;10.0</additional_attributes>
+  </element>
+</diagram>
