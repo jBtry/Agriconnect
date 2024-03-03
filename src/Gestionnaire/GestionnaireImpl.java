@@ -3,7 +3,10 @@ package Gestionnaire;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import static Gestionnaire.ConnexionBD.connexion;
 
 /**
@@ -87,8 +90,16 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
-    public String listeCapteurs() throws RemoteException {
-        return null;
+    public String listeCapteurs() throws RemoteException, SQLException {
+        Statement instructions = c.createStatement();
+        ResultSet retourSQL = instructions.executeQuery(RequeteSQL.SELECT_CAPTEUR);
+        StringBuilder resultat = new StringBuilder();
+        while(retourSQL.next()){
+            resultat.append(retourSQL.getString("Id")).append(" ");
+            resultat.append(retourSQL.getFloat("Latitude")).append(" ");
+            resultat.append(retourSQL.getFloat("Longitude")).append("\n");
+        }
+        return resultat.toString();
     }
 
     /**

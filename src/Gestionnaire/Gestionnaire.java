@@ -45,7 +45,7 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @throws java.rmi.RemoteException si erreur lors de la communication.
      * @return une chaine de caractère représentant la liste des capteurs
      */
-    public String listeCapteurs() throws RemoteException;
+    public String listeCapteurs() throws RemoteException, SQLException;
 
 
     /**

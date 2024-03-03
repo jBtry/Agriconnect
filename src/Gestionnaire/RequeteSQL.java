@@ -36,4 +36,6 @@ public abstract class RequeteSQL {
     /** Requête SQL permettant d'insérer un relevé d'un capteur dans la table contenant les relevés */
     protected static final String INSERTION_RELEVE= "INSERT INTO "+NOM_TABLE_RELEVE+" VALUES(?,?,?,?)";
 
+    protected static final String SELECT_CAPTEUR= "SELECT * FROM "+NOM_TABLE_CAPTEUR;
+
 }
