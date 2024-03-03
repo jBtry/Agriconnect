@@ -1,6 +1,6 @@
 package IoT;
 
-public class MainIOT {
+public abstract class MainIOT {
 
     /**
      * Crée 5 capteurs, affiche leurs informations

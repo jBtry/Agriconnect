@@ -9,7 +9,8 @@
       <w>145</w>
       <h>50</h>
     </coordinates>
-    <panel_attributes>MainAppUser
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+MainAppUser
 --
 +main()
 -demanderChoix() : int 
@@ -25,7 +26,8 @@ bg=RED</panel_attributes>
       <w>130</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>MainGestionnaire
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+MainGestionnaire
 --
 +main()
 fg=BLACK
@@ -523,7 +525,8 @@ m1=
       <w>85</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>MainIOT
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+MainIOT
 --
 +main()
 fg=BLACK

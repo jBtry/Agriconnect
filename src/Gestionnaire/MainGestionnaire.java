@@ -8,7 +8,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.sql.SQLException;
 
-public class MainGestionnaire {
+public abstract class MainGestionnaire {
 
 
     /**

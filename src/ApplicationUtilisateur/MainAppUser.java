@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MainAppUser {
+public abstract class MainAppUser {
     /**
      * Application de l'utilisateur
      * Met à disposition les fonctionnalités suivantes :
@@ -21,12 +21,14 @@ public class MainAppUser {
      * - Voir le dernier relevé d'un capteur
      * - Obtenir des statistiques sur les relevés (moyenne et tendances)
      * - Modifier l'intervalle de mesure pour un ou bien tous les capteurs
-     *
      * @param args non utilisés
      */
 
-    /* Pour la saisie utilisateur */
+    /** Pour la saisie utilisateur */
     private static final Scanner clavier = new Scanner(System.in);
+
+    /** Le gestionnaire */
+    protected static Gestionnaire leGestionnaire;
 
     /* Demande un choix à l'utilisateur */
     private static int demanderChoix() {
@@ -54,7 +56,7 @@ public class MainAppUser {
     public static void main(String args[]) {
         /* Récupération de l'objet gestionnaire distant */
         try {
-            Gestionnaire leGestionnaire = (Gestionnaire) Naming.lookup("rmi://localhost:1099/LeGestionnaire");
+            leGestionnaire = (Gestionnaire) Naming.lookup("rmi://localhost:1099/LeGestionnaire");
             int choix;
             MainAppUser.afficher(Textes.ACCUEIL);
             while (true) {

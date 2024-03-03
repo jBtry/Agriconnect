@@ -7,7 +7,7 @@ public abstract class AppUser {
      * dans la base de donnée du Gestionnaire
      * @param idCapteur identifiant du capteur
      */
-    public void ajouterCapteur(String idCapteur) {
+    protected void ajouterCapteur(String idCapteur) {
 
     }
 
@@ -15,7 +15,7 @@ public abstract class AppUser {
      * Permet de commencer l'enregistrement de relevé
      * @param idCapteur identifiant du capteur
      */
-    public void demarrerCapteur(String idCapteur) {
+    protected void demarrerCapteur(String idCapteur) {
 
     }
 
@@ -23,7 +23,7 @@ public abstract class AppUser {
      * Permet d'arrêter l'enregistrement de relevé
      * @param idCapteur identifiant du capteur
      */
-    public void stopperCapteur(String idCapteur) {
+    protected void stopperCapteur(String idCapteur) {
 
     }
 
@@ -31,14 +31,14 @@ public abstract class AppUser {
      * Permet de retirer un capteur dans la base de données du gestionnaire contenant la liste des capteurs.
      * @param idCapteur identifiant du capteur
      */
-    public void retirerCapteur(String idCapteur) {
+    protected void retirerCapteur(String idCapteur) {
 
     }
 
     /**
      * Permet de lister les capteurs enregistrés par l'utilisateur
      */
-    public void listeCapteurs() {
+    protected void listeCapteurs() {
 
     }
 
@@ -46,7 +46,7 @@ public abstract class AppUser {
      * Permet de visualiser le dernier relevé d'un capteur
      * @param idCapteur identifiant du capteur
      */
-    public void obtenirDernierReleve(String idCapteur) {
+    protected void obtenirDernierReleve(String idCapteur) {
 
     }
 
@@ -55,7 +55,7 @@ public abstract class AppUser {
      * @param idCapteur identifiant du capteur
      * @param duree durée sur laquelle on mesure les statistiques (1H ou 24H).
      */
-    public void statsCapteurs(String idCapteur, int duree) {
+    protected void statsCapteurs(String idCapteur, int duree) {
 
     }
 
@@ -64,7 +64,7 @@ public abstract class AppUser {
      * @param intervalle nouvel intervalle de mesure
      * @param idCapteur identifiant du capteur
      */
-    public void modifierIntervalle(int intervalle, String idCapteur) {
+    protected void modifierIntervalle(int intervalle, String idCapteur) {
 
     }
 
@@ -72,7 +72,7 @@ public abstract class AppUser {
      * Permet de modifier l'intervalle de mesure pour tous les capteurs
      * @param intervalle nouvel intervalle de mesure
      */
-    public void modifierIntervalleTous(int intervalle) {
+    protected void modifierIntervalleTous(int intervalle) {
 
     }
 
