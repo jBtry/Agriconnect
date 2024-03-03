@@ -23,7 +23,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     public GestionnaireImpl() throws RemoteException, SQLException, ClassNotFoundException {
         super();
         this.c = connexion();
-        nom = "Gestionnaire A";
+        nom = "Gestionnaire Agriconnect";
     }
 
     @Override
