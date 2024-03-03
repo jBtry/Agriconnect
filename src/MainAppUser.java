@@ -1,17 +1,18 @@
-/**
- * Application de l'utilisateur
- * Met à disposition les fonctionnalités suivantes :
- * - Ajouter un capteur
- * - Démarrer un capteur
- * - Stopper un capteur
- * - Retirer un capteur
- * - Lister les capteurs
- * - Voir le dernier relevé d'un capteur
- * - Obtenir des statistiques sur les relevés (moyenne et tendances)
- * - Modifier l'intervalle de mesure pour un ou bien tous les capteurs
- */
-public class MainAppUser {
 
+public class MainAppUser {
+    /**
+     * Application de l'utilisateur
+     * Met à disposition les fonctionnalités suivantes :
+     * - Ajouter un capteur
+     * - Démarrer un capteur
+     * - Stopper un capteur
+     * - Retirer un capteur
+     * - Lister les capteurs
+     * - Voir le dernier relevé d'un capteur
+     * - Obtenir des statistiques sur les relevés (moyenne et tendances)
+     * - Modifier l'intervalle de mesure pour un ou bien tous les capteurs
+     * @param args non utilisés
+     */
     public static void main(String args[]) {
 
     }

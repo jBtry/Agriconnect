@@ -12,7 +12,7 @@ public class MainGestionnaire {
     /**
      * Crée le registre RMI, ensuite crée un objet gestionnaire
      * et enregistre celui-ci.
-     * @param args non utilisé
+     * @param args non utilisés
      */
     public static void main(String args[]) {
     // TODO : Mieux gérer les exceptions dans les prochaines versions ...
