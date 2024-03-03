@@ -35,7 +35,7 @@ public class MainAppUser {
                 case 6 -> ;
                 case 7 -> ;
                 case 8 -> ;
-                case 9 ->  ;
+                case 9 -> ;
                 default -> MainAppUser.afficher(Textes.ERR_SAISI);
             }
         }
