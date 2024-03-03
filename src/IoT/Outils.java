@@ -16,6 +16,12 @@ public abstract class Outils {
 
     private static final Random ALEATOIRE = new Random();
 
+    /** Température précédente générée aléatoirement */ // TODO : modif diag classe
+    private static float tempPrecedente = 0;
+
+    /** Taux d'humidité précédent généré aléatoirement */ // TODO : modif diag classe
+    private static float tauxHPrecedent = 0;
+
     /** Génère une latitude aléatoirement
      * @return un flottant représentant une latitude
      */
@@ -36,20 +42,43 @@ public abstract class Outils {
     /**
      * @return une température en °C aléatoire
      */
-    protected static float genererTemperatureAleatoire() { //TODO : arrondir le resultat à 1 chiffre après la virgule
-        float minTemp = -10; // Température minimale
-        float maxTemp = 50;  // Température maximale
-        return minTemp + (maxTemp - minTemp) * ALEATOIRE.nextFloat();
+    protected static float genererTemperatureAleatoire() {
+        float resultat, ajustement;
+        int minTemp = -10; // Température minimale
+        int maxTemp = 50;  // Température maximale
+        if (tempPrecedente == 0) { // On génère une première température aléatoirement ...
+            resultat = minTemp + (maxTemp - minTemp) * ALEATOIRE.nextFloat();
+            tempPrecedente = resultat;
+            return Math.round(resultat * 10)/10.0f; // Arrondit le résultat à 1 chiffre après la virgule
+        } else { // ... pour que celles d'après suivent et ainsi garder une cohérence pour la fonctionnalité "statistique"
+            ajustement = (4 * ALEATOIRE.nextFloat() - 2); // Donne un nombre entre -2 et 2, c'est notre facteur d'ajustement aléatoire
+            resultat = tempPrecedente + ajustement; // Nouvelle température générée aléatoirement dans la continuité de l'ancienne.
+            tempPrecedente = resultat; // Mise à jour de la dernière température générée
+            return Math.round(resultat * 10)/10.0f; // Arrondit le résultat à 1 chiffre après la virgule
+
+        }
+
+
     }
 
 
     /**
      * @return un taux d'humidité aléatoire
      */
-    protected static float genererTauxHumiditeAleatoire() { //TODO : arrondir le resultat à 1 chiffre après la virgule
-        int minHumidite = 0;   // Humidité minimale en pourcentage
-        int maxHumidite = 100; // Humidité maximale en pourcentage
-        return minHumidite + (maxHumidite - minHumidite) * ALEATOIRE.nextFloat();
+    protected static float genererTauxHumiditeAleatoire() {
+        float resultat, ajustement;;
+        int minHumidite = 40;   // Humidité minimale en pourcentage
+        int maxHumidite = 80; // Humidité maximale en pourcentage
+        if (tauxHPrecedent == 0) { // On génère un premier taux d'humidité aléatoirement ...
+            resultat = minHumidite + (maxHumidite - minHumidite) * ALEATOIRE.nextFloat();
+            tauxHPrecedent = resultat;
+            return Math.round(resultat * 10)/10.0f; // Arrondit le résultat à 1 chiffre après la virgule
+        } else { // ... pour que ceux d'après suivent et ainsi garder une cohérence pour la fonctionnalité "statistique"
+            ajustement = (4 * ALEATOIRE.nextFloat() - 2); // Donne un nombre entre -2 et 2, c'est notre facteur d'ajustement aléatoire
+            resultat = tauxHPrecedent + ajustement; // Nouveaux taux d'humidité généré aléatoirement dans la continuité de l'ancien.
+            tauxHPrecedent = resultat; // Mise à jour du dernier taux d'humidité généré
+            return Math.round(resultat * 10)/10.0f; // Arrondit le résultat à 1 chiffre après la virgule
+        }
     }
 
 
