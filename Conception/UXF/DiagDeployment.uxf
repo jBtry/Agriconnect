@@ -139,7 +139,7 @@ API JDBC</panel_attributes>
 &lt;&lt;Artifact&gt;&gt;
 Programme Java Serveur
 
-MainGestionnaire.jar</panel_attributes>
+Gestionnaire.MainGestionnaire.jar</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -154,7 +154,7 @@ MainGestionnaire.jar</panel_attributes>
 &lt;&lt;Artifact&gt;&gt;
 Programme Java Client
 
-MainIOT.jar</panel_attributes>
+IoT.MainIOT.jar</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
