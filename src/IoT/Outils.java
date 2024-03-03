@@ -16,10 +16,10 @@ public abstract class Outils {
 
     private static final Random ALEATOIRE = new Random();
 
-    /** Température précédente générée aléatoirement */ // TODO : modif diag classe
+    /** Température précédente générée aléatoirement */
     private static float tempPrecedente = 0;
 
-    /** Taux d'humidité précédent généré aléatoirement */ // TODO : modif diag classe
+    /** Taux d'humidité précédent généré aléatoirement */
     private static float tauxHPrecedent = 0;
 
     /** Génère une latitude aléatoirement
@@ -45,7 +45,7 @@ public abstract class Outils {
     protected static float genererTemperatureAleatoire() {
         float resultat, ajustement;
         int minTemp = -10; // Température minimale
-        int maxTemp = 50;  // Température maximale
+        int maxTemp = 40;  // Température maximale
         if (tempPrecedente == 0) { // On génère une première température aléatoirement ...
             resultat = minTemp + (maxTemp - minTemp) * ALEATOIRE.nextFloat();
             tempPrecedente = resultat;

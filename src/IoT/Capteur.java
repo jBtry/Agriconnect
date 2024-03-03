@@ -17,9 +17,4 @@ public interface Capteur extends java.rmi.Remote {
      */
     public void modifierIntervalle(int intervalle) throws RemoteException;
 
-    /**
-     * @return les informations du capteur
-     */
-    @Override
-    public String toString() throws RemoteException;
 }
