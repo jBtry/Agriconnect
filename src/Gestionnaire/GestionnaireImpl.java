@@ -134,13 +134,15 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet de modifier l'intervalle de mesure pour tous les capteurs
+     *
      * @param intervalle nouvel intervalle de mesure
      * @return une chaine de caractère contenant les stats
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
-    public void modifierIntervalleTous(int intervalle) throws RemoteException {
+    public String modifierIntervalleTous(int intervalle) throws RemoteException {
 
+        return null;
     }
 
     /**

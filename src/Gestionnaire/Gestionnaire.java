@@ -76,11 +76,12 @@ public interface Gestionnaire extends java.rmi.Remote {
 
     /**
      * Permet de modifier l'intervalle de mesure pour tous les capteurs
+     *
      * @param intervalle nouvel intervalle de mesure
-     * @throws java.rmi.RemoteException si erreur lors de la communication.
      * @return une chaine de caractère contenant les stats
+     * @throws java.rmi.RemoteException si erreur lors de la communication.
      */
-    public void modifierIntervalleTous(int intervalle) throws RemoteException;
+    public String modifierIntervalleTous(int intervalle) throws RemoteException;
 
     /**
      * Permet d'enregistrer les informations dans la base de données contenant les valeurs relevées par les capteurs.

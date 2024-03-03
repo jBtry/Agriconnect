@@ -4,10 +4,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1220</x>
-      <y>270</y>
+      <x>1080</x>
+      <y>340</y>
       <w>145</w>
-      <h>70</h>
+      <h>95</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 MainAppUser
@@ -16,16 +16,19 @@ _# leGestionnaire : Gestionnaire_
 _- clavier : Scanner_
 --
 _+main()_
-_-demanderChoix() : int_ 
+_-demanderChoix() : int_
 _-afficher(String texte) : void_
+_-demanderDuree() : int_
+_-demanderIntervalle() : int_
+_-demanderCapteur() : String_
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>835</x>
-      <y>295</y>
+      <x>810</x>
+      <y>315</y>
       <w>130</w>
       <h>40</h>
     </coordinates>
@@ -40,8 +43,8 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>650</x>
-      <y>275</y>
+      <x>625</x>
+      <y>295</y>
       <w>340</w>
       <h>410</h>
     </coordinates>
@@ -54,8 +57,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>670</x>
-      <y>475</y>
+      <x>645</x>
+      <y>495</y>
       <w>120</w>
       <h>60</h>
     </coordinates>
@@ -71,8 +74,8 @@ ordres à la base de données.</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>355</x>
-      <y>505</y>
+      <x>330</x>
+      <y>525</y>
       <w>230</w>
       <h>120</h>
     </coordinates>
@@ -100,8 +103,8 @@ ordres à la base de données.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
-      <y>445</y>
+      <x>285</x>
+      <y>465</y>
       <w>75</w>
       <h>70</h>
     </coordinates>
@@ -111,8 +114,8 @@ ordres à la base de données.</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>430</y>
+      <x>255</x>
+      <y>450</y>
       <w>65</w>
       <h>20</h>
     </coordinates>
@@ -124,8 +127,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>355</x>
-      <y>675</y>
+      <x>330</x>
+      <y>695</y>
       <w>75</w>
       <h>50</h>
     </coordinates>
@@ -140,8 +143,8 @@ Horodatage : String</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>350</x>
-      <y>260</y>
+      <x>325</x>
+      <y>280</y>
       <w>250</w>
       <h>470</h>
     </coordinates>
@@ -154,8 +157,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>260</y>
+      <x>605</x>
+      <y>280</y>
       <w>200</w>
       <h>100</h>
     </coordinates>
@@ -165,8 +168,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>655</x>
-      <y>540</y>
+      <x>630</x>
+      <y>560</y>
       <w>325</w>
       <h>125</h>
     </coordinates>
@@ -190,8 +193,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>655</x>
-      <y>350</y>
+      <x>630</x>
+      <y>370</y>
       <w>290</w>
       <h>120</h>
     </coordinates>
@@ -215,8 +218,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>655</x>
-      <y>465</y>
+      <x>630</x>
+      <y>485</y>
       <w>15</w>
       <h>85</h>
     </coordinates>
@@ -226,8 +229,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>670</x>
-      <y>660</y>
+      <x>645</x>
+      <y>680</y>
       <w>15</w>
       <h>80</h>
     </coordinates>
@@ -237,8 +240,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>430</x>
-      <y>415</y>
+      <x>405</x>
+      <y>435</y>
       <w>150</w>
       <h>80</h>
     </coordinates>
@@ -257,8 +260,8 @@ _#horodatage() : String_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>795</x>
-      <y>475</y>
+      <x>770</x>
+      <y>495</y>
       <w>190</w>
       <h>60</h>
     </coordinates>
@@ -275,8 +278,8 @@ _+ connexion() : Connection_</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>830</x>
-      <y>200</y>
+      <x>805</x>
+      <y>220</y>
       <w>215</w>
       <h>35</h>
     </coordinates>
@@ -288,8 +291,8 @@ S'occupe d'executer les requêtes du ApplicationUtilisateur.MainAppUser.</panel_
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1230</x>
-      <y>145</y>
+      <x>1205</x>
+      <y>165</y>
       <w>250</w>
       <h>95</h>
     </coordinates>
@@ -308,19 +311,19 @@ Met à disposition les fonctionnalités suivantes:
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1320</x>
-      <y>235</y>
-      <w>55</w>
-      <h>45</h>
+      <x>1180</x>
+      <y>255</y>
+      <w>170</w>
+      <h>95</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>18.0;70.0;90.0;10.0</additional_attributes>
+    <additional_attributes>18.0;170.0;320.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>385</x>
-      <y>620</y>
+      <x>360</x>
+      <y>640</y>
       <w>40</w>
       <h>65</h>
     </coordinates>
@@ -334,8 +337,8 @@ m1=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>915</x>
-      <y>230</y>
+      <x>890</x>
+      <y>250</y>
       <w>15</w>
       <h>75</h>
     </coordinates>
@@ -345,8 +348,8 @@ m1=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>545</x>
-      <y>350</y>
+      <x>520</x>
+      <y>370</y>
       <w>120</w>
       <h>25</h>
     </coordinates>
@@ -360,10 +363,10 @@ m1=1..*
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1095</x>
-      <y>250</y>
-      <w>310</w>
-      <h>270</h>
+      <x>1065</x>
+      <y>305</y>
+      <w>255</w>
+      <h>220</h>
     </coordinates>
     <panel_attributes>ApplicationUtilisateur
 --
@@ -374,8 +377,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>395</x>
-      <y>350</y>
+      <x>370</x>
+      <y>370</y>
       <w>155</w>
       <h>60</h>
     </coordinates>
@@ -393,8 +396,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>590</x>
-      <y>245</y>
+      <x>565</x>
+      <y>265</y>
       <w>70</w>
       <h>20</h>
     </coordinates>
@@ -406,8 +409,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>260</y>
+      <x>435</x>
+      <y>280</y>
       <w>160</w>
       <h>100</h>
     </coordinates>
@@ -417,8 +420,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>410</x>
-      <y>405</y>
+      <x>385</x>
+      <y>425</y>
       <w>15</w>
       <h>110</h>
     </coordinates>
@@ -428,8 +431,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>610</x>
-      <y>730</y>
+      <x>585</x>
+      <y>750</y>
       <w>85</w>
       <h>15</h>
     </coordinates>
@@ -440,8 +443,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>490</x>
-      <y>620</y>
+      <x>465</x>
+      <y>640</y>
       <w>145</w>
       <h>120</h>
     </coordinates>
@@ -451,34 +454,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1105</x>
-      <y>350</y>
-      <w>235</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;abstract&gt;&gt;
-AppUser
---
-
---
-_# ajouterCapteur(String idCapteur) : void_
-_# demarrerCapteur(String idCapteur) : void_
-_# stopperCapteur(String idCapteur) :void_
-_# retirerCapteur(String idCapteur) : void_
-_# listeCapteurs() : void_
-_# obtenirDernierReleve(String idCapteur) : void_
-_# statsCapteurs(String idCapteur, int duree) : void_
-_# modifierIntervalle(int intervalle, String idCapteur): void_
-_# modifierIntervalleTous(int intervalle)_
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1105</x>
-      <y>470</y>
+      <x>1085</x>
+      <y>450</y>
       <w>210</w>
       <h>45</h>
     </coordinates>
@@ -492,8 +469,8 @@ affichés à utilisateur</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>940</x>
-      <y>350</y>
+      <x>915</x>
+      <y>370</y>
       <w>175</w>
       <h>30</h>
     </coordinates>
@@ -506,25 +483,10 @@ m1=1
     <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1280</x>
-      <y>335</y>
-      <w>35</w>
-      <h>25</h>
-    </coordinates>
-    <panel_attributes>lt=-
-utilise
-m2=
-m1= 
-</panel_attributes>
-    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>290</y>
+      <x>335</x>
+      <y>310</y>
       <w>85</w>
       <h>40</h>
     </coordinates>
@@ -539,8 +501,8 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>285</x>
-      <y>225</y>
+      <x>260</x>
+      <y>245</y>
       <w>235</w>
       <h>20</h>
     </coordinates>
@@ -552,8 +514,8 @@ et enregistre ceux-ci dans le registre RMI.
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>240</y>
+      <x>355</x>
+      <y>260</y>
       <w>15</w>
       <h>60</h>
     </coordinates>

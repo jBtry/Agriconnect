@@ -39,13 +39,51 @@ public abstract class MainAppUser {
             try {
                 choix = clavier.nextInt();
             } catch (InputMismatchException err) {
-                MainAppUser.afficher(Textes.ERR_SAISI);
+                MainAppUser.afficher(Textes.ERR_SAISI_FCT);
                 clavier.next(); // Important pour nettoyer le buffer et éviter une boucle infinie
             }
         } while (choix == 0);
-
         return choix;
     }
+
+    /* Demande de saisir l'identifiant du capteur */
+    private static String demanderCapteur() {
+        MainAppUser.afficher(Textes.CAPTEUR);
+        return clavier.nextLine();
+    }
+
+    /* Demande de saisir le nouvel intervalle de mesure */
+    private static int demanderIntervalle() {
+        MainAppUser.afficher(Textes.INTERVALLE);
+        int choix;
+        do {
+            try {
+                choix = clavier.nextInt();
+            } catch (InputMismatchException err) {
+                MainAppUser.afficher(Textes.ERR_SAISI_INTERVALLE);
+                clavier.next(); // Important pour nettoyer le buffer et éviter une boucle infinie
+                choix = 0;
+            }
+        } while (choix == 0);
+        return choix;
+    }
+
+    /* Demande de saisir la durée sur laquelle obtenir les statistiques */
+    private static int demanderDuree() {
+        MainAppUser.afficher(Textes.DUREE);
+        int choix;
+        do {
+            try {
+                choix = clavier.nextInt();
+            } catch (InputMismatchException err) {
+                MainAppUser.afficher(Textes.ERR_SAISI_DUREE);
+                clavier.next(); // Important pour nettoyer le buffer et éviter une boucle infinie
+                choix = 0;
+            }
+        } while (choix < 1 | choix > 2);
+        return choix == 1 ? 24 : 1; // 24h ou 1h ?
+    }
+
 
     /* Affiche les menus de l'application */
     private static void afficher(String texte) {
@@ -58,7 +96,7 @@ public abstract class MainAppUser {
         /* Récupération de l'objet gestionnaire distant */
         try {
             leGestionnaire = (Gestionnaire) Naming.lookup("rmi://localhost:1099/LeGestionnaire");
-            int choix;
+            int choix, intervalle, duree;
             String idCapteur;
             MainAppUser.afficher(Textes.ACCUEIL);
             while (true) {
@@ -66,19 +104,54 @@ public abstract class MainAppUser {
                 choix = MainAppUser.demanderChoix();
                 switch (choix) {
                     case 1 -> { // 1 - Ajouter un capteur
-
-                        AppUser.ajouterCapteur(idCapteur);
+                        idCapteur = MainAppUser.demanderCapteur();
+                        MainAppUser.afficher(leGestionnaire.ajouterCapteur(idCapteur));
                     }
-                    case 2 -> ; // 2 - Démarrer un capteur
-                    case 3 -> ; // 3 - Stopper un capteur
-                    case 4 -> ; // 4 - Retirer un capteur
-                    case 5 -> AppUser.listeCapteurs(); ; // 5 - Lister les capteurs
-                    case 6 -> ; // 6 - Voir le dernier relevé d'un capteur
-                    case 7 -> ; // 7 - Obtenir des statistiques sur les relevés (moyenne et tendances)
-                    case 8 -> ; // 8 - Modifier l'intervalle de mesure pour un capteur
-                    case 9 -> ; // 9 - Modifier l'intervalle de mesure pour tous les capteurs
-                    case 10 -> System.exit(0); // 10 - Quitter Agriconnect
-                    default -> MainAppUser.afficher(Textes.ERR_SAISI); // Erreur de saisie
+
+                    case 2 -> { // 2 - Démarrer un capteur
+                        idCapteur = MainAppUser.demanderCapteur();
+                        MainAppUser.afficher(leGestionnaire.demarrerCapteur(idCapteur));
+                    }
+
+                    case 3 -> { // 3 - Stopper un capteur
+                        idCapteur = MainAppUser.demanderCapteur();
+                        MainAppUser.afficher(leGestionnaire.stopperCapteur(idCapteur));
+                    }
+
+                    case 4 ->  { // 4 - Retirer un capteur
+                        idCapteur = MainAppUser.demanderCapteur();
+                        MainAppUser.afficher(leGestionnaire.retirerCapteur(idCapteur));
+                    }
+
+                    case 5 -> MainAppUser.afficher(leGestionnaire.listeCapteurs()); // 5 - Lister les capteurs
+
+                    case 6 -> { // 6 - Voir le dernier relevé d'un capteur
+                        idCapteur = MainAppUser.demanderCapteur();
+                        MainAppUser.afficher(leGestionnaire.dernierReleve(idCapteur));
+                    }
+
+                    case 7 -> { // 7 - Obtenir des statistiques sur les relevés (moyenne et tendances)
+                        duree = MainAppUser.demanderDuree();
+                        idCapteur = MainAppUser.demanderCapteur();
+                        MainAppUser.afficher(leGestionnaire.statsCapteurs(idCapteur, duree));
+                    }
+
+                    case 8 -> { // 8 - Modifier l'intervalle de mesure pour un capteur
+                        idCapteur = MainAppUser.demanderCapteur();
+                        intervalle = MainAppUser.demanderIntervalle();
+                        MainAppUser.afficher(leGestionnaire.modifierIntervalle(intervalle, idCapteur));
+                    }
+                    case 9 -> { // 9 - Modifier l'intervalle de mesure pour tous les capteurs
+                        intervalle = MainAppUser.demanderIntervalle();
+                        MainAppUser.afficher(leGestionnaire.modifierIntervalleTous(intervalle));
+                    }
+
+                    case 10 -> { // 10 - Quitter Agriconnect
+                        MainAppUser.afficher(Textes.ABIENTOT);
+                        System.exit(0);
+                    }
+
+                    default -> MainAppUser.afficher(Textes.ERR_SAISI_FCT); // Erreur de saisie
                 }
             }
         } catch (MalformedURLException e) {
