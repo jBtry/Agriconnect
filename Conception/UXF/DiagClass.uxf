@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>1504</x>
-      <y>192</y>
+      <y>176</y>
       <w>232</w>
       <h>80</h>
     </coordinates>
@@ -13,9 +13,7 @@
 --
 +main()
 -demanderChoix() : int 
--afficherMenuAccueil() : void
--afficherMenuFonctionnalites() : void
-fg=BLACK
+-afficher() : void
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>
@@ -23,7 +21,7 @@ bg=RED</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>960</x>
-      <y>192</y>
+      <y>176</y>
       <w>136</w>
       <h>64</h>
     </coordinates>
@@ -38,7 +36,7 @@ bg=RED</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>592</x>
-      <y>296</y>
+      <y>280</y>
       <w>544</w>
       <h>568</h>
     </coordinates>
@@ -52,7 +50,7 @@ fg=GRAY</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>624</x>
-      <y>528</y>
+      <y>512</y>
       <w>192</w>
       <h>96</h>
     </coordinates>
@@ -69,7 +67,7 @@ ordres à la base de données.</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>120</x>
-      <y>576</y>
+      <y>560</y>
       <w>368</w>
       <h>192</h>
     </coordinates>
@@ -99,7 +97,7 @@ ordres à la base de données.</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>48</x>
-      <y>480</y>
+      <y>464</y>
       <w>120</w>
       <h>112</h>
     </coordinates>
@@ -110,7 +108,7 @@ ordres à la base de données.</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>456</y>
+      <y>440</y>
       <w>104</w>
       <h>32</h>
     </coordinates>
@@ -123,7 +121,7 @@ bg=BLUE</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>120</x>
-      <y>848</y>
+      <y>832</y>
       <w>120</w>
       <h>80</h>
     </coordinates>
@@ -139,7 +137,7 @@ Horodatage : String</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>112</x>
-      <y>296</y>
+      <y>280</y>
       <w>400</w>
       <h>640</h>
     </coordinates>
@@ -153,7 +151,7 @@ fg=GRAY</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>560</x>
-      <y>184</y>
+      <y>168</y>
       <w>320</w>
       <h>160</h>
     </coordinates>
@@ -164,7 +162,7 @@ fg=GRAY</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>600</x>
-      <y>632</y>
+      <y>616</y>
       <w>520</w>
       <h>200</h>
     </coordinates>
@@ -189,7 +187,7 @@ fg=GRAY</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>600</x>
-      <y>328</y>
+      <y>312</y>
       <w>464</w>
       <h>192</h>
     </coordinates>
@@ -199,14 +197,14 @@ fg=GRAY</panel_attributes>
 
 --
 + ajouterCapteur(String idCapteur) : String
-+ demarrerCapteur(String id) : String
-+ stopperCapteur(String id) : String
++ demarrerCapteur(String idCapteur) : String
++ stopperCapteur(String idCapteur) : String
 + retirerCapteur(String idCapteur) : String
 + listeCapteurs() : String
 + dernierReleve(String idCapteur) : String
 + statsCapteurs(String idCapteur, int duree) : String
-+ modifierIntervalle(int interval, String idCapteur): void
-+ modifierIntervalleTous(int interval): void
++ modifierIntervalle(int intervalle, String idCapteur): void
++ modifierIntervalleTous(int intervalle): void
 + enregistrerValeur(String id, float temp, float tauxH, String horodatage) : void</panel_attributes>
     <additional_attributes/>
   </element>
@@ -214,7 +212,7 @@ fg=GRAY</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>600</x>
-      <y>512</y>
+      <y>496</y>
       <w>24</w>
       <h>136</h>
     </coordinates>
@@ -225,7 +223,7 @@ fg=GRAY</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>624</x>
-      <y>824</y>
+      <y>808</y>
       <w>24</w>
       <h>128</h>
     </coordinates>
@@ -236,7 +234,7 @@ fg=GRAY</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>240</x>
-      <y>432</y>
+      <y>416</y>
       <w>240</w>
       <h>128</h>
     </coordinates>
@@ -256,7 +254,7 @@ _+horodatage() : String_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>824</x>
-      <y>528</y>
+      <y>512</y>
       <w>304</w>
       <h>96</h>
     </coordinates>
@@ -274,7 +272,7 @@ _+ connexion() : Connection_</panel_attributes>
     <id>UMLNote</id>
     <coordinates>
       <x>880</x>
-      <y>88</y>
+      <y>72</y>
       <w>344</w>
       <h>56</h>
     </coordinates>
@@ -287,14 +285,14 @@ S'occupe d'executer les requêtes du MainAppUser.</panel_attributes>
     <id>UMLNote</id>
     <coordinates>
       <x>1368</x>
-      <y>16</y>
+      <y>0</y>
       <w>400</w>
       <h>152</h>
     </coordinates>
     <panel_attributes>Application de l'utilisateur
 Met à disposition les fonctionnalités suivantes:
 - Ajouter un capteur
-- Demarrer un capteur
+- Démarrer un capteur
 - Stopper un capteur
 - Retirer un capteur
 - Lister les capteurs
@@ -307,7 +305,7 @@ Met à disposition les fonctionnalités suivantes:
     <id>Relation</id>
     <coordinates>
       <x>1512</x>
-      <y>160</y>
+      <y>144</y>
       <w>24</w>
       <h>48</h>
     </coordinates>
@@ -318,7 +316,7 @@ Met à disposition les fonctionnalités suivantes:
     <id>Relation</id>
     <coordinates>
       <x>168</x>
-      <y>760</y>
+      <y>744</y>
       <w>64</w>
       <h>104</h>
     </coordinates>
@@ -333,7 +331,7 @@ m1=1
     <id>Relation</id>
     <coordinates>
       <x>1016</x>
-      <y>136</y>
+      <y>120</y>
       <w>24</w>
       <h>72</h>
     </coordinates>
@@ -344,7 +342,7 @@ m1=1
     <id>Relation</id>
     <coordinates>
       <x>408</x>
-      <y>328</y>
+      <y>312</y>
       <w>208</w>
       <h>40</h>
     </coordinates>
@@ -359,7 +357,7 @@ m1=1..*
     <id>UMLPackage</id>
     <coordinates>
       <x>1304</x>
-      <y>296</y>
+      <y>280</y>
       <w>400</w>
       <h>304</h>
     </coordinates>
@@ -373,7 +371,7 @@ fg=GRAY</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>184</x>
-      <y>328</y>
+      <y>312</y>
       <w>232</w>
       <h>96</h>
     </coordinates>
@@ -391,7 +389,7 @@ fg=GRAY</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>496</x>
-      <y>160</y>
+      <y>144</y>
       <w>112</w>
       <h>32</h>
     </coordinates>
@@ -404,7 +402,7 @@ bg=BLUE</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>288</x>
-      <y>184</y>
+      <y>168</y>
       <w>256</w>
       <h>160</h>
     </coordinates>
@@ -415,7 +413,7 @@ bg=BLUE</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>208</x>
-      <y>416</y>
+      <y>400</y>
       <w>24</w>
       <h>176</h>
     </coordinates>
@@ -426,7 +424,7 @@ bg=BLUE</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>528</x>
-      <y>936</y>
+      <y>920</y>
       <w>136</w>
       <h>24</h>
     </coordinates>
@@ -438,7 +436,7 @@ bg=BLUE</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>336</x>
-      <y>760</y>
+      <y>744</y>
       <w>232</w>
       <h>192</h>
     </coordinates>
@@ -449,7 +447,7 @@ bg=BLUE</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1320</x>
-      <y>328</y>
+      <y>312</y>
       <w>376</w>
       <h>168</h>
     </coordinates>
@@ -465,7 +463,7 @@ AppUser
 + listeCapteurs() : void
 + obtenirDernierReleve(String idCapteur) : void
 + statsCapteurs(String idCapteur, int duree) : void
-+ modifierIntervalle(int interval, String idCapteur): void
++ modifierIntervalle(int intervalle, String idCapteur): void
 
 
 </panel_attributes>
@@ -475,7 +473,7 @@ AppUser
     <id>UMLClass</id>
     <coordinates>
       <x>1320</x>
-      <y>504</y>
+      <y>488</y>
       <w>336</w>
       <h>72</h>
     </coordinates>
@@ -490,7 +488,7 @@ affichés à utilisateur</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1056</x>
-      <y>328</y>
+      <y>312</y>
       <w>280</w>
       <h>48</h>
     </coordinates>
@@ -506,7 +504,7 @@ m1=1
     <id>Relation</id>
     <coordinates>
       <x>1600</x>
-      <y>264</y>
+      <y>248</y>
       <w>56</w>
       <h>80</h>
     </coordinates>
@@ -521,7 +519,7 @@ m1=
     <id>UMLClass</id>
     <coordinates>
       <x>120</x>
-      <y>192</y>
+      <y>176</y>
       <w>136</w>
       <h>64</h>
     </coordinates>
@@ -536,7 +534,7 @@ bg=RED</panel_attributes>
     <id>UMLNote</id>
     <coordinates>
       <x>0</x>
-      <y>136</y>
+      <y>120</y>
       <w>376</w>
       <h>32</h>
     </coordinates>
@@ -549,7 +547,7 @@ et enregistre ceux-ci dans le registre RMI.
     <id>Relation</id>
     <coordinates>
       <x>152</x>
-      <y>160</y>
+      <y>144</y>
       <w>24</w>
       <h>48</h>
     </coordinates>
