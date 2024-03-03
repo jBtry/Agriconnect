@@ -51,7 +51,7 @@ public class MainAppUser {
                 choix = clavier.nextInt();
             } catch (InputMismatchException err) {
                 MainAppUser.afficher(Textes.ERR_SAISI);
-                clavier.next(); // Important pour consommer l'entrée non valide et éviter une boucle infinie
+                clavier.next(); // Important pour nettoyer le buffer et éviter une boucle infinie
             }
         } while(choix == 0);
 
