@@ -203,7 +203,7 @@ fg=GRAY</panel_attributes>
 + listeCapteurs() : String
 + dernierReleve(String idCapteur) : String
 + statsCapteurs(String idCapteur, int duree) : String
-+ modifierIntervalle(int intervalle, String idCapteur): void
++ modifierIntervalle(int intervalle, String idCapteur): String
 + modifierIntervalleTous(int intervalle): void
 + enregistrerValeur(String id, float temp, float tauxH, String horodatage) : void</panel_attributes>
     <additional_attributes/>

@@ -66,7 +66,7 @@ public interface Gestionnaire extends java.rmi.Remote {
     public String statsCapteurs(String idCapteur, int duree) throws RemoteException;
 
     /**
-     * Permet de modifier l'intervalle de mesure pour un capteur précis
+     * Permet de modifier l'intervalle de mesure pour un capteur en particulier
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @param intervalle nouvel intervalle de mesure
      * @throws java.rmi.RemoteException si erreur lors de la communication.
@@ -75,16 +75,15 @@ public interface Gestionnaire extends java.rmi.Remote {
     public String modifierIntervalle(int intervalle, String idCapteur) throws RemoteException;
 
     /**
-     * Permet d'obtenir des statistiques sur les relevés d'un capteur (moyenne et tendances) pour une durée (1H ou 24H).
+     * Permet de modifier l'intervalle de mesure pour tous les capteurs
      * @param intervalle nouvel intervalle de mesure
      * @throws java.rmi.RemoteException si erreur lors de la communication.
      * @return une chaine de caractère contenant les stats
      */
     public void modifierIntervalleTous(int intervalle) throws RemoteException;
 
-
     /**
-     * Permet d'enregistrer les informations dans la Base de données contenant les valeurs relevées par les capteurs.
+     * Permet d'enregistrer les informations dans la base de données contenant les valeurs relevées par les capteurs.
      * @param id  chaine de caractère permettant d'identifier le capteur ayant fait le relevé.
      * @param temp flottant représentant la température relevé par le capteur.
      * @param tauxH flottant représentant le taux d'humidité relevé par le capteur.
