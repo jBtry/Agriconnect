@@ -4,32 +4,35 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1230</x>
-      <y>285</y>
+      <x>1220</x>
+      <y>270</y>
       <w>145</w>
-      <h>50</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 MainAppUser
 --
-+main()
--demanderChoix() : int 
--afficher(String texte) : void
+_# leGestionnaire : Gestionnaire_
+_- clavier : Scanner_
+--
+_+main()_
+_-demanderChoix() : int_ 
+_-afficher(String texte) : void_
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>845</x>
-      <y>305</y>
+      <x>835</x>
+      <y>295</y>
       <w>130</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 MainGestionnaire
 --
-+main()
+_+main()_
 fg=BLACK
 bg=RED</panel_attributes>
     <additional_attributes/>
@@ -37,8 +40,8 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>660</x>
-      <y>285</y>
+      <x>650</x>
+      <y>275</y>
       <w>340</w>
       <h>410</h>
     </coordinates>
@@ -51,8 +54,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>680</x>
-      <y>485</y>
+      <x>670</x>
+      <y>475</y>
       <w>120</w>
       <h>60</h>
     </coordinates>
@@ -68,8 +71,8 @@ ordres à la base de données.</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>365</x>
-      <y>515</y>
+      <x>355</x>
+      <y>505</y>
       <w>230</w>
       <h>120</h>
     </coordinates>
@@ -97,8 +100,8 @@ ordres à la base de données.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>455</y>
+      <x>310</x>
+      <y>445</y>
       <w>75</w>
       <h>70</h>
     </coordinates>
@@ -108,8 +111,8 @@ ordres à la base de données.</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>440</y>
+      <x>280</x>
+      <y>430</y>
       <w>65</w>
       <h>20</h>
     </coordinates>
@@ -121,8 +124,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>365</x>
-      <y>685</y>
+      <x>355</x>
+      <y>675</y>
       <w>75</w>
       <h>50</h>
     </coordinates>
@@ -137,8 +140,8 @@ Horodatage : String</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>360</x>
-      <y>270</y>
+      <x>350</x>
+      <y>260</y>
       <w>250</w>
       <h>470</h>
     </coordinates>
@@ -151,8 +154,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
-      <y>270</y>
+      <x>630</x>
+      <y>260</y>
       <w>200</w>
       <h>100</h>
     </coordinates>
@@ -162,8 +165,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>665</x>
-      <y>550</y>
+      <x>655</x>
+      <y>540</y>
       <w>325</w>
       <h>125</h>
     </coordinates>
@@ -187,8 +190,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>665</x>
-      <y>360</y>
+      <x>655</x>
+      <y>350</y>
       <w>290</w>
       <h>120</h>
     </coordinates>
@@ -212,8 +215,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>665</x>
-      <y>475</y>
+      <x>655</x>
+      <y>465</y>
       <w>15</w>
       <h>85</h>
     </coordinates>
@@ -223,8 +226,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
-      <y>670</y>
+      <x>670</x>
+      <y>660</y>
       <w>15</w>
       <h>80</h>
     </coordinates>
@@ -234,8 +237,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>425</y>
+      <x>430</x>
+      <y>415</y>
       <w>150</w>
       <h>80</h>
     </coordinates>
@@ -244,18 +247,18 @@ fg=GRAY</panel_attributes>
 --
 _ - ALEATOIRE : RANDOM _
 --
-_+genererLatitudeAleatoires() : float_
-_+genererLongitudeAleatoires() : float_
-_+genererTemperatureAleatoire() : float_
-_+genererTauxHumiditeAleatoire() : float_
-_+horodatage() : String_</panel_attributes>
+_#genererLatitudeAleatoires() : float_
+_#genererLongitudeAleatoires() : float_
+_#genererTemperatureAleatoire() : float_
+_#genererTauxHumiditeAleatoire() : float_
+_#horodatage() : String_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>805</x>
-      <y>485</y>
+      <x>795</x>
+      <y>475</y>
       <w>190</w>
       <h>60</h>
     </coordinates>
@@ -272,8 +275,8 @@ _+ connexion() : Connection_</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>840</x>
-      <y>210</y>
+      <x>830</x>
+      <y>200</y>
       <w>215</w>
       <h>35</h>
     </coordinates>
@@ -285,8 +288,8 @@ S'occupe d'executer les requêtes du ApplicationUtilisateur.MainAppUser.</panel_
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1240</x>
-      <y>155</y>
+      <x>1230</x>
+      <y>145</y>
       <w>250</w>
       <h>95</h>
     </coordinates>
@@ -305,19 +308,19 @@ Met à disposition les fonctionnalités suivantes:
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1330</x>
-      <y>245</y>
+      <x>1320</x>
+      <y>235</y>
       <w>55</w>
-      <h>50</h>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>18.0;80.0;90.0;10.0</additional_attributes>
+    <additional_attributes>18.0;70.0;90.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>395</x>
-      <y>630</y>
+      <x>385</x>
+      <y>620</y>
       <w>40</w>
       <h>65</h>
     </coordinates>
@@ -331,8 +334,8 @@ m1=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>925</x>
-      <y>240</y>
+      <x>915</x>
+      <y>230</y>
       <w>15</w>
       <h>75</h>
     </coordinates>
@@ -342,8 +345,8 @@ m1=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>555</x>
-      <y>360</y>
+      <x>545</x>
+      <y>350</y>
       <w>120</w>
       <h>25</h>
     </coordinates>
@@ -357,8 +360,8 @@ m1=1..*
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1105</x>
-      <y>260</y>
+      <x>1095</x>
+      <y>250</y>
       <w>310</w>
       <h>270</h>
     </coordinates>
@@ -371,8 +374,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>405</x>
-      <y>360</y>
+      <x>395</x>
+      <y>350</y>
       <w>155</w>
       <h>60</h>
     </coordinates>
@@ -390,8 +393,8 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>600</x>
-      <y>255</y>
+      <x>590</x>
+      <y>245</y>
       <w>70</w>
       <h>20</h>
     </coordinates>
@@ -403,8 +406,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>470</x>
-      <y>270</y>
+      <x>460</x>
+      <y>260</y>
       <w>160</w>
       <h>100</h>
     </coordinates>
@@ -414,8 +417,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>415</y>
+      <x>410</x>
+      <y>405</y>
       <w>15</w>
       <h>110</h>
     </coordinates>
@@ -425,8 +428,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>620</x>
-      <y>740</y>
+      <x>610</x>
+      <y>730</y>
       <w>85</w>
       <h>15</h>
     </coordinates>
@@ -437,8 +440,8 @@ bg=BLUE</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>500</x>
-      <y>630</y>
+      <x>490</x>
+      <y>620</y>
       <w>145</w>
       <h>120</h>
     </coordinates>
@@ -448,25 +451,25 @@ bg=BLUE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1115</x>
-      <y>360</y>
+      <x>1105</x>
+      <y>350</y>
       <w>235</w>
-      <h>105</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 AppUser
 --
 
 --
-+ ajouterCapteur(String idCapteur) : void
-+ demarrerCapteur(String idCapteur) : void
-+ stopperCapteur(String idCapteur) :void
-+ retirerCapteur(String idCapteur) : void
-+ listeCapteurs() : void
-+ obtenirDernierReleve(String idCapteur) : void
-+ statsCapteurs(String idCapteur, int duree) : void
-+ modifierIntervalle(int intervalle, String idCapteur): void
-
+_# ajouterCapteur(String idCapteur) : void_
+_# demarrerCapteur(String idCapteur) : void_
+_# stopperCapteur(String idCapteur) :void_
+_# retirerCapteur(String idCapteur) : void_
+_# listeCapteurs() : void_
+_# obtenirDernierReleve(String idCapteur) : void_
+_# statsCapteurs(String idCapteur, int duree) : void_
+_# modifierIntervalle(int intervalle, String idCapteur): void_
+_# modifierIntervalleTous(int intervalle)_
 
 </panel_attributes>
     <additional_attributes/>
@@ -474,7 +477,7 @@ AppUser
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1115</x>
+      <x>1105</x>
       <y>470</y>
       <w>210</w>
       <h>45</h>
@@ -489,8 +492,8 @@ affichés à utilisateur</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>950</x>
-      <y>360</y>
+      <x>940</x>
+      <y>350</y>
       <w>175</w>
       <h>30</h>
     </coordinates>
@@ -505,30 +508,30 @@ m1=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1290</x>
-      <y>330</y>
+      <x>1280</x>
+      <y>335</y>
       <w>35</w>
-      <h>40</h>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=-
 utilise
 m2=
 m1= 
 </panel_attributes>
-    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>370</x>
-      <y>285</y>
+      <x>360</x>
+      <y>290</y>
       <w>85</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 MainIOT
 --
-+main()
+_+main()_
 fg=BLACK
 bg=RED</panel_attributes>
     <additional_attributes/>
@@ -536,7 +539,7 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>295</x>
+      <x>285</x>
       <y>225</y>
       <w>235</w>
       <h>20</h>
@@ -549,12 +552,12 @@ et enregistre ceux-ci dans le registre RMI.
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
+      <x>380</x>
       <y>240</y>
       <w>15</w>
-      <h>55</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

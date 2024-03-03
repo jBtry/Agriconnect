@@ -1,5 +1,8 @@
 package ApplicationUtilisateur;
 
+import java.rmi.RemoteException;
+import java.sql.SQLException;
+
 public abstract class AppUser {
 
     /**
@@ -38,8 +41,8 @@ public abstract class AppUser {
     /**
      * Permet de lister les capteurs enregistrés par l'utilisateur
      */
-    protected void listeCapteurs() {
-
+    protected static void listeCapteurs() throws SQLException, RemoteException {
+        MainAppUser.leGestionnaire.listeCapteurs();
     }
 
     /**
@@ -55,7 +58,7 @@ public abstract class AppUser {
      * @param idCapteur identifiant du capteur
      * @param duree durée sur laquelle on mesure les statistiques (1H ou 24H).
      */
-    protected void statsCapteurs(String idCapteur, int duree) {
+    protected static void statsCapteurs(String idCapteur, int duree) {
 
     }
 

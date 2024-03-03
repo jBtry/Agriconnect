@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -63,16 +64,17 @@ public abstract class MainAppUser {
                 MainAppUser.afficher(Textes.FCT);
                 choix = MainAppUser.demanderChoix();
                 switch (choix) {
-                    case 1 -> ;
-                    case 2 -> ;
-                    case 3 -> ;
-                    case 4 -> ;
-                    case 5 -> ;
-                    case 6 -> ;
-                    case 7 -> ;
-                    case 8 -> ;
-                    case 9 -> ;
-                    default -> MainAppUser.afficher(Textes.ERR_SAISI);
+                    case 1 -> ; // 1 - Ajouter un capteur
+                    case 2 -> ; // 2 - Démarrer un capteur
+                    case 3 -> ; // 3 - Stopper un capteur
+                    case 4 -> ; // 4 - Retirer un capteur
+                    case 5 -> AppUser.listeCapteurs(); ; // 5 - Lister les capteurs
+                    case 6 -> ; // 6 - Voir le dernier relevé d'un capteur
+                    case 7 -> ; // 7 - Obtenir des statistiques sur les relevés (moyenne et tendances)
+                    case 8 -> ; // 8 - Modifier l'intervalle de mesure pour un capteur
+                    case 9 -> ; // 9 - Modifier l'intervalle de mesure pour tous les capteurs
+                    case 10 -> System.exit(0); // 10 - Quitter Agriconnect
+                    default -> MainAppUser.afficher(Textes.ERR_SAISI); // Erreur de saisie
                 }
             }
         } catch (MalformedURLException e) {
@@ -80,6 +82,8 @@ public abstract class MainAppUser {
         } catch (NotBoundException e) {
             throw new RuntimeException(e);
         } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
