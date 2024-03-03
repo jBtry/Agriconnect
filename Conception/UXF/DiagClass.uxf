@@ -198,16 +198,16 @@ fg=GRAY</panel_attributes>
 --
 
 --
-+ AjouterCapteur(String idCapteur) : String
-+ DemarrerCapteur(String id) : String
-+ StopperCapteur(String id) : String
-+ RetirerCapteur(String idCapteur) : String
-+ ListeCapteurs() : String
-+ DernierReleve(String idCapteur) : String
-+ StatsCapteurs(String idCapteur, int duree) : String
-+ ModifierIntervalle(int interval, String idCapteur): void
-+ ModifierIntervalleTous(int interval): void
-+ EnregistrerValeur(String id, float temp, float tauxH, String horodatage) : void</panel_attributes>
++ ajouterCapteur(String idCapteur) : String
++ demarrerCapteur(String id) : String
++ stopperCapteur(String id) : String
++ retirerCapteur(String idCapteur) : String
++ listeCapteurs() : String
++ dernierReleve(String idCapteur) : String
++ statsCapteurs(String idCapteur, int duree) : String
++ modifierIntervalle(int interval, String idCapteur): void
++ modifierIntervalleTous(int interval): void
++ enregistrerValeur(String id, float temp, float tauxH, String horodatage) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
