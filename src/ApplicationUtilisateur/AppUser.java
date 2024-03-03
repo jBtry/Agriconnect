@@ -10,7 +10,7 @@ public abstract class AppUser {
      * dans la base de donnée du Gestionnaire
      * @param idCapteur identifiant du capteur
      */
-    protected void ajouterCapteur(String idCapteur) {
+    protected static void ajouterCapteur(String idCapteur) {
 
     }
 
@@ -18,7 +18,7 @@ public abstract class AppUser {
      * Permet de commencer l'enregistrement de relevé
      * @param idCapteur identifiant du capteur
      */
-    protected void demarrerCapteur(String idCapteur) {
+    protected static void demarrerCapteur(String idCapteur) {
 
     }
 
@@ -26,7 +26,7 @@ public abstract class AppUser {
      * Permet d'arrêter l'enregistrement de relevé
      * @param idCapteur identifiant du capteur
      */
-    protected void stopperCapteur(String idCapteur) {
+    protected static void stopperCapteur(String idCapteur) {
 
     }
 
@@ -34,7 +34,7 @@ public abstract class AppUser {
      * Permet de retirer un capteur dans la base de données du gestionnaire contenant la liste des capteurs.
      * @param idCapteur identifiant du capteur
      */
-    protected void retirerCapteur(String idCapteur) {
+    protected static void retirerCapteur(String idCapteur) {
 
     }
 

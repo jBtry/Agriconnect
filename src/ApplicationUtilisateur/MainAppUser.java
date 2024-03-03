@@ -59,12 +59,16 @@ public abstract class MainAppUser {
         try {
             leGestionnaire = (Gestionnaire) Naming.lookup("rmi://localhost:1099/LeGestionnaire");
             int choix;
+            String idCapteur;
             MainAppUser.afficher(Textes.ACCUEIL);
             while (true) {
                 MainAppUser.afficher(Textes.FCT);
                 choix = MainAppUser.demanderChoix();
                 switch (choix) {
-                    case 1 -> ; // 1 - Ajouter un capteur
+                    case 1 -> { // 1 - Ajouter un capteur
+
+                        AppUser.ajouterCapteur(idCapteur);
+                    }
                     case 2 -> ; // 2 - Démarrer un capteur
                     case 3 -> ; // 3 - Stopper un capteur
                     case 4 -> ; // 4 - Retirer un capteur
