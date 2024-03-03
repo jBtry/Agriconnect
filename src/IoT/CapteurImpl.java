@@ -12,6 +12,7 @@ import java.util.Objects;
  * Un capteur permet de surveiller deux paramètres essentiels des cultures :
  *  - l’humidité du sol
  *  - température de l’air.
+ *  Il effectue les relevés des deux paramètres précédents dans un intervalle régulier
  */
 public class CapteurImpl extends UnicastRemoteObject implements Runnable, Capteur {
 
@@ -24,11 +25,15 @@ public class CapteurImpl extends UnicastRemoteObject implements Runnable, Capteu
     /** Un capteur possède un gestionnaire */
     private Gestionnaire leGestionnaire;
 
+    /** Intervalle de temps (en seconde) entre deux relevés du capteur (5 secondes par défaut)*/
+    private int intervalle;
+
     public CapteurImpl(String identifiant, float latitude, float longitude) throws RemoteException {
         super();
         this.identifiant = identifiant;
         gps = new float[] {latitude,longitude};
         leGestionnaire = null; // Un capteur peut ne pas avoir de gestionnaire.
+        intervalle = 5; // Par défaut, un capteur effectue un relevé toutes les 5 secondes
     }
 
     /**
@@ -43,19 +48,23 @@ public class CapteurImpl extends UnicastRemoteObject implements Runnable, Capteu
                 "\n-----------------------------------------------\n\n}";
     }
 
-    /**
-     * @return l'identifiant du capteur
-     */
-    public String getIdentifiant() {
-        return identifiant;
-    }
-
 
     /**
      * @return les coordonnées GPS sous forme de tableau de flottant (latitude, longitude).
      */
+    @Override
     public float[] getGps() {
         return gps;
+    }
+
+    /**
+     * Modifie l'intervalle entre deux relevés
+     * @param intervalle entier représentant la valeur du nouvel intervalle de temps (en seconde) entre deux relevés
+     * @throws RemoteException si erreur lors de la communication.
+     */
+    @Override
+    public void modifierIntervalle(int intervalle) throws RemoteException {
+        this.intervalle = intervalle;
     }
 
     /**
@@ -91,7 +100,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Runnable, Capteu
             try {
                 leGestionnaire.enregistrerValeur(this.identifiant, unReleve.temperature(),unReleve.tauxHumidite(), unReleve.Horodatage());
                 System.out.println("Relevé de " + this.identifiant + " => " + unReleve.toString()+"\n");
-                Thread.sleep(5000); // 5000 ms = 5 sec.
+                Thread.sleep(intervalle*1000); // 1000 ms = 1 sec.
             } catch (InterruptedException | SQLException | RemoteException e) {
                 System.out.println("Erreur lors d'un relevé, celui-ci n'a pas été enregistré");
             }

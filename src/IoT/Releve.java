@@ -1,8 +1,5 @@
 package IoT;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 /**
  * Un relevé est effectué par un capteur
  * Un relevé est composé de :
