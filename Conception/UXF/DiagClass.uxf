@@ -13,7 +13,7 @@
 --
 +main()
 -demanderChoix() : int 
--afficher() : void
+-afficher(String texte) : void
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>

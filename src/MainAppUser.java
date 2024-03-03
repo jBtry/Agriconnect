@@ -29,7 +29,7 @@ public class MainAppUser {
 
 
     /* Affiche les menus de l'application */
-    private static void afficher() {
+    private static void afficher(String ) {
 
     }
 }
