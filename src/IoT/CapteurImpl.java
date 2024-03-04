@@ -92,7 +92,6 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur { // Pas
      * Le capteur relève la température ambiante et le taux d'humidité à instant T.
      */
     public Releve faireUnRelever() {
-
         /* Génération de la température */
         float temp = Outils.genererTemperatureAleatoire();
         /* Génération d'un taux d'humidité */
