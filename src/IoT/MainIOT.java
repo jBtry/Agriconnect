@@ -26,10 +26,10 @@ public abstract class MainIOT {
         /* Crée 10 capteurs et enregistre ceux-ci dans le registre RMI */
         try {
             String idCapteur = "C";
-            for(int i=0; i < 10; i++) {
+            for(int i=1; i <= 10; i++) {
                 CapteurImpl unCapteur= new CapteurImpl(idCapteur+i,Outils.genererLatitudeAleatoires(), Outils.genererLongitudeAleatoires());
-                Naming.rebind(idCapteur+(i+1), unCapteur);
-                System.out.println("Le Capteur numéro " + (i+1) + " a été créé et enregistré dans le registre RMI, voici ses attributs : "+"\n"+unCapteur);
+                Naming.rebind(idCapteur+i, unCapteur);
+                System.out.println("Le Capteur numéro " + i + " a été créé et enregistré dans le registre RMI, voici ses attributs : "+"\n"+unCapteur);
             }
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);

@@ -51,10 +51,11 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public String ajouterCapteur(String idCapteur) throws RemoteException, SQLException {
-        try{ // si pas d'exception le capteur existe
-            Capteur leCapteur = (Capteur) Naming.lookup("rmi://localhost:1099/" + idCapteur); // essaye de récupérer un capteur distant au sein du registre RMI
-            listeCapteursActif.put(idCapteur, leCapteur);
-            leCapteur.setGestionnaire(this); // On affecte ce gestionnaire à la gestion du capteur
+        try{
+            if(estCeQueLeCapteurEstEnregistre(idCapteur)) { // est-il deja dans la base ?
+                return "Le capteur a deja été ajouté";
+            } // else
+            Capteur leCapteur = (Capteur) Naming.lookup("rmi://localhost:1099/" + idCapteur); // On essaye de récupérer un capteur distant au sein du registre RMI, si pas d'exception alors le capteur recherché existe
             PreparedStatement instructions = c.prepareStatement(RequeteSQL.INSERTION_CAPTEUR);
             instructions.setString(1, idCapteur); // On utilise PreparedStatement pour éviter les injections SQL
             instructions.setFloat(2, leCapteur.getGps()[0]);
@@ -75,8 +76,10 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     @Override
     public String retirerCapteur(String idCapteur) throws RemoteException, SQLException {
         if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
-            stopperCapteur(idCapteur);
-            listeCapteursActif.remove(idCapteur);
+            if(listeCapteursActif.containsKey(idCapteur)) { // le capteur est enregistré et actif
+                stopperCapteur(idCapteur);
+                listeCapteursActif.remove(idCapteur);
+            } // else
             PreparedStatement instructions = c.prepareStatement(RequeteSQL.SUPPRESSION_CAPTEUR); // On utilise PreparedStatement pour éviter les injections SQL
             instructions.setString(1, idCapteur);
             instructions.executeUpdate();
@@ -94,9 +97,11 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
-    public String demarrerCapteur(String idCapteur) throws RemoteException, SQLException {
+    public String demarrerCapteur(String idCapteur) throws RemoteException, SQLException, MalformedURLException, NotBoundException {
         if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
-            Capteur leCapteur = listeCapteursActif.get(idCapteur);
+            Capteur leCapteur = (Capteur) Naming.lookup("rmi://localhost:1099/" + idCapteur);
+            listeCapteursActif.put(idCapteur, leCapteur);
+            leCapteur.setGestionnaire(this); // On affecte ce gestionnaire à la gestion du capteur
             if (leCapteur.enFonction()) { // si le capteur effectue deja des relevés
                 return "Le capteur effectue deja des relevés !";
             } // else, on démarre le capteur
@@ -116,16 +121,22 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     @Override
     public String stopperCapteur(String idCapteur) throws RemoteException, SQLException {
         if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
-            Capteur leCapteur = listeCapteursActif.get(idCapteur);
-            if (!leCapteur.enFonction()) { // vérifie si le capteur effectue des relevés ou pas
-                return "Le capteur est deja stoppé !";
-            } // else, on stop le capteur
-            leCapteur.onOff(); // on passe actif à false.
-            return "Le capteur a bien été stoppé !";
+            if(listeCapteursActif.containsKey(idCapteur)) { // le capteur est enregistré et actif
+                Capteur leCapteur = listeCapteursActif.get(idCapteur);
+                if (!leCapteur.enFonction()) { // vérifie si le capteur effectue des relevés ou pas
+                    return "Le capteur est deja stoppé !";
+                } else {
+                    leCapteur.onOff(); // on passe actif à false.
+                    return "Le capteur a bien été stoppé !";
+                }
+            } else {
+                return "Le capteur n'est pas actif !";
+            }
         } else {
             return "Erreur, le capteur n'est pas enregistré !";
         }
     }
+
 
     /**
      * Permet de lister les capteurs enregistrés par l'utilisateur

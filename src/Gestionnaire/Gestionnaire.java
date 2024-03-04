@@ -1,5 +1,7 @@
 package Gestionnaire;
 
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
@@ -29,7 +31,7 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @throws java.rmi.RemoteException si erreur lors de la communication.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      */
-    public String demarrerCapteur(String idCapteur) throws RemoteException, SQLException;
+    public String demarrerCapteur(String idCapteur) throws RemoteException, SQLException, MalformedURLException, NotBoundException;
 
     /**
      * Permet de stopper l'enregistrement de relevé pour un capteur
