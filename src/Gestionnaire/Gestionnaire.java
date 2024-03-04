@@ -21,7 +21,7 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @throws java.rmi.RemoteException si erreur lors de la communication.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      */
-    public String retirerCapteur(String idCapteur) throws RemoteException;
+    public String retirerCapteur(String idCapteur) throws RemoteException, SQLException;
 
     /**
      * Permet de démarrer l'enregistrement de relevé pour un capteur
@@ -29,7 +29,7 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @throws java.rmi.RemoteException si erreur lors de la communication.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      */
-    public String demarrerCapteur(String idCapteur) throws RemoteException;
+    public String demarrerCapteur(String idCapteur) throws RemoteException, SQLException;
 
     /**
      * Permet de stopper l'enregistrement de relevé pour un capteur
@@ -37,7 +37,7 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @throws java.rmi.RemoteException si erreur lors de la communication.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      */
-    public String stopperCapteur(String idCapteur) throws RemoteException;
+    public String stopperCapteur(String idCapteur) throws RemoteException, SQLException;
 
     /**
      * Permet de lister les capteurs enregistrés par l'utilisateur
@@ -72,7 +72,7 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @throws java.rmi.RemoteException si erreur lors de la communication.
      * @return une chaine de caractère contenant les stats
      */
-    public String modifierIntervalle(int intervalle, String idCapteur) throws RemoteException;
+    public String modifierIntervalle(int intervalle, String idCapteur) throws RemoteException, SQLException;
 
     /**
      * Permet de modifier l'intervalle de mesure pour tous les capteurs

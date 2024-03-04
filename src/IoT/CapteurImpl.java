@@ -14,7 +14,7 @@ import java.util.Objects;
  *  - température de l’air.
  *  Il effectue les relevés des deux paramètres précédents dans un intervalle régulier
  */
-public class CapteurImpl extends UnicastRemoteObject implements Runnable, Capteur {
+public class CapteurImpl extends UnicastRemoteObject implements Capteur { // Pas besoin d'implémenter Runnable car on implémente l'interface Capteur qui hérite de Runnable
 
     /** Un capteur est identifié par un code unique */
     private String identifiant;
@@ -28,12 +28,24 @@ public class CapteurImpl extends UnicastRemoteObject implements Runnable, Capteu
     /** Intervalle de temps (en seconde) entre deux relevés du capteur (5 secondes par défaut)*/
     private int intervalle;
 
+    // TODO : rajouter dans le DiagDeClasse
+    /** Indique si le thread est en cours d'enregistrement */
+    private volatile boolean actif;
+
+    /**
+     * Par défaut :
+     * - un capteur effectue un relevé toutes les 5 secondes
+     * - un capteur est inactif actif = false
+     * - un capteur n'a pas de gestionnaire
+     * @throws RemoteException si erreur lors de la communication
+     */
     public CapteurImpl(String identifiant, float latitude, float longitude) throws RemoteException {
         super();
         this.identifiant = identifiant;
         gps = new float[] {latitude,longitude};
-        leGestionnaire = null; // Un capteur peut ne pas avoir de gestionnaire.
-        intervalle = 5; // Par défaut, un capteur effectue un relevé toutes les 5 secondes
+        leGestionnaire = null;
+        intervalle = 5;
+        actif = false;
     }
 
     /**
@@ -71,6 +83,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Runnable, Capteu
      * Affecte un gestionnaire au Capteur
      * @param leGestionnaire gestionnaire a affecté au capteur
      */
+    @Override
     public void setGestionnaire(Gestionnaire leGestionnaire) {
         this.leGestionnaire = leGestionnaire;
     }
@@ -90,19 +103,37 @@ public class CapteurImpl extends UnicastRemoteObject implements Runnable, Capteu
     }
 
     /**
-     * Simule dix relevés
-     * (intervalle de 5 secondes)
+     * Retourne l'état de travail du capteur (actif ou inactif)
+     */
+    @Override
+    public boolean enFonction() { // TODO : modifier DiagCLass
+        return actif;
+    }
+
+    /**
+     * Change l'état de travail du capteur (actif)
+     */
+    @Override
+    public void onOff() { // TODO : modifier DiagCLass
+        actif = !actif; // Si actif est true, cette instruction le rendra false, et vice-versa
+    }
+
+    /**
+     * Démarre les relevés
+     * (intervalle de 5 secondes par défaut)
      */
     @Override
     public void run() {
-        for (int i = 0 ; i < 10; i++) {
+        this.onOff(); // Change l'état du capteur sur "actif" (this.actif = true)
+        while(actif) {
             Releve unReleve = faireUnRelever();
             try {
                 leGestionnaire.enregistrerValeur(this.identifiant, unReleve.temperature(),unReleve.tauxHumidite(), unReleve.Horodatage());
                 System.out.println("Relevé de " + this.identifiant + " => " + unReleve.toString()+"\n");
                 Thread.sleep(intervalle*1000); // 1000 ms = 1 sec.
-            } catch (InterruptedException | SQLException | RemoteException e) {
+            } catch (InterruptedException | SQLException | RemoteException e) { // Gestion de l'interruption du thread
                 System.out.println("Erreur lors d'un relevé, celui-ci n'a pas été enregistré");
+                this.onOff(); // Met à jour la variable actif si le thread est interrompu
             }
         }
     }

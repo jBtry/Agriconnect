@@ -1,11 +1,14 @@
 package Gestionnaire;
+import IoT.Capteur;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.Collection;
+import java.util.HashMap;
 
 import static Gestionnaire.ConnexionBD.connexion;
 
@@ -20,10 +23,15 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     /** Un gestionnaire est caractérisé par un nom */
     private String nom;
 
+    /** Liste des capteurs actifs */ //TODO : rajouter diagdeclasse
+    private HashMap<String, Capteur> listeCapteursActif;
+
+
     public GestionnaireImpl() throws RemoteException, SQLException, ClassNotFoundException {
         super();
         this.c = connexion();
         nom = "Gestionnaire Agriconnect";
+        listeCapteursActif = new HashMap<>();
     }
 
     @Override
@@ -34,7 +42,8 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     }
 
     /**
-     * Permet d'ajouter un capteur dans la base de données du gestionnaire contenant la liste des capteurs.
+     * Vérifie si le capteur existe
+     * et ajoute celui-ci dans la base de données du gestionnaire contenant la liste des capteurs.
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      * @throws SQLException    si erreur lors de l'insertion dans la base de données.
@@ -42,7 +51,19 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public String ajouterCapteur(String idCapteur) throws RemoteException, SQLException {
-        return null;
+        try{ // si pas d'exception le capteur existe
+            Capteur leCapteur = (Capteur) Naming.lookup("rmi://localhost:1099/" + idCapteur); // essaye de récupérer un capteur distant au sein du registre RMI
+            listeCapteursActif.put(idCapteur, leCapteur);
+            leCapteur.setGestionnaire(this); // On affecte ce gestionnaire à la gestion du capteur
+            PreparedStatement instructions = c.prepareStatement(RequeteSQL.INSERTION_CAPTEUR);
+            instructions.setString(1, idCapteur); // On utilise PreparedStatement pour éviter les injections SQL
+            instructions.setFloat(2, leCapteur.getGps()[0]);
+            instructions.setFloat(3, leCapteur.getGps()[1]);
+            instructions.executeUpdate();
+            return "Le capteur a été ajouté !";
+        } catch (NotBoundException | MalformedURLException err) {
+            return "Le capteur n'existe pas ou n'est pas actif";
+        }
     }
 
     /**
@@ -52,8 +73,18 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
-    public String retirerCapteur(String idCapteur) throws RemoteException {
-        return null;
+    public String retirerCapteur(String idCapteur) throws RemoteException, SQLException {
+        if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
+            stopperCapteur(idCapteur);
+            listeCapteursActif.remove(idCapteur);
+            PreparedStatement instructions = c.prepareStatement(RequeteSQL.SUPPRESSION_CAPTEUR); // On utilise PreparedStatement pour éviter les injections SQL
+            instructions.setString(1, idCapteur);
+            instructions.executeUpdate();
+            return "Le capteur a bien été retiré !";
+        } else {
+            return "Erreur, le capteur n'est pas enregistré !";
+        }
+
     }
 
     /**
@@ -63,8 +94,18 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
-    public String demarrerCapteur(String idCapteur) throws RemoteException {
-        return null;
+    public String demarrerCapteur(String idCapteur) throws RemoteException, SQLException {
+        if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
+            Capteur leCapteur = listeCapteursActif.get(idCapteur);
+            if (leCapteur.enFonction()) { // si le capteur effectue deja des relevés
+                return "Le capteur effectue deja des relevés !";
+            } // else, on démarre le capteur
+            Thread thread = new Thread(leCapteur);
+            thread.start();
+            return "Le capteur a bien été démarré !";
+        } else {
+            return "Erreur, le capteur n'est pas enregistré !";
+        }
     }
 
     /**
@@ -74,8 +115,17 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
-    public String stopperCapteur(String idCapteur) throws RemoteException {
-        return null;
+    public String stopperCapteur(String idCapteur) throws RemoteException, SQLException {
+        if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
+            Capteur leCapteur = listeCapteursActif.get(idCapteur);
+            if (!leCapteur.enFonction()) { // vérifie si le capteur effectue des relevés ou pas
+                return "Le capteur est deja stoppé !";
+            } // else, on stop le capteur
+            leCapteur.onOff(); // on passe actif à false.
+            return "Le capteur a bien été stoppé !";
+        } else {
+            return "Erreur, le capteur n'est pas enregistré !";
+        }
     }
 
     /**
@@ -105,7 +155,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public String dernierReleve(String idCapteur) throws RemoteException {
-        return null;
+        return null; // TODO : A coder !
     }
 
     /**
@@ -117,7 +167,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public String statsCapteurs(String idCapteur, int duree) throws RemoteException {
-        return null;
+        return null; // TODO : A coder !
     }
 
     /**
@@ -128,21 +178,28 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
-    public String modifierIntervalle(int intervalle, String idCapteur) throws RemoteException {
-        return null;
+    public String modifierIntervalle(int intervalle, String idCapteur) throws RemoteException, SQLException {
+        if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
+            listeCapteursActif.get(idCapteur).modifierIntervalle(intervalle);
+            return "L'intervalle de mesure du capteur : " + idCapteur + " est maintenant de " + intervalle + " secondes";
+        } else {
+            return "Erreur, le capteur n'est pas enregistré !";
+        }
     }
 
     /**
      * Permet de modifier l'intervalle de mesure pour tous les capteurs
-     *
      * @param intervalle nouvel intervalle de mesure
      * @return une chaine de caractère contenant les stats
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
     public String modifierIntervalleTous(int intervalle) throws RemoteException {
-
-        return null;
+        Collection<Capteur> capteurs = listeCapteursActif.values();
+        for (Capteur leCapteur : capteurs) {
+            leCapteur.modifierIntervalle(intervalle);
+        }
+        return "L'intervalle de mesure de tous les capteurs est maintenant de : " + intervalle + " secondes";
     }
 
     /**
@@ -156,6 +213,24 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public void enregistrerValeur(String id, float temp, float tauxH, String horodatage) throws RemoteException, SQLException {
-
+        PreparedStatement instructions = c.prepareStatement(RequeteSQL.INSERTION_RELEVE); // On utilise PreparedStatement pour éviter les injections SQL
+        instructions.setString(1, id);
+        instructions.setFloat(2,temp);
+        instructions.setFloat(3,tauxH);
+        instructions.setString(4, horodatage);
+        instructions.executeUpdate();
     }
+
+    // TODO : rajouter dans diag Class
+    /**
+     * Permet de vérifier si un capteur existe et surtout si celui-ci est enregistré dans la BD.
+     * Si le capteur n'est pas enregistré dans la BD, on n'enregistre pas ses relevés.
+     */
+    private boolean estCeQueLeCapteurEstEnregistre(String idCapteur) throws SQLException {
+        PreparedStatement instructions = c.prepareStatement(RequeteSQL.EXISTENCE_CAPTEUR); // On utilise PreparedStatement pour éviter les injections SQL
+        instructions.setString(1, idCapteur);
+        ResultSet retourSQL = instructions.executeQuery();
+        return retourSQL.next() ? true : false;  // Vérifier si le capteur existe (retourSQL.next() retourne True si au moins une ligne est retournée)
+    }
+
 }
