@@ -28,7 +28,7 @@ public abstract class MainIOT {
             String idCapteur = "C";
             for(int i=0; i < 10; i++) {
                 CapteurImpl unCapteur= new CapteurImpl(idCapteur+i,Outils.genererLatitudeAleatoires(), Outils.genererLongitudeAleatoires());
-                Naming.rebind("idCapteur"+i, unCapteur);
+                Naming.rebind(idCapteur+(i+1), unCapteur);
                 System.out.println("Le Capteur numéro " + (i+1) + " a été créé et enregistré dans le registre RMI, voici ses attributs : "+"\n"+unCapteur);
             }
         } catch (MalformedURLException e) {

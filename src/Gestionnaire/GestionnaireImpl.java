@@ -143,6 +143,9 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
             resultat.append(retourSQL.getFloat("Latitude")).append(" ");
             resultat.append(retourSQL.getFloat("Longitude")).append("\n");
         }
+        if( resultat.length() == 0) { // Aucune ligne retournée
+            return "Aucun capteur n'a été enregistré pour le moment ...";
+        }
         return resultat.toString();
     }
 
