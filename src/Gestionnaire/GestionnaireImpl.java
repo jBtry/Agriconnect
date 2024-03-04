@@ -61,7 +61,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
             instructions.setFloat(3, leCapteur.getGps()[1]);
             instructions.executeUpdate();
             return "Le capteur a été ajouté !";
-        } catch (NotBoundException | MalformedURLException err) {
+        } catch (NotBoundException | ClassCastException | MalformedURLException err) {
             return "Le capteur n'existe pas ou n'est pas actif";
         }
     }
@@ -100,8 +100,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
             if (leCapteur.enFonction()) { // si le capteur effectue deja des relevés
                 return "Le capteur effectue deja des relevés !";
             } // else, on démarre le capteur
-            Thread thread = new Thread(leCapteur);
-            thread.start();
+            leCapteur.demarrerEnregistrementReleve();
             return "Le capteur a bien été démarré !";
         } else {
             return "Erreur, le capteur n'est pas enregistré !";

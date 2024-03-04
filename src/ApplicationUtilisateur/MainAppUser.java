@@ -25,17 +25,17 @@ public abstract class MainAppUser {
      * @param args non utilisés
      */
 
-    /** Pour la saisie utilisateur */
-    private static final Scanner clavier = new Scanner(System.in);
+    //TODO : modifier diag classe
 
     /** Le gestionnaire */
     protected static Gestionnaire leGestionnaire;
 
     /* Demande un choix à l'utilisateur */
     private static int demanderChoix() {
-        MainAppUser.afficher(Textes.CHOIX);
+        Scanner clavier = new Scanner(System.in);
         int choix = 0;
         do {
+            MainAppUser.afficher(Textes.CHOIX);
             try {
                 choix = clavier.nextInt();
             } catch (InputMismatchException err) {
@@ -48,15 +48,17 @@ public abstract class MainAppUser {
 
     /* Demande de saisir l'identifiant du capteur */
     private static String demanderCapteur() {
+        Scanner clavier = new Scanner(System.in);
         MainAppUser.afficher(Textes.CAPTEUR);
         return clavier.nextLine();
     }
 
     /* Demande de saisir le nouvel intervalle de mesure */
     private static int demanderIntervalle() {
-        MainAppUser.afficher(Textes.INTERVALLE);
+        Scanner clavier = new Scanner(System.in);
         int choix;
         do {
+            MainAppUser.afficher(Textes.INTERVALLE);
             try {
                 choix = clavier.nextInt();
             } catch (InputMismatchException err) {
@@ -70,9 +72,10 @@ public abstract class MainAppUser {
 
     /* Demande de saisir la durée sur laquelle obtenir les statistiques */
     private static int demanderDuree() {
-        MainAppUser.afficher(Textes.DUREE);
+        Scanner clavier = new Scanner(System.in);
         int choix;
         do {
+            MainAppUser.afficher(Textes.DUREE);
             try {
                 choix = clavier.nextInt();
             } catch (InputMismatchException err) {

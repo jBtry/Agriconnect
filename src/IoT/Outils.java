@@ -55,10 +55,7 @@ public abstract class Outils {
             resultat = tempPrecedente + ajustement; // Nouvelle température générée aléatoirement dans la continuité de l'ancienne.
             tempPrecedente = resultat; // Mise à jour de la dernière température générée
             return Math.round(resultat * 10)/10.0f; // Arrondit le résultat à 1 chiffre après la virgule
-
         }
-
-
     }
 
 
