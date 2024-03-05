@@ -42,6 +42,7 @@ public abstract class RequeteSQL {
     /** Requête SQL permettant de vérifier si un capteur existe */
     protected static final String EXISTENCE_CAPTEUR= "SELECT * FROM "+NOM_TABLE_CAPTEUR+" WHERE id=?";
 
+    /** Requête SQL permettant de récupérer le dernier relevé d'un capteur donné */
     protected static final String DERNIERE_INFO_CAPTEUR= "SELECT TOP 1 * FROM "+NOM_TABLE_CAPTEUR
             +" WHERE id=? ORDER BY DESC";
 }
