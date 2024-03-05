@@ -23,7 +23,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     /** Un gestionnaire est caractérisé par un nom */
     private String nom;
 
-    /** Liste des capteurs actifs */ //TODO : rajouter diagdeclasse
+    /** Liste des capteurs actifs */
     private HashMap<String, Capteur> listeCapteursActif;
 
 
@@ -224,7 +224,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet d'enregistrer les informations dans la base de données contenant les valeurs relevées par les capteurs.
-     * @param id         chaine de caractère permettant d'identifier le capteur ayant fait le relevé.
+     * @param idCapteur         chaine de caractère permettant d'identifier le capteur ayant fait le relevé.
      * @param temp       flottant représentant la température relevé par le capteur.
      * @param tauxH      flottant représentant le taux d'humidité relevé par le capteur.
      * @param horodatage date et heure du relevé
@@ -232,16 +232,15 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
-    public void enregistrerValeur(String id, float temp, float tauxH, String horodatage) throws RemoteException, SQLException {
+    public void enregistrerValeur(String idCapteur, float temp, float tauxH, String horodatage) throws RemoteException, SQLException {
         PreparedStatement instructions = c.prepareStatement(RequeteSQL.INSERTION_RELEVE); // On utilise PreparedStatement pour éviter les injections SQL
-        instructions.setString(1, id);
+        instructions.setString(1, idCapteur);
         instructions.setFloat(2,temp);
         instructions.setFloat(3,tauxH);
         instructions.setString(4, horodatage);
         instructions.executeUpdate();
     }
 
-    // TODO : rajouter dans diag Class
     /**
      * Permet de vérifier si un capteur est enregistré dans la BD.
      * Si le capteur n'est pas enregistré dans la BD, on n'enregistre pas ses relevés.
@@ -254,7 +253,6 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
         return retourSQL.next() ? true : false;  // Vérifier si le capteur existe (retourSQL.next() retourne True si au moins une ligne est retournée)
     }
 
-    // TODO : rajouter diag class
     /**
      * @return le nombre de capteurs actif (c'est-à-dire en train d'effectuer des relevés)
      */

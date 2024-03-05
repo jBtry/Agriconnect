@@ -78,7 +78,6 @@ public interface Gestionnaire extends java.rmi.Remote {
 
     /**
      * Permet de modifier l'intervalle de mesure pour tous les capteurs
-     *
      * @param intervalle nouvel intervalle de mesure
      * @return une chaine de caractère contenant les stats
      * @throws java.rmi.RemoteException si erreur lors de la communication.
@@ -94,11 +93,10 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @throws SQLException si erreur lors de l'insertion dans la base de données.
      * @throws java.rmi.RemoteException si erreur lors de la communication.
      */
-    public void enregistrerValeur(String id, float temp, float tauxH, String horodatage) throws RemoteException, SQLException;
+    public void enregistrerValeur(String idCapteur, float temp, float tauxH, String horodatage) throws RemoteException, SQLException;
 
     /**
      * @return le nombre de capteur actif (c'est-à-dire en train d'effectuer des relevés)
      */
-
-    public int nbCapteurActif() throws RemoteException; //TODO : rajouter diag de classe
+    public int nbCapteurActif() throws RemoteException;
 }

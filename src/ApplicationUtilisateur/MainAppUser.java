@@ -1,7 +1,6 @@
 package ApplicationUtilisateur;
 
 import Gestionnaire.Gestionnaire;
-
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -25,7 +24,6 @@ public abstract class MainAppUser {
      * @param args non utilisés
      */
 
-    //TODO : modifier diag classe
 
     /** Le gestionnaire */
     protected static Gestionnaire leGestionnaire;

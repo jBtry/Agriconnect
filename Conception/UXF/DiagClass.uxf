@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>5</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1055</x>
-      <y>345</y>
-      <w>145</w>
-      <h>95</h>
+      <x>1832</x>
+      <y>280</y>
+      <w>232</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 MainAppUser
 --
 _# leGestionnaire : Gestionnaire_
-_- clavier : Scanner_
 --
-_+main()_
 _-demanderChoix() : int_
 _-afficher(String texte) : void_
 _-demanderDuree() : int_
 _-demanderIntervalle() : int_
 _-demanderCapteur() : String_
+_+main()_
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>785</x>
-      <y>320</y>
-      <w>130</w>
-      <h>40</h>
+      <x>1400</x>
+      <y>240</y>
+      <w>208</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 MainGestionnaire
@@ -43,10 +42,10 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>600</x>
-      <y>300</y>
-      <w>340</w>
-      <h>410</h>
+      <x>1104</x>
+      <y>208</y>
+      <w>544</w>
+      <h>704</h>
     </coordinates>
     <panel_attributes>Gestionnaire
 --
@@ -57,10 +56,10 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>620</x>
-      <y>500</y>
-      <w>120</w>
-      <h>60</h>
+      <x>1136</x>
+      <y>528</y>
+      <w>192</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 /RequeteSQL/
@@ -74,10 +73,10 @@ ordres à la base de données.</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>305</x>
-      <y>550</y>
-      <w>230</w>
-      <h>110</h>
+      <x>632</x>
+      <y>608</y>
+      <w>368</w>
+      <h>208</h>
     </coordinates>
     <panel_attributes>CapteurImpl
 --
@@ -85,14 +84,18 @@ ordres à la base de données.</panel_attributes>
 - gps : float[]
 - leGestionnaire : Gestionnaire
 - intervalle : int
+- actif : boolean
 --
 + CapteurImpl(String identifiant, float latitude, float longitude)
 + toString() : String
 + getGps() : float[]
-+ faireUnReleve(): Releve
+- faireUnReleve(): Releve
 + modifierIntervalle(int intervalle): void
 + setGestionnaire(Gestionnaire leGestionnaire) : void
-+ run() : void 
++ enFonction() : boolean
++ onOff() : void
++ demarrerEnregistrementReleve() : void
+
 
 
 
@@ -101,36 +104,12 @@ ordres à la base de données.</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>260</x>
-      <y>470</y>
-      <w>75</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0;130.0;80.0;130.0;160.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>230</x>
-      <y>455</y>
-      <w>65</w>
-      <h>20</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
-/Runnable/
-bg=BLUE</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>305</x>
-      <y>700</y>
-      <w>75</w>
-      <h>50</h>
+      <x>632</x>
+      <y>896</y>
+      <w>120</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Record&gt;&gt;
 /Releve/
@@ -143,10 +122,10 @@ Horodatage : String</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>300</x>
-      <y>285</y>
-      <w>250</w>
-      <h>470</h>
+      <x>624</x>
+      <y>184</y>
+      <w>400</w>
+      <h>808</h>
     </coordinates>
     <panel_attributes>IOT
 --
@@ -157,46 +136,50 @@ fg=GRAY</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>580</x>
-      <y>285</y>
-      <w>200</w>
-      <h>100</h>
+      <x>1072</x>
+      <y>184</y>
+      <w>320</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0;380.0;90.0;380.0;180.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0;380.0;90.0;380.0;170.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>605</x>
-      <y>565</y>
-      <w>325</w>
-      <h>125</h>
+      <x>1112</x>
+      <y>632</y>
+      <w>520</w>
+      <h>248</h>
     </coordinates>
     <panel_attributes>GestionnaireImpl
 --
 - c : Connection
 - nom : String
+- listeCapteursActif : HashMap&lt;String, Capteur&gt;
 --
 + GestionnaireImpl()
-+ ajouterCapteur(String id) : String
-+ demarrerCapteur(String id) : String
-+ stopperCapteur(String id) : String
-+ retirerCapteur(String id) : String
++ ajouterCapteur(String idCapteur) : String
++ demarrerCapteur(String idCapteur) : String
++ stopperCapteur(String idCapteur) : String
++ retirerCapteur(String idCapteur) : String
 + listeCapteurs() : String
-+ infosCapteur(String id) : String
-+ statsCapteurs() : String
++ dernierReleve(String idCapteur) : String
++ statsCapteurs(int duree) : String
 + modifierIntervalle(): void
-+ enregistrerValeur(String id, float temp, float tauxH, String horodatage) : void</panel_attributes>
++ enregistrerValeur(String idCapteur, float temp, float tauxH, String horodatage) : void
++ toString() : String
+- estCeQueLeCapteurEstEnregistre(String idCapteur) : boolean
++ nbCapteurActif() : int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>605</x>
-      <y>375</y>
-      <w>290</w>
-      <h>120</h>
+      <x>1112</x>
+      <y>320</y>
+      <w>464</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 /Gestionnaire/
@@ -209,19 +192,20 @@ fg=GRAY</panel_attributes>
 + retirerCapteur(String idCapteur) : String
 + listeCapteurs() : String
 + dernierReleve(String idCapteur) : String
-+ statsCapteurs(String idCapteur, int duree) : String
++ statsCapteurs(int duree) : String
 + modifierIntervalle(int intervalle, String idCapteur): String
-+ modifierIntervalleTous(int intervalle): void
-+ enregistrerValeur(String id, float temp, float tauxH, String horodatage) : void</panel_attributes>
++ modifierIntervalleTous(int intervalle): String
++ enregistrerValeur(String idCapteur, float temp, float tauxH, String horodatage) : void
++ nbCapteurActif() : int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>605</x>
-      <y>490</y>
-      <w>15</w>
-      <h>85</h>
+      <x>1112</x>
+      <y>512</y>
+      <w>24</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
@@ -229,21 +213,21 @@ fg=GRAY</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
-      <y>685</y>
-      <w>15</w>
+      <x>1136</x>
+      <y>872</y>
+      <w>24</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>380</x>
-      <y>440</y>
-      <w>150</w>
-      <h>95</h>
+      <x>752</x>
+      <y>448</y>
+      <w>240</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 /Outils/
@@ -262,17 +246,17 @@ _#horodatage() : String_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>745</x>
-      <y>500</y>
-      <w>190</w>
-      <h>60</h>
+      <x>1336</x>
+      <y>528</y>
+      <w>304</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 /ConnexionBD/
 --
-_- PWD = System.getProperty("user.dir")_ : String
-_- NOM_BD = "Agriconnect.db"_ : String
-_- URL = "jdbc:sqlite:"+PWD+"/"+NOM_BD_ : String
+_- PWD = System.getProperty("user.dir") : String_
+_- NOM_BD = "Agriconnect.db" : String_
+_- URL = "jdbc:sqlite:"+PWD+"/"+NOM_BD : String_
 --
 _+ connexion() : Connection_</panel_attributes>
     <additional_attributes/>
@@ -280,23 +264,23 @@ _+ connexion() : Connection_</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>780</x>
-      <y>225</y>
-      <w>215</w>
-      <h>35</h>
+      <x>1392</x>
+      <y>88</y>
+      <w>440</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>Crée le registre RMI (s'il n'existe pas deja), 
 ensuite crée un objet gestionnaire et enregistre celui-ci.
-S'occupe d'executer les requêtes du ApplicationUtilisateur.MainAppUser.</panel_attributes>
+S'occupe d'executer les requêtes du MainAppUser.</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1180</x>
-      <y>170</y>
-      <w>250</w>
-      <h>95</h>
+      <x>2032</x>
+      <y>0</y>
+      <w>400</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>Application de l'utilisateur
 Met à disposition les fonctionnalités suivantes:
@@ -313,10 +297,10 @@ Met à disposition les fonctionnalités suivantes:
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1155</x>
-      <y>260</y>
-      <w>170</w>
-      <h>95</h>
+      <x>1992</x>
+      <y>144</y>
+      <w>272</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>18.0;170.0;320.0;10.0</additional_attributes>
@@ -324,25 +308,25 @@ Met à disposition les fonctionnalités suivantes:
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>335</x>
-      <y>655</y>
-      <w>40</w>
-      <h>55</h>
+      <x>680</x>
+      <y>808</y>
+      <w>64</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=-
 Génère
 m2=*
 m1=1
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>865</x>
-      <y>255</y>
-      <w>15</w>
-      <h>75</h>
+      <x>1528</x>
+      <y>136</y>
+      <w>24</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
@@ -350,10 +334,10 @@ m1=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>495</x>
-      <y>375</y>
-      <w>120</w>
-      <h>25</h>
+      <x>936</x>
+      <y>312</y>
+      <w>192</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=-
                    sont gérés par
@@ -365,10 +349,10 @@ m1=1..*
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1040</x>
-      <y>310</y>
-      <w>255</w>
-      <h>220</h>
+      <x>1808</x>
+      <y>224</y>
+      <w>408</w>
+      <h>352</h>
     </coordinates>
     <panel_attributes>ApplicationUtilisateur
 --
@@ -379,10 +363,10 @@ fg=GRAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>345</x>
-      <y>375</y>
-      <w>155</w>
-      <h>55</h>
+      <x>696</x>
+      <y>304</y>
+      <w>248</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 /Capteur/
@@ -391,17 +375,20 @@ fg=GRAY</panel_attributes>
 --
 + getGps() : float[]
 + modifierIntervalle(int intervalle) : void
-
++ setGestionnaire(Gestionnaire leGestionnaire) : void 
++ enFonction() : boolean
++ onOff() : void
++ demarrerEnregistrementReleve() : void
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
-      <y>270</y>
-      <w>70</w>
-      <h>20</h>
+      <x>1008</x>
+      <y>160</y>
+      <w>112</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Interface&gt;&gt;
 /Remote/
@@ -411,32 +398,32 @@ bg=BLUE</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>410</x>
-      <y>285</y>
-      <w>160</w>
-      <h>100</h>
+      <x>800</x>
+      <y>184</y>
+      <w>256</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>300.0;10.0;300.0;90.0;10.0;90.0;10.0;180.0</additional_attributes>
+    <additional_attributes>300.0;10.0;300.0;90.0;10.0;90.0;10.0;150.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>425</y>
-      <w>15</w>
-      <h>135</h>
+      <x>712</x>
+      <y>432</y>
+      <w>24</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;250.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>560</x>
-      <y>755</y>
-      <w>85</w>
-      <h>15</h>
+      <x>1040</x>
+      <y>936</y>
+      <w>136</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>UnicastRemoteObject
 bg=BLUE</panel_attributes>
@@ -445,21 +432,21 @@ bg=BLUE</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>655</y>
-      <w>145</w>
-      <h>110</h>
+      <x>848</x>
+      <y>808</y>
+      <w>232</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>270.0;200.0;270.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+    <additional_attributes>270.0;160.0;270.0;80.0;10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1060</x>
-      <y>455</y>
-      <w>210</w>
-      <h>45</h>
+      <x>1840</x>
+      <y>456</y>
+      <w>336</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 Textes
@@ -471,10 +458,10 @@ affichés à utilisateur</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>890</x>
-      <y>375</y>
-      <w>175</w>
-      <h>30</h>
+      <x>1568</x>
+      <y>328</y>
+      <w>280</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=-
        répond
@@ -487,10 +474,10 @@ m1=1
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>310</x>
-      <y>315</y>
-      <w>85</w>
-      <h>40</h>
+      <x>640</x>
+      <y>232</y>
+      <w>136</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 MainIOT
@@ -503,10 +490,10 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>235</x>
-      <y>250</y>
-      <w>235</w>
-      <h>20</h>
+      <x>520</x>
+      <y>128</y>
+      <w>376</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>Crée le registre RMI (s'il n'existe pas deja), crée les capteurs,  
 et enregistre ceux-ci dans le registre RMI.
@@ -516,10 +503,10 @@ et enregistre ceux-ci dans le registre RMI.
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
-      <y>265</y>
-      <w>15</w>
-      <h>60</h>
+      <x>672</x>
+      <y>152</y>
+      <w>24</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
