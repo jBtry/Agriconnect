@@ -5,8 +5,8 @@
   <element>
     <id>UMLDeployment</id>
     <coordinates>
-      <x>1008</x>
-      <y>336</y>
+      <x>968</x>
+      <y>312</y>
       <w>272</w>
       <h>192</h>
     </coordinates>
@@ -17,8 +17,8 @@ Serveur hébergeant la base de données</panel_attributes>
   <element>
     <id>UMLDeployment</id>
     <coordinates>
-      <x>1032</x>
-      <y>384</y>
+      <x>992</x>
+      <y>360</y>
       <w>216</w>
       <h>128</h>
     </coordinates>
@@ -29,8 +29,8 @@ SGBD</panel_attributes>
   <element>
     <id>UMLDeployment</id>
     <coordinates>
-      <x>384</x>
-      <y>120</y>
+      <x>344</x>
+      <y>96</y>
       <w>272</w>
       <h>192</h>
     </coordinates>
@@ -41,8 +41,8 @@ Capteur</panel_attributes>
   <element>
     <id>UMLDeployment</id>
     <coordinates>
-      <x>416</x>
-      <y>168</y>
+      <x>376</x>
+      <y>144</y>
       <w>216</w>
       <h>128</h>
     </coordinates>
@@ -53,8 +53,8 @@ JVM</panel_attributes>
   <element>
     <id>UMLDeployment</id>
     <coordinates>
-      <x>624</x>
-      <y>336</y>
+      <x>584</x>
+      <y>312</y>
       <w>272</w>
       <h>192</h>
     </coordinates>
@@ -65,8 +65,8 @@ Gestionnaire</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>512</x>
-      <y>280</y>
+      <x>472</x>
+      <y>256</y>
       <w>112</w>
       <h>208</h>
     </coordinates>
@@ -80,8 +80,8 @@ Port 1099</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>512</x>
-      <y>464</y>
+      <x>472</x>
+      <y>440</y>
       <w>184</w>
       <h>24</h>
     </coordinates>
@@ -91,8 +91,8 @@ Port 1099</panel_attributes>
   <element>
     <id>UMLDeployment</id>
     <coordinates>
-      <x>656</x>
-      <y>384</y>
+      <x>616</x>
+      <y>360</y>
       <w>216</w>
       <h>128</h>
     </coordinates>
@@ -103,8 +103,8 @@ JVM</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1080</x>
-      <y>424</y>
+      <x>1040</x>
+      <y>400</y>
       <w>112</w>
       <h>80</h>
     </coordinates>
@@ -117,8 +117,8 @@ Agriconnect.db</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>832</x>
-      <y>456</y>
+      <x>792</x>
+      <y>432</y>
       <w>264</w>
       <h>40</h>
     </coordinates>
@@ -130,8 +130,8 @@ API JDBC</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>680</x>
-      <y>432</y>
+      <x>640</x>
+      <y>408</y>
       <w>160</w>
       <h>64</h>
     </coordinates>
@@ -145,8 +145,8 @@ MainGestionnaire.jar</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>440</x>
-      <y>224</y>
+      <x>400</x>
+      <y>200</y>
       <w>160</w>
       <h>64</h>
     </coordinates>
@@ -160,8 +160,8 @@ MainIOT.jar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>752</x>
-      <y>496</y>
+      <x>712</x>
+      <y>472</y>
       <w>112</w>
       <h>152</h>
     </coordinates>
@@ -175,8 +175,8 @@ Port 1099</panel_attributes>
   <element>
     <id>UMLDeployment</id>
     <coordinates>
-      <x>632</x>
-      <y>632</y>
+      <x>592</x>
+      <y>608</y>
       <w>272</w>
       <h>192</h>
     </coordinates>
@@ -187,8 +187,8 @@ Application Utilisateur</panel_attributes>
   <element>
     <id>UMLDeployment</id>
     <coordinates>
-      <x>656</x>
-      <y>680</y>
+      <x>616</x>
+      <y>656</y>
       <w>216</w>
       <h>128</h>
     </coordinates>
@@ -199,8 +199,8 @@ JVM</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>680</x>
-      <y>728</y>
+      <x>640</x>
+      <y>704</y>
       <w>160</w>
       <h>64</h>
     </coordinates>

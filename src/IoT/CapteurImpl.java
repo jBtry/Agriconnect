@@ -155,8 +155,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
                         leGestionnaire.enregistrerValeur(identifiant, unReleve.temperature(), unReleve.tauxHumidite(), unReleve.Horodatage());
                         System.out.println("Relevé de " + identifiant + " => " + unReleve.toString() + "\n");
                         Thread.sleep(intervalle * 1000); // 1000 ms = 1 sec.
-                    } catch (InterruptedException | SQLException |
-                             RemoteException e) { // Gestion de l'interruption du thread
+                    } catch (InterruptedException | SQLException | RemoteException e) { // Gestion de l'interruption du thread
                         System.out.println("Erreur lors d'un relevé, celui-ci n'a pas été enregistré");
                         actif = !actif; // Met à jour la variable actif si le thread est interrompu (this.actif = false)
                     }

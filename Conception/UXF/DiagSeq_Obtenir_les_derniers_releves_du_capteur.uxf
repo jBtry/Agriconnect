@@ -194,11 +194,11 @@ d'une chaine de caractères formatée</panel_attributes>
     <coordinates>
       <x>726</x>
       <y>297</y>
-      <w>484</w>
+      <w>561</w>
       <h>55</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-estCeQueLeCapteurEstEnregistre(String idCapteur)</panel_attributes>
+estCeQueLeCapteurEstEnregistre(String idCapteur) : boolean</panel_attributes>
     <additional_attributes>10.0;30.0;60.0;30.0;60.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>

@@ -23,7 +23,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     /** Un gestionnaire est caractérisé par un nom */
     private String nom;
 
-    /** Liste des capteurs actifs */
+    /** Liste des capteurs qui sont actifs */
     private HashMap<String, Capteur> listeCapteursActif;
 
 
@@ -78,7 +78,6 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
         if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
             if(listeCapteursActif.containsKey(idCapteur)) { // le capteur est enregistré et actif
                 stopperCapteur(idCapteur);
-                listeCapteursActif.remove(idCapteur);
             } // else
             PreparedStatement instructions = c.prepareStatement(RequeteSQL.SUPPRESSION_CAPTEUR); // On utilise PreparedStatement pour éviter les injections SQL
             instructions.setString(1, idCapteur);
@@ -87,7 +86,6 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
         } else {
             return "Erreur, le capteur n'est pas enregistré !";
         }
-
     }
 
     /**
@@ -99,12 +97,12 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     @Override
     public String demarrerCapteur(String idCapteur) throws RemoteException, SQLException, MalformedURLException, NotBoundException {
         if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
-            Capteur leCapteur = (Capteur) Naming.lookup("rmi://localhost:1099/" + idCapteur);
-            listeCapteursActif.put(idCapteur, leCapteur);
-            leCapteur.setGestionnaire(this); // On affecte ce gestionnaire à la gestion du capteur
+            Capteur leCapteur = (Capteur) Naming.lookup("rmi://localhost:1099/" + idCapteur); // on récupère le capteur distant enregistré dans le registre RMI
             if (leCapteur.enFonction()) { // si le capteur effectue deja des relevés
                 return "Le capteur effectue deja des relevés !";
             } // else, on démarre le capteur
+            listeCapteursActif.put(idCapteur, leCapteur); // On enregistre le capteur dans la liste des capteurs actif.
+            leCapteur.setGestionnaire(this); // On affecte ce gestionnaire à la gestion du capteur
             leCapteur.demarrerEnregistrementReleve();
             return "Le capteur a bien été démarré !";
         } else {
@@ -123,12 +121,9 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
         if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
             if(listeCapteursActif.containsKey(idCapteur)) { // le capteur est enregistré et actif
                 Capteur leCapteur = listeCapteursActif.get(idCapteur);
-                if (!leCapteur.enFonction()) { // vérifie si le capteur effectue des relevés ou pas
-                    return "Le capteur est deja stoppé !";
-                } else {
-                    leCapteur.onOff(); // on passe actif à false.
-                    return "Le capteur a bien été stoppé !";
-                }
+                leCapteur.onOff(); // on passe actif à false.
+                listeCapteursActif.remove(idCapteur); // on retire le capteur de la liste des capteurs actifs
+                return "Le capteur a bien été stoppé !";
             } else {
                 return "Le capteur n'est pas actif !";
             }
