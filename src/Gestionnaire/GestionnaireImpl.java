@@ -167,8 +167,11 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
-    public String dernierReleve(String idCapteur) throws RemoteException {
-        return null; // TODO : A coder !
+    public String dernierReleve(String idCapteur) throws RemoteException, SQLException {
+        if (estCeQueLeCapteurEstEnregistre(idCapteur)) {
+            return null; // TODO : A coder !
+        } // else
+        return "Erreur, le capteur n'est pas enregistré !";
     }
 
     /**
@@ -179,8 +182,12 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
-    public String statsCapteurs(String idCapteur, int duree) throws RemoteException {
-        return null; // TODO : A coder !
+    public String statsCapteurs(String idCapteur, int duree) throws RemoteException, SQLException {
+        if (estCeQueLeCapteurEstEnregistre(idCapteur)) {
+            return null; // TODO : A coder !
+        } // else
+        return "Erreur, le capteur n'est pas enregistré !";
+
     }
 
     /**
