@@ -156,6 +156,7 @@ public abstract class MainAppUser {
 
                     default -> MainAppUser.afficher(Textes.ERR_SAISI_FCT); // Erreur de saisie
                 }
+                MainAppUser.afficher("Nombre de capteur actif : " + leGestionnaire.nbCapteurActif());
             }
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);

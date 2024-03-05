@@ -96,6 +96,9 @@ public interface Gestionnaire extends java.rmi.Remote {
      */
     public void enregistrerValeur(String id, float temp, float tauxH, String horodatage) throws RemoteException, SQLException;
 
+    /**
+     * @return le nombre de capteur actif (c'est-à-dire en train d'effectuer des relevés)
+     */
 
-
+    public int nbCapteurActif() throws RemoteException; //TODO : rajouter diag de classe
 }

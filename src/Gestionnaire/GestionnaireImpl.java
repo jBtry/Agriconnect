@@ -243,8 +243,9 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     // TODO : rajouter dans diag Class
     /**
-     * Permet de vérifier si un capteur existe et surtout si celui-ci est enregistré dans la BD.
+     * Permet de vérifier si un capteur est enregistré dans la BD.
      * Si le capteur n'est pas enregistré dans la BD, on n'enregistre pas ses relevés.
+     * On le considère comme inconnu
      */
     private boolean estCeQueLeCapteurEstEnregistre(String idCapteur) throws SQLException {
         PreparedStatement instructions = c.prepareStatement(RequeteSQL.EXISTENCE_CAPTEUR); // On utilise PreparedStatement pour éviter les injections SQL
@@ -253,4 +254,12 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
         return retourSQL.next() ? true : false;  // Vérifier si le capteur existe (retourSQL.next() retourne True si au moins une ligne est retournée)
     }
 
+    // TODO : rajouter diag class
+    /**
+     * @return le nombre de capteurs actif (c'est-à-dire en train d'effectuer des relevés)
+     */
+    @Override
+    public int nbCapteurActif() throws RemoteException {
+        return listeCapteursActif.size();
+    }
 }
