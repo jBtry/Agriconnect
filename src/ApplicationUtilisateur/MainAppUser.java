@@ -128,6 +128,8 @@ public abstract class MainAppUser {
 
                     case 6 -> { // 6 - Voir le dernier relevé d'un capteur
                         idCapteur = MainAppUser.demanderCapteur();
+                        MainAppUser.afficher("Voici le dernier relevé du capteur " + idCapteur + " : "
+                                             + "\nTempérature | Taux d'humidité | Horodatage");
                         MainAppUser.afficher(leGestionnaire.dernierReleve(idCapteur));
                     }
 

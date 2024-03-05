@@ -170,11 +170,11 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     public String dernierReleve(String idCapteur) throws RemoteException, SQLException {
         String resultats = "";
         if (estCeQueLeCapteurEstEnregistre(idCapteur)) {
-            Statement instructions = c.createStatement();
-            ResultSet retourSQL = instructions.executeQuery(RequeteSQL.DERNIERE_INFO_CAPTEUR);
-            resultats+=retourSQL.getString("IdCapteur")+" ";
-            resultats+=retourSQL.getFloat("Temperature")+" ";
-            resultats+=retourSQL.getFloat("TauxHumidite")+" ";
+            PreparedStatement instructions = c.prepareStatement(RequeteSQL.DERNIERE_INFO_CAPTEUR); // On utilise PreparedStatement pour éviter les injections SQL
+            instructions.setString(1, idCapteur);
+            ResultSet retourSQL = instructions.executeQuery();
+            resultats+=retourSQL.getFloat("Temperature")+" | ";
+            resultats+=retourSQL.getFloat("TauxHumidite")+" | ";
             resultats+=retourSQL.getString("Horodatage");
         } else {
             resultats = "Erreur, le capteur n'est pas enregistré !";
