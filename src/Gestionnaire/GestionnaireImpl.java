@@ -47,7 +47,6 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     /**
      * Vérifie si le capteur existe
      * et ajoute celui-ci dans la base de données du gestionnaire contenant la liste des capteurs.
-     *
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      * @throws SQLException    si erreur lors de l'insertion dans la base de données.
@@ -95,7 +94,6 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet de démarrer l'enregistrement de relevé pour un capteur
-     *
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      * @throws RemoteException si erreur lors de la communication.
@@ -118,7 +116,6 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet de stopper l'enregistrement de relevé pour un capteur
-     *
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      * @throws RemoteException si erreur lors de la communication.
@@ -142,7 +139,6 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet de lister les capteurs enregistrés par l'utilisateur
-     *
      * @return une chaine de caractère représentant la liste des capteurs
      * @throws SQLException    si erreur lors de l'insertion dans la base de données.
      * @throws RemoteException si erreur lors de la communication.
@@ -165,7 +161,6 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet de visualiser le dernier relevé d'un capteur
-     *
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère représentant le dernier relevé du capteur
      * @throws RemoteException si erreur lors de la communication.
@@ -189,8 +184,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     /**
      * Permet d'obtenir des statistiques sur les relevés d'un capteur (moyenne et tendances) pour une durée (1H ou 24H).
      *
-     * @param idCapteur chaine de caractère identifiant le capteur.
-     * @param duree     durée sur laquelle on mesure les statistiques (1H ou 24H).
+     * @param duree durée sur laquelle on mesure les statistiques (1H ou 24H).
      * @return une chaine de caractère contenant les stats
      * @throws RemoteException si erreur lors de la communication.
      */
@@ -244,7 +238,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
             } else if (hausseTemperature - baisseTemperature < 0) {
                 tendance = "Baisse";
                 resultat += "Tendance de la température : " + tendance + "\n";
-            } else resultat += "Il n'y a pas de tendance" + "\n";
+            } else resultat += "Il n'y a pas de tendance" + "\n"; // possible si deux valeurs générées successivement sont égales (peu probable)
 
 
             retourSQL = instructions.executeQuery(RequeteSQL.RELEVE_TAUXHUMIDITE_1H); // Retour de tous les relevés du taux d'humidité
@@ -378,7 +372,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet d'enregistrer les informations dans la base de données contenant les valeurs relevées par les capteurs.
-     * @param idCapteur         chaine de caractère permettant d'identifier le capteur ayant fait le relevé.
+     * @param idCapteur  chaine de caractère permettant d'identifier le capteur ayant fait le relevé.
      * @param temp       flottant représentant la température relevé par le capteur.
      * @param tauxH      flottant représentant le taux d'humidité relevé par le capteur.
      * @param horodatage date et heure du relevé
