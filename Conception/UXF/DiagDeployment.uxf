@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <help_text/>
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>968</x>
+      <y>312</y>
+      <w>272</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+Serveur hébergeant la base de données</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>992</x>
+      <y>360</y>
+      <w>216</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+SGBD</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>344</x>
+      <y>96</y>
+      <w>272</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+Capteur</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>376</x>
+      <y>144</y>
+      <w>216</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+JVM</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>584</x>
+      <y>312</y>
+      <w>272</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+Gestionnaire</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>472</x>
+      <y>248</y>
+      <w>112</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+
+API JAVA RMI
+basé sur TCP/IP
+Port 1099</panel_attributes>
+    <additional_attributes>10.0;250.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>472</x>
+      <y>440</y>
+      <w>168</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>616</x>
+      <y>360</y>
+      <w>216</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+JVM</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1040</x>
+      <y>400</y>
+      <w>112</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+
+
+Agriconnect.db</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>432</y>
+      <w>256</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;
+
+API JDBC</panel_attributes>
+    <additional_attributes>300.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>624</x>
+      <y>408</y>
+      <w>184</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+&lt;&lt;Artifact&gt;&gt;
+Programme Java Gestionnaire
+
+MainGestionnaire.jar</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>400</x>
+      <y>192</y>
+      <w>160</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+&lt;&lt;Artifact&gt;&gt;
+Programme Java Capteur
+
+MainIOT.jar</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>472</y>
+      <w>216</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;
+
+API JAVA RMI
+basé sur TCP/IP
+Port 1099</panel_attributes>
+    <additional_attributes>150.0;320.0;10.0;320.0;10.0;70.0;250.0;70.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>592</x>
+      <y>608</y>
+      <w>272</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+Application Utilisateur</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>616</x>
+      <y>656</y>
+      <w>216</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+JVM</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>640</x>
+      <y>696</y>
+      <w>160</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>symbol=artifact
+&lt;&lt;Artifact&gt;&gt;
+Programme Java 
+Interface Utilisateur
+
+MainAppUser.jar</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

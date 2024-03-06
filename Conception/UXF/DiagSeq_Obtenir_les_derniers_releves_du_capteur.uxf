@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>132</x>
+      <y>209</y>
+      <w>110</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>MainAppUser
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>605</x>
+      <y>209</y>
+      <w>242</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>leGestionnaire:GESTIONNAIRE
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>715</x>
+      <y>231</y>
+      <w>33</w>
+      <h>484</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;420.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>176</x>
+      <y>231</y>
+      <w>33</w>
+      <h>605</h>
+    </coordinates>
+    <panel_attributes>lt=.
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;530.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>187</x>
+      <y>275</y>
+      <w>550</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+leGestionnaire.dernierReleve(String idCapteur):String</panel_attributes>
+    <additional_attributes>480.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>715</x>
+      <y>264</y>
+      <w>22</w>
+      <h>407</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>176</x>
+      <y>264</y>
+      <w>22</w>
+      <h>506</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>726</x>
+      <y>418</y>
+      <w>627</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Demande des données</panel_attributes>
+    <additional_attributes>550.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1265</x>
+      <y>209</y>
+      <w>143</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Base de données
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1331</x>
+      <y>231</y>
+      <w>33</w>
+      <h>473</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;410.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1331</x>
+      <y>418</y>
+      <w>22</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>726</x>
+      <y>451</y>
+      <w>627</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Envoie des données</panel_attributes>
+    <additional_attributes>10.0;20.0;550.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>187</x>
+      <y>671</y>
+      <w>264</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Affichage des relevés
+</panel_attributes>
+    <additional_attributes>10.0;40.0;70.0;40.0;70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>88</x>
+      <y>352</y>
+      <w>1320</w>
+      <h>275</h>
+    </coordinates>
+    <panel_attributes>alt
+--
+                                                                                                        Le capteur est enregistré
+--
+
+
+
+
+
+
+                                                                                                               Le capteur n'est pas enregistré
+--
+fg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>187</x>
+      <y>473</y>
+      <w>550</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Retourne les relevé sous la forme 
+d'une chaine de caractères formatée</panel_attributes>
+    <additional_attributes>10.0;20.0;480.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>726</x>
+      <y>297</y>
+      <w>561</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+estCeQueLeCapteurEstEnregistre(String idCapteur) : boolean</panel_attributes>
+    <additional_attributes>10.0;30.0;60.0;30.0;60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>187</x>
+      <y>550</y>
+      <w>550</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Retourne un message d'erreur</panel_attributes>
+    <additional_attributes>10.0;20.0;480.0;20.0</additional_attributes>
+  </element>
+</diagram>

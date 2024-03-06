@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <help_text/>
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>747</x>
+      <y>396</y>
+      <w>153</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Ajouter un capteur
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>747</x>
+      <y>333</y>
+      <w>153</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Retirer un capteur</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>693</x>
+      <y>270</y>
+      <w>279</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Debuter l'enregistrement d'un capteur</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>711</x>
+      <y>198</y>
+      <w>252</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Stopper l'enregistrement d'un capteur</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>342</x>
+      <y>297</y>
+      <w>171</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Utilisateur (Agriculteur)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>324</y>
+      <w>261</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;20.0;270.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>333</y>
+      <w>261</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>270.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>279</y>
+      <w>207</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>210.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>216</y>
+      <w>225</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;140.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>747</x>
+      <y>459</y>
+      <w>153</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Lister les capteur
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>333</y>
+      <w>261</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;10.0;270.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>657</x>
+      <y>513</y>
+      <w>342</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Obtenir les derniers relevés du capteur</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>333</y>
+      <w>171</w>
+      <h>225</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>170.0;230.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>711</x>
+      <y>135</y>
+      <w>252</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Modification des intervalles
+d'un ou de tous les capteurs</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>153</y>
+      <w>225</w>
+      <h>207</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>10.0;210.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>648</x>
+      <y>585</y>
+      <w>342</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Obtenir des statistiques sur les relevés
+(moyenne et tendances)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>333</y>
+      <w>162</w>
+      <h>297</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>160.0;310.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
