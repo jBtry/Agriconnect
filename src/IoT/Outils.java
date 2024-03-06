@@ -48,13 +48,15 @@ public abstract class Outils {
         int maxTemp = 40;  // Température maximale
         if (tempPrecedente == 0) { // On génère une première température aléatoirement ...
             resultat = minTemp + (maxTemp - minTemp) * ALEATOIRE.nextFloat();
+            resultat = Math.round(resultat * 10)/10.0f; // Arrondit le résultat à 1 chiffre après la virgule
             tempPrecedente = resultat;
-            return Math.round(resultat * 10)/10.0f; // Arrondit le résultat à 1 chiffre après la virgule
+            return resultat; // Arrondit le résultat à 1 chiffre après la virgule
         } else { // ... pour que celles d'après suivent et ainsi garder une cohérence pour la fonctionnalité "statistique"
             ajustement = (4 * ALEATOIRE.nextFloat() - 2); // Donne un nombre entre -2 et 2, c'est notre facteur d'ajustement aléatoire
+            ajustement = Math.round(ajustement * 10)/10.0f; // Arrondit le résultat à 1 chiffre après la virgule
             resultat = tempPrecedente + ajustement; // Nouvelle température générée aléatoirement dans la continuité de l'ancienne.
             tempPrecedente = resultat; // Mise à jour de la dernière température générée
-            return Math.round(resultat * 10)/10.0f; // Arrondit le résultat à 1 chiffre après la virgule
+            return resultat;
         }
     }
 

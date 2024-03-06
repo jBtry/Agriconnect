@@ -5,7 +5,7 @@ import Gestionnaire.Gestionnaire;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface Capteur extends Remote { // TODO : modifier DiagCLass
+public interface Capteur extends Remote {
 
     /**
      * @return les coordonnées GPS sous forme de tableau de flottant (latitude, longitude).
@@ -24,23 +24,23 @@ public interface Capteur extends Remote { // TODO : modifier DiagCLass
      * Affecte un gestionnaire au Capteur
      * @param leGestionnaire gestionnaire a affecté au capteur
      */
-    public void setGestionnaire(Gestionnaire leGestionnaire) throws RemoteException; // TODO : modifier DiagCLass
+    public void setGestionnaire(Gestionnaire leGestionnaire) throws RemoteException;
 
     /**
      * Retourne l'état de travail du capteur (actif ou inactif)
      */
-    public boolean enFonction() throws RemoteException; // TODO : modifier DiagCLass
+    public boolean enFonction() throws RemoteException;
 
     /**
      * Change l'état de travail du capteur (actif/inactif)
      * Principe de l'interrupteur ....
      */
-    public void onOff() throws RemoteException; // TODO : modifier DiagCLass
+    public void onOff() throws RemoteException;
 
     /**
      * Démarre les relevés
      * (intervalle de 5 secondes par défaut)
      */
-    public void demarrerEnregistrementReleve() throws RemoteException; // TODO : modifier DiagCLass
+    public void demarrerEnregistrementReleve() throws RemoteException;
 
 }

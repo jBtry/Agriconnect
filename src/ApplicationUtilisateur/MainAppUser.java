@@ -1,7 +1,6 @@
 package ApplicationUtilisateur;
 
 import Gestionnaire.Gestionnaire;
-
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -25,7 +24,6 @@ public abstract class MainAppUser {
      * @param args non utilisés
      */
 
-    //TODO : modifier diag classe
 
     /** Le gestionnaire */
     protected static Gestionnaire leGestionnaire;
@@ -130,6 +128,8 @@ public abstract class MainAppUser {
 
                     case 6 -> { // 6 - Voir le dernier relevé d'un capteur
                         idCapteur = MainAppUser.demanderCapteur();
+                        MainAppUser.afficher("Voici le dernier relevé du capteur " + idCapteur + " : "
+                                             + "\nTempérature | Taux d'humidité | Horodatage");
                         MainAppUser.afficher(leGestionnaire.dernierReleve(idCapteur));
                     }
 

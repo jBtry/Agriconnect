@@ -41,14 +41,19 @@ public abstract class RequeteSQL {
 
     /** Requête SQL permettant de vérifier si un capteur existe */
     protected static final String EXISTENCE_CAPTEUR= "SELECT * FROM "+NOM_TABLE_CAPTEUR+" WHERE id=?";
-
-
+  
+    /** Requête SQL permettant d'obtenir les températures relevées sur la dernière 1H */  
     protected static final String RELEVE_TEMPERATURE_1H= "SELECT Temperature FROM "+NOM_TABLE_RELEVE+" WHERE Horodatage > datetime('now', '-1 hour');";
 
+    /** Requête SQL permettant d'obtenir les températures relevées sur les dernières 24H */ 
     protected static final String RELEVE_TEMPERATURE_24H= "SELECT Temperature FROM "+NOM_TABLE_RELEVE+" WHERE Horodatage > datetime('now', '-24 hours');";
-
+    
+    /** Requête SQL permettant d'obtenir les taux d'humidités relevés sur la dernière 1H */ 
     protected static final String RELEVE_TAUXHUMIDITE_1H= "SELECT TauxHumidite FROM "+NOM_TABLE_RELEVE+" WHERE Horodatage > datetime('now', '-1 hour');";
-
+    
+    /** Requête SQL permettant d'obtenir les taux d'humidités relevés sur la dernière 24H */ 
     protected static final String RELEVE_TAUXHUMIDITE_24H= "SELECT TauxHumidite FROM "+NOM_TABLE_RELEVE+" WHERE Horodatage > datetime('now', '-24 hours');";
 
+    /** Requête SQL permettant de récupérer le dernier relevé d'un capteur donné */
+    protected static final String DERNIERE_INFO_CAPTEUR= "SELECT * FROM "+NOM_TABLE_RELEVE+" WHERE idCapteur=? ORDER BY Horodatage DESC LIMIT 1";
 }

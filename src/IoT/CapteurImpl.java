@@ -36,11 +36,10 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
      */
     private int intervalle;
 
-    // TODO : rajouter dans le DiagDeClasse
     /**
      * Indique si le thread est en cours d'enregistrement
      */
-    private volatile boolean actif;
+    private volatile boolean actif; // volatile pour être accessible par différents threads
 
     /**
      * Par défaut :
@@ -104,7 +103,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
     /**
      * Le capteur relève la température ambiante et le taux d'humidité à instant T.
      */
-    private Releve faireUnRelever() { //TODO : modifier diag classe
+    private Releve faireUnRelever() {
         /* Génération de la température */
         float temp = Outils.genererTemperatureAleatoire();
         /* Génération d'un taux d'humidité */
@@ -118,7 +117,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
      * Retourne l'état de travail du capteur (actif ou inactif)
      */
     @Override
-    public boolean enFonction() throws RemoteException { // TODO : modifier DiagCLass
+    public boolean enFonction() throws RemoteException {
         return actif;
     }
 
@@ -126,7 +125,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
      * Change l'état de travail du capteur (actif)
      */
     @Override
-    public void onOff() throws RemoteException { // TODO : modifier DiagCLass
+    public void onOff() throws RemoteException {
         actif = !actif; // Si actif est true, cette instruction le rendra false, et vice-versa
     }
 
@@ -156,8 +155,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
                         leGestionnaire.enregistrerValeur(identifiant, unReleve.temperature(), unReleve.tauxHumidite(), unReleve.Horodatage());
                         System.out.println("Relevé de " + identifiant + " => " + unReleve.toString() + "\n");
                         Thread.sleep(intervalle * 1000); // 1000 ms = 1 sec.
-                    } catch (InterruptedException | SQLException |
-                             RemoteException e) { // Gestion de l'interruption du thread
+                    } catch (InterruptedException | SQLException | RemoteException e) { // Gestion de l'interruption du thread
                         System.out.println("Erreur lors d'un relevé, celui-ci n'a pas été enregistré");
                         actif = !actif; // Met à jour la variable actif si le thread est interrompu (this.actif = false)
                     }
