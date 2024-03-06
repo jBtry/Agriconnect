@@ -66,27 +66,27 @@ Gestionnaire</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>472</x>
-      <y>256</y>
+      <y>248</y>
       <w>112</w>
-      <h>208</h>
+      <h>216</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 
 API JAVA RMI
 basé sur TCP/IP
 Port 1099</panel_attributes>
-    <additional_attributes>10.0;240.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;250.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>472</x>
       <y>440</y>
-      <w>184</w>
+      <w>168</w>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>210.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>190.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLDeployment</id>
@@ -117,27 +117,27 @@ Agriconnect.db</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>792</x>
+      <x>800</x>
       <y>432</y>
-      <w>264</w>
+      <w>256</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 
 API JDBC</panel_attributes>
-    <additional_attributes>310.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>300.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>640</x>
+      <x>624</x>
       <y>408</y>
-      <w>160</w>
+      <w>184</w>
       <h>64</h>
     </coordinates>
     <panel_attributes>symbol=artifact
 &lt;&lt;Artifact&gt;&gt;
-Programme Java Serveur
+Programme Java Gestionnaire
 
 MainGestionnaire.jar</panel_attributes>
     <additional_attributes/>
@@ -146,7 +146,7 @@ MainGestionnaire.jar</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>400</x>
-      <y>200</y>
+      <y>192</y>
       <w>160</w>
       <h>64</h>
     </coordinates>
@@ -160,17 +160,17 @@ MainIOT.jar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>712</x>
+      <x>520</x>
       <y>472</y>
-      <w>112</w>
-      <h>152</h>
+      <w>216</w>
+      <h>272</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 
 API JAVA RMI
 basé sur TCP/IP
 Port 1099</panel_attributes>
-    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
+    <additional_attributes>150.0;320.0;10.0;320.0;10.0;70.0;250.0;70.0;250.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLDeployment</id>
@@ -200,13 +200,14 @@ JVM</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>640</x>
-      <y>704</y>
+      <y>696</y>
       <w>160</w>
-      <h>64</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>symbol=artifact
 &lt;&lt;Artifact&gt;&gt;
-Programme Java Client
+Programme Java 
+Interface Utilisateur
 
 MainAppUser.jar</panel_attributes>
     <additional_attributes/>
