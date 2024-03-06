@@ -17,13 +17,19 @@ import static Gestionnaire.ConnexionBD.connexion;
  */
 public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnaire {
 
-    /** Contient la connexion/session avec la base de données afin d'effectuer des opérations sur celle-ci */
+    /**
+     * Contient la connexion/session avec la base de données afin d'effectuer des opérations sur celle-ci
+     */
     private Connection c;
 
-    /** Un gestionnaire est caractérisé par un nom */
+    /**
+     * Un gestionnaire est caractérisé par un nom
+     */
     private String nom;
 
-    /** Liste des capteurs actifs */ //TODO : rajouter diagdeclasse
+    /**
+     * Liste des capteurs actifs
+     */ //TODO : rajouter diagdeclasse
     private HashMap<String, Capteur> listeCapteursActif;
 
 
@@ -44,6 +50,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     /**
      * Vérifie si le capteur existe
      * et ajoute celui-ci dans la base de données du gestionnaire contenant la liste des capteurs.
+     *
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      * @throws SQLException    si erreur lors de l'insertion dans la base de données.
@@ -51,8 +58,8 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public String ajouterCapteur(String idCapteur) throws RemoteException, SQLException {
-        try{
-            if(estCeQueLeCapteurEstEnregistre(idCapteur)) { // est-il deja dans la base ?
+        try {
+            if (estCeQueLeCapteurEstEnregistre(idCapteur)) { // est-il deja dans la base ?
                 return "Le capteur a deja été ajouté";
             } // else
             Capteur leCapteur = (Capteur) Naming.lookup("rmi://localhost:1099/" + idCapteur); // On essaye de récupérer un capteur distant au sein du registre RMI, si pas d'exception alors le capteur recherché existe
@@ -69,14 +76,15 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet de retirer un capteur dans la base de données du gestionnaire contenant la liste des capteurs.
+     *
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
     public String retirerCapteur(String idCapteur) throws RemoteException, SQLException {
-        if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
-            if(listeCapteursActif.containsKey(idCapteur)) { // le capteur est enregistré et actif
+        if (estCeQueLeCapteurEstEnregistre(idCapteur)) {
+            if (listeCapteursActif.containsKey(idCapteur)) { // le capteur est enregistré et actif
                 stopperCapteur(idCapteur);
                 listeCapteursActif.remove(idCapteur);
             } // else
@@ -92,13 +100,14 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet de démarrer l'enregistrement de relevé pour un capteur
+     *
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
     public String demarrerCapteur(String idCapteur) throws RemoteException, SQLException, MalformedURLException, NotBoundException {
-        if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
+        if (estCeQueLeCapteurEstEnregistre(idCapteur)) {
             Capteur leCapteur = (Capteur) Naming.lookup("rmi://localhost:1099/" + idCapteur);
             listeCapteursActif.put(idCapteur, leCapteur);
             leCapteur.setGestionnaire(this); // On affecte ce gestionnaire à la gestion du capteur
@@ -114,14 +123,15 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet de stopper l'enregistrement de relevé pour un capteur
+     *
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
     public String stopperCapteur(String idCapteur) throws RemoteException, SQLException {
-        if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
-            if(listeCapteursActif.containsKey(idCapteur)) { // le capteur est enregistré et actif
+        if (estCeQueLeCapteurEstEnregistre(idCapteur)) {
+            if (listeCapteursActif.containsKey(idCapteur)) { // le capteur est enregistré et actif
                 Capteur leCapteur = listeCapteursActif.get(idCapteur);
                 if (!leCapteur.enFonction()) { // vérifie si le capteur effectue des relevés ou pas
                     return "Le capteur est deja stoppé !";
@@ -140,6 +150,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet de lister les capteurs enregistrés par l'utilisateur
+     *
      * @return une chaine de caractère représentant la liste des capteurs
      * @throws SQLException    si erreur lors de l'insertion dans la base de données.
      * @throws RemoteException si erreur lors de la communication.
@@ -149,12 +160,12 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
         Statement instructions = c.createStatement();
         ResultSet retourSQL = instructions.executeQuery(RequeteSQL.SELECT_CAPTEUR);
         StringBuilder resultat = new StringBuilder();
-        while(retourSQL.next()){
+        while (retourSQL.next()) {
             resultat.append(retourSQL.getString("Id")).append(" ");
             resultat.append(retourSQL.getFloat("Latitude")).append(" ");
             resultat.append(retourSQL.getFloat("Longitude")).append("\n");
         }
-        if( resultat.length() == 0) { // Aucune ligne retournée
+        if (resultat.length() == 0) { // Aucune ligne retournée
             return "Aucun capteur n'a été enregistré pour le moment ...";
         }
         return resultat.toString();
@@ -162,6 +173,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet de visualiser le dernier relevé d'un capteur
+     *
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère représentant le dernier relevé du capteur
      * @throws RemoteException si erreur lors de la communication.
@@ -176,18 +188,160 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet d'obtenir des statistiques sur les relevés d'un capteur (moyenne et tendances) pour une durée (1H ou 24H).
+     *
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @param duree     durée sur laquelle on mesure les statistiques (1H ou 24H).
      * @return une chaine de caractère contenant les stats
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
-    public String statsCapteurs(String idCapteur, int duree) throws RemoteException, SQLException {
-        if (estCeQueLeCapteurEstEnregistre(idCapteur)) {
-            return null; // TODO : A coder !
-        } // else
-        return "Erreur, le capteur n'est pas enregistré !";
+    public String statsCapteurs(int duree) throws RemoteException, SQLException {
+        float sommeTemperature = 0;
+        float nombreTemperature = 0;
+        float moyenneTemperature = 0;
+        float derniereTemperature = Float.MIN_VALUE; // Utilisé pour calculer la hausseTemperature
+        float baisseTemperature = 0;
+        float hausseTemperature = 0;
 
+        float sommeTauxHumidite = 0;
+        float nombreTauxHumidite = 0;
+        float moyenneTauxHumidite = 0;
+        float dernierTauxHumidite = Float.MIN_VALUE; // Utilisé pour calculer la hausseTauxHumidite
+        float baisseTauxHumidite = 0;
+        float hausseTauxHumidite = 0;
+
+        String tendance = "";
+        String resultat = "";
+
+        if (duree == 1) { // Sur une heure
+            Statement instructions = c.createStatement();
+            ResultSet retourSQL = instructions.executeQuery(RequeteSQL.RELEVE_TEMPERATURE_1H); // Retour de tous les relevés de température
+
+            while (retourSQL.next()) {
+                float TemperatureActuelle = retourSQL.getFloat(1);
+                sommeTemperature += TemperatureActuelle;
+                nombreTemperature++;
+                if (derniereTemperature != Float.MIN_VALUE && TemperatureActuelle > derniereTemperature) {
+                    hausseTemperature++;
+                }
+                if (derniereTemperature != Float.MIN_VALUE && TemperatureActuelle < derniereTemperature) {
+                    baisseTemperature++;
+                }
+                derniereTemperature = TemperatureActuelle;
+            }
+
+            if (nombreTemperature > 0) { // calcul de la moyenne de la température
+                moyenneTemperature = sommeTemperature / nombreTemperature;
+                resultat += "Moyenne de la température : " + moyenneTemperature + "\n";
+
+            } else {
+                resultat += "Pas de données de température disponibles sur cet intervalle." + "\n";
+            }
+
+            if (hausseTemperature - baisseTemperature > 0) { // Vérification de la tendance de la température
+                tendance = "Hausse";
+                resultat += "Tendance de la température : " + tendance + "\n";
+            } else if (hausseTemperature - baisseTemperature < 0) {
+                tendance = "Baisse";
+                resultat += "Tendance de la température : " + tendance + "\n";
+            } else resultat += "Il n'y a pas de tendance" + "\n";
+
+
+            retourSQL = instructions.executeQuery(RequeteSQL.RELEVE_TAUXHUMIDITE_1H); // Retour de tous les relevés du taux d'humidité
+            while (retourSQL.next()) {
+                float TauxHumiditeActuel = retourSQL.getFloat(1);
+                sommeTauxHumidite += TauxHumiditeActuel;
+                nombreTauxHumidite++;
+                if (dernierTauxHumidite != Float.MIN_VALUE && TauxHumiditeActuel > dernierTauxHumidite) {
+                    hausseTauxHumidite++;
+                }
+                if (dernierTauxHumidite != Float.MIN_VALUE && TauxHumiditeActuel < dernierTauxHumidite) {
+                    baisseTauxHumidite++;
+                }
+                dernierTauxHumidite = TauxHumiditeActuel;
+            }
+            if (nombreTemperature > 0) { // calcul de la moyenne du taux d'humidité
+                moyenneTauxHumidite = sommeTauxHumidite / nombreTauxHumidite;
+                resultat += "Moyenne du taux d'humidité : " + moyenneTauxHumidite + "\n";
+            } else {
+                resultat += "Pas de données du taux d'humidité disponibles sur cet intervalle." + "\n";
+            }
+
+            if (hausseTauxHumidite - baisseTauxHumidite > 0) { // Vérification de la tendance du taux d'humidité
+                tendance = "Hausse";
+                resultat += "Tendance du taux humidite : " + tendance + "\n";
+            } else if (hausseTauxHumidite - baisseTauxHumidite < 0) {
+                tendance = "Baisse";
+                resultat += "Tendance du taux humidite : " + tendance + "\n";
+            } else resultat += "Il n'y a pas de tendance" + "\n";
+
+            return resultat;
+
+        } else if (duree == 24) { // Sur 24 heures
+            Statement instructions = c.createStatement();
+            ResultSet retourSQL = instructions.executeQuery(RequeteSQL.RELEVE_TEMPERATURE_24H); // Retour de tous les relevés de température
+
+            while (retourSQL.next()) {
+                float TemperatureActuelle = retourSQL.getFloat(1);
+                sommeTemperature += TemperatureActuelle;
+                nombreTemperature++;
+                if (derniereTemperature != Float.MIN_VALUE && TemperatureActuelle > derniereTemperature) {
+                    hausseTemperature++;
+                }
+                if (derniereTemperature != Float.MIN_VALUE && TemperatureActuelle < derniereTemperature) {
+                    baisseTemperature++;
+                }
+                derniereTemperature = TemperatureActuelle;
+            }
+
+            if (nombreTemperature > 0) {// calcul de la moyenne de la température
+                moyenneTemperature = sommeTemperature / nombreTemperature;
+                resultat += "Moyenne de la température : " + moyenneTemperature + "\n";
+
+            } else {
+                resultat += "Pas de données de température disponibles sur cet intervalle." + "\n";
+            }
+
+            if (hausseTemperature - baisseTemperature > 0) { // Vérification de la tendance de la température
+                tendance = "Hausse";
+                resultat += "Tendance de la température : " + tendance + "\n";
+            } else if (hausseTemperature - baisseTemperature < 0) {
+                tendance = "Baisse";
+                resultat += "Tendance de la température : " + tendance + "\n";
+            } else resultat += "Il n'y a pas de tendance" + "\n";
+
+
+            retourSQL = instructions.executeQuery(RequeteSQL.RELEVE_TAUXHUMIDITE_24H); // Retour de tous les relevés du taux d'humidité
+            while (retourSQL.next()) {
+                float TauxHumiditeActuel = retourSQL.getFloat(1);
+                sommeTauxHumidite += TauxHumiditeActuel;
+                nombreTauxHumidite++;
+                if (dernierTauxHumidite != Float.MIN_VALUE && TauxHumiditeActuel > dernierTauxHumidite) {
+                    hausseTauxHumidite++;
+                }
+                if (dernierTauxHumidite != Float.MIN_VALUE && TauxHumiditeActuel < dernierTauxHumidite) {
+                    baisseTauxHumidite++;
+                }
+                dernierTauxHumidite = TauxHumiditeActuel;
+            }
+            if (nombreTemperature > 0) { // calcul de la moyenne du taux d'humidité
+                moyenneTauxHumidite = sommeTauxHumidite / nombreTauxHumidite;
+                resultat += "Moyenne du taux d'humidité : " + moyenneTauxHumidite + "\n";
+            } else {
+                resultat += "Pas de données du taux d'humidité disponibles sur cet intervalle." + "\n";
+            }
+
+            if (hausseTauxHumidite - baisseTauxHumidite > 0) { // Vérification de la tendance du taux d'humidité
+                tendance = "Hausse";
+                resultat += "Tendance du taux humidite : " + tendance;
+            } else if (hausseTauxHumidite - baisseTauxHumidite < 0) {
+                tendance = "Baisse";
+                resultat += "Tendance du taux humidite : " + tendance;
+            } else resultat += "Il n'y a pas de tendance";
+
+            return resultat;
+        }
+        return resultat;
     }
 
     /**

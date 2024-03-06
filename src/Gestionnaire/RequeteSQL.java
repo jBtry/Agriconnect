@@ -42,4 +42,13 @@ public abstract class RequeteSQL {
     /** Requête SQL permettant de vérifier si un capteur existe */
     protected static final String EXISTENCE_CAPTEUR= "SELECT * FROM "+NOM_TABLE_CAPTEUR+" WHERE id=?";
 
+
+    protected static final String RELEVE_TEMPERATURE_1H= "SELECT Temperature FROM "+NOM_TABLE_RELEVE+" WHERE Horodatage > datetime('now', '-1 hour');";
+
+    protected static final String RELEVE_TEMPERATURE_24H= "SELECT Temperature FROM "+NOM_TABLE_RELEVE+" WHERE Horodatage > datetime('now', '-24 hours');";
+
+    protected static final String RELEVE_TAUXHUMIDITE_1H= "SELECT TauxHumidite FROM "+NOM_TABLE_RELEVE+" WHERE Horodatage > datetime('now', '-1 hour');";
+
+    protected static final String RELEVE_TAUXHUMIDITE_24H= "SELECT TauxHumidite FROM "+NOM_TABLE_RELEVE+" WHERE Horodatage > datetime('now', '-24 hours');";
+
 }
