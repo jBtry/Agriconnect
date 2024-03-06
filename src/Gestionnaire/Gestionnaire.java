@@ -65,7 +65,7 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @throws java.rmi.RemoteException si erreur lors de la communication.
      * @return une chaine de caractère contenant les stats
      */
-    public String statsCapteurs(String idCapteur, int duree) throws RemoteException, SQLException;
+    public String statsCapteurs(int duree) throws RemoteException, SQLException;
 
     /**
      * Permet de modifier l'intervalle de mesure pour un capteur en particulier
