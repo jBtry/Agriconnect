@@ -5,6 +5,9 @@ import Gestionnaire.Gestionnaire;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+/**
+ * Méthode accessible à distance pour un Capteur
+ */
 public interface Capteur extends Remote {
 
     /**

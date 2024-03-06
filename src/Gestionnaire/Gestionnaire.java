@@ -5,6 +5,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
+/**
+ * Méthode accessible à distance pour un Gestionnaire
+ */
 public interface Gestionnaire extends java.rmi.Remote {
 
     /**

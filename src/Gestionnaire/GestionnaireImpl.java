@@ -27,6 +27,10 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     private String nom;
 
+    /**
+     * Contient la liste des objets capteurs actifs (en train de faire des relevés)
+     * HashMap <Identifiant Capteur, objet Capteur>
+     */
     private HashMap<String, Capteur> listeCapteursActif;
 
 
