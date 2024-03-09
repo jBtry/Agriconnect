@@ -76,7 +76,6 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet de retirer un capteur dans la base de données du gestionnaire contenant la liste des capteurs.
-     *
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      * @throws RemoteException si erreur lors de la communication.
@@ -187,13 +186,12 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet d'obtenir des statistiques sur les relevés d'un capteur (moyenne et tendances) pour une durée (1H ou 24H).
-     *
      * @param duree durée sur laquelle on mesure les statistiques (1H ou 24H).
      * @return une chaine de caractère contenant les stats
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
-    public String statsCapteurs(int duree) throws RemoteException, SQLException {
+    public String statsCapteurs(int duree) throws RemoteException, SQLException { // TODO : A améliorer
         float sommeTemperature = 0;
         float nombreTemperature = 0;
         float moyenneTemperature = 0;
@@ -411,5 +409,61 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     @Override
     public int nbCapteurActif() throws RemoteException {
         return listeCapteursActif.size();
+    }
+
+    /**
+     * Permet d'ajouter un actionneur dans la base de données du gestionnaire contenant la liste des actionneurs.
+     *
+     * @param idActionneur chaine de caractère identifiant l'actionneur.
+     * @return une chaine de caractère spécifiant si l'opération a réussi ou non
+     * @throws SQLException    si erreur lors de l'insertion dans la base de données.
+     * @throws RemoteException si erreur lors de la communication.
+     */
+    @Override
+    public String ajouterActionneur(String idActionneur) throws RemoteException, SQLException {
+        return null; // TODO :coder
+    }
+
+    /**
+     * Ordonne à un actionneur de démarrer l'arrosage
+     * @param idActionneur chaine de caractère identifiant le capteur.
+     * @param duree        entier représentant la durée de l'arrosage (en MINUTE)
+     * @return une chaine de caractère spécifiant si l'opération a réussi ou non
+     * @throws RemoteException       si erreur lors de la communication.
+     * @throws SQLException          si erreur lors de la recherche dans la base de données.
+     * @throws MalformedURLException si l'objet distant est introuvable
+     * @throws NotBoundException     si l'objet distant est introuvable
+     */
+    @Override
+    public String demarrerArrosage(String idActionneur, int duree) throws SQLException, MalformedURLException, NotBoundException {
+        return null;  // TODO :coder
+    }
+
+    /**
+     * Permet de retirer un actionneur dans la base de données du gestionnaire contenant la liste des actionneurs.
+     * @param idActionneur chaine de caractère identifiant le capteur.
+     * @return une chaine de caractère spécifiant si l'opération a réussi ou non
+     * @throws RemoteException si erreur lors de la communication.
+     * @throws SQLException    si erreur lors de la recherche dans la base de données.
+     */
+    @Override
+    public String retirerActionneur(String idActionneur) throws RemoteException, SQLException {
+        return null;  // TODO :coder
+    }
+
+    /**
+     * Permet de connaître l'état de l'arrosage actuel.
+     * Exemple de retour possible :
+     * - Arrosage en cours, fini dans ...
+     * - L'arrosage n'a jamais été effectué
+     * - Le dernier arrosage a été fait le ... à ... pendant ....
+     * @param idActionneur chaine de caractère identifiant le capteur.
+     * @return une chaine de caractère spécifiant si l'opération a réussi ou non
+     * @throws RemoteException si erreur lors de la communication.
+     * @throws SQLException    si erreur lors de la recherche dans la base de données.
+     */
+    @Override
+    public String etatArrosage(String idActionneur) throws RemoteException {
+        return null;  // TODO :coder
     }
 }

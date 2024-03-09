@@ -11,7 +11,7 @@ public abstract class MainIOT {
 
     /**
      * Crée le registre RMI (s'il n'existe pas deja),
-     * crée 6 capteurs et deux actionneurs et enregistre ceux-ci dans le registre RMI
+     * crée 6 capteurs et 2 actionneurs et enregistre ceux-ci dans le registre RMI
      * @param args non utilisés
      */
     public static void main(String args[]) {
@@ -23,13 +23,23 @@ public abstract class MainIOT {
         } catch (RemoteException err) {
             System.out.println("Erreur lors de la création du registre");
         }
-        /* Crée 10 capteurs et enregistre ceux-ci dans le registre RMI */
+        /* Crée 6 capteurs, 2 actionneurs et enregistre ceux-ci dans le registre RMI */
         try {
             String idCapteur = "C";
-            for(int i=1; i <= 10; i++) {
-                CapteurImpl unCapteur= new CapteurImpl(idCapteur+i,Outils.genererLatitudeAleatoires(), Outils.genererLongitudeAleatoires());
+            String idActionneur = "A";
+
+            /* Création des 6 capteurs */
+            for(int i=1; i <= 6; i++) {
+                CapteurImpl unCapteur = new CapteurImpl(idCapteur+i,GPS.listeGPSCapteurs.get(i-1)[0], GPS.listeGPSCapteurs.get(i-1)[1]);
                 Naming.rebind(idCapteur+i, unCapteur);
                 System.out.println("Le Capteur numéro " + i + " a été créé et enregistré dans le registre RMI, voici ses attributs : "+"\n"+unCapteur);
+            }
+
+            /* Création des 2 actionneurs */
+            for(int i=1; i <= 2; i++) {
+                ActionneurImpl unActionneur = new ActionneurImpl(idActionneur+i,GPS.listeGPSActionneurs.get(i-1)[0], GPS.listeGPSActionneurs.get(i-1)[1]);
+                Naming.rebind(idActionneur+i, unActionneur);
+                System.out.println("L'Actionneur numéro " + i + " a été créé et enregistré dans le registre RMI, voici ses attributs : "+"\n"+unActionneur);
             }
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);

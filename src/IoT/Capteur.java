@@ -8,13 +8,7 @@ import java.rmi.RemoteException;
 /**
  * Méthode accessible à distance pour un Capteur
  */
-public interface Capteur extends Remote {
-
-    /**
-     * @return les coordonnées GPS sous forme de tableau de flottant (latitude, longitude).
-     * @throws RemoteException si erreur lors de la communication.
-     */
-    public float[] getGps() throws RemoteException;
+public interface Capteur extends IOT {
 
     /**
      * Modifie l'intervalle entre deux relevés

@@ -14,6 +14,7 @@ import java.util.Random;
  */
 public abstract class Outils {
 
+    /** Crée un générateur de nombre */
     private static final Random ALEATOIRE = new Random();
 
     /** Température précédente générée aléatoirement */
@@ -21,23 +22,6 @@ public abstract class Outils {
 
     /** Taux d'humidité précédent généré aléatoirement */
     private static float tauxHPrecedent = 0;
-
-    /** Génère une latitude aléatoirement
-     * @return un flottant représentant une latitude
-     */
-    protected static float genererLatitudeAleatoires() {
-        float latitude = -90 + (90 - (-90)) * ALEATOIRE.nextFloat();
-        return latitude;
-    }
-
-    /** Génère une longitude aléatoirement
-     * @return flottant représentant une longitude
-     */
-    protected static float genererLongitudeAleatoires() {
-        float longitude = (-180 + (180 - (-180)) * ALEATOIRE.nextFloat());
-        return longitude;
-    }
-
 
     /**
      * @return une température en °C aléatoire

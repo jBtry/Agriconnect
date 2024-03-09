@@ -46,7 +46,6 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
      * - un capteur effectue un relevé toutes les 5 secondes
      * - un capteur est inactif actif = false
      * - un capteur n'a pas de gestionnaire
-     *
      * @throws RemoteException si erreur lors de la communication
      */
     public CapteurImpl(String identifiant, float latitude, float longitude) throws RemoteException {
