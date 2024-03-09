@@ -11,7 +11,7 @@ public abstract class MainIOT {
 
     /**
      * Crée le registre RMI (s'il n'existe pas deja),
-     * crée 10 capteurs et enregistre ceux-ci dans le registre RMI
+     * crée 6 capteurs et deux actionneurs et enregistre ceux-ci dans le registre RMI
      * @param args non utilisés
      */
     public static void main(String args[]) {
