@@ -1,37 +1,29 @@
 package IoT;
 
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 /**
  * Méthode accessible à distance pour un Actionneur
- * Hérite de l'interface IOT qui, elle-même, hérite de l'interface java.rmi.remote
+ * Hérite de l'interface ObjetConnecte qui, elle-même, hérite de l'interface java.rmi.remote
+ * Hérite de l'interface ObjetConnecte qui, elle-même, hérite de l'interface java.rmi.remote
  */
-public interface Actionneur extends IOT {
-
-    /**
-     * Permet de connaître l'état de l'arrosage actuel.
-     *  True => en marche
-     *  False => à l'arrêt
-     * @param idActionneur chaine de caractères représentant l'identifiant de l'actionneur à consulter.
-     * @return l'état de l'arrosage actuel.
-     * @throws RemoteException si erreur lors de la communication.
-     */
-    public boolean obtenirEtatArrosage(String idActionneur) throws RemoteException;
+public interface Actionneur extends ObjetConnecte {
 
     /**
      * Permet d'ordonner à un actionneur de déclencher l'arrosage.
-     * @param idActionneur chaine de caractères représentant l'identifiant de l'actionneur à consulter.
      * @param duree entier représentant la durée d'arrosage en MINUTE
      * @throws RemoteException si erreur lors de la communication.
      */
-    public void declencherArrosage(String idActionneur, int duree) throws RemoteException;
+    public void declencherArrosage(int duree) throws RemoteException, MalformedURLException, NotBoundException;
 
     /**
-     * @param idActionneur chaine de caractères représentant l'identifiant de l'actionneur à consulter.
-     * @return le temps restant avant la fin de l'arrosage en MINUTE
+     * @return le temps restant avant la fin de l'arrosage en SECONDE
      * @throws RemoteException si erreur lors de la communication.
      */
-    public int obtenirTempsRestantArrosage(String idActionneur) throws RemoteException;
+    public int obtenirTempsRestantArrosage() throws RemoteException;
 
 
 }

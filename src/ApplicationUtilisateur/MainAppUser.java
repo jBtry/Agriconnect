@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -37,7 +38,7 @@ public abstract class MainAppUser {
             try {
                 choix = clavier.nextInt();
             } catch (InputMismatchException err) {
-                MainAppUser.afficher(Textes.ERR_SAISI_FCT);
+                MainAppUser.afficher(Textes.ERR_SAISIE_FCT);
                 clavier.next(); // Important pour nettoyer le buffer et éviter une boucle infinie
             }
         } while (choix == 0);
@@ -51,6 +52,14 @@ public abstract class MainAppUser {
         return clavier.nextLine();
     }
 
+    /* Demande de saisir l'identifiant d'un actionneur */
+    private static String demanderActionneur() {
+        Scanner clavier = new Scanner(System.in);
+        MainAppUser.afficher(Textes.ACTIONNEUR);
+        return clavier.nextLine();
+    }
+
+
     /* Demande de saisir le nouvel intervalle de mesure */
     private static int demanderIntervalle() {
         Scanner clavier = new Scanner(System.in);
@@ -60,7 +69,7 @@ public abstract class MainAppUser {
             try {
                 choix = clavier.nextInt();
             } catch (InputMismatchException err) {
-                MainAppUser.afficher(Textes.ERR_SAISI_INTERVALLE);
+                MainAppUser.afficher(Textes.ERR_SAISIE_INTERVALLE);
                 clavier.next(); // Important pour nettoyer le buffer et éviter une boucle infinie
                 choix = 0;
             }
@@ -69,15 +78,15 @@ public abstract class MainAppUser {
     }
 
     /* Demande de saisir la durée sur laquelle obtenir les statistiques */
-    private static int demanderDuree() {
+    private static int demanderDureeStat() {
         Scanner clavier = new Scanner(System.in);
         int choix;
         do {
-            MainAppUser.afficher(Textes.DUREE);
+            MainAppUser.afficher(Textes.DUREE_STATS);
             try {
                 choix = clavier.nextInt();
             } catch (InputMismatchException err) {
-                MainAppUser.afficher(Textes.ERR_SAISI_DUREE);
+                MainAppUser.afficher(Textes.ERR_SAISIE_DUREE_STATS);
                 clavier.next(); // Important pour nettoyer le buffer et éviter une boucle infinie
                 choix = 0;
             }
@@ -85,20 +94,50 @@ public abstract class MainAppUser {
         return choix == 1 ? 24 : 1; // 24h ou 1h ?
     }
 
+    /* Demande de saisir la durée de l'arrosage */
+    private static int demanderDureeArrosage() {
+        Scanner clavier = new Scanner(System.in);
+        int choix;
+        do {
+            MainAppUser.afficher(Textes.DUREE_ARROSAGE);
+            try {
+                choix = clavier.nextInt();
+            } catch (InputMismatchException err) {
+                MainAppUser.afficher(Textes.ERR_SAISIE_DUREE_ARROSAGE);
+                clavier.next(); // Important pour nettoyer le buffer et éviter une boucle infinie
+                choix = 0;
+            }
+        } while (choix == 0);
+        return choix;
+    }
+
+
 
     /* Affiche les menus de l'application */
-    private static void afficher(String texte) {
+    protected static void afficher(String texte) {
         System.out.println(texte + "\n");
 
     }
 
+    // TODO : expliquer que l'on crée les gestionnaires dans le cas ou on est pas sur le même machine ....
     /* -----------MAIN----------- */
     public static void main(String args[]) {
-        /* Récupération de l'objet gestionnaire distant */
+
+        /* Crée le registre RMI (s'il n'existe pas deja) */
         try {
+            LocateRegistry.createRegistry(1099);
+        } catch(java.rmi.server.ExportException e) {
+            ; // Un registre RMI existe deja sur le port 1099 ... on ne fait donc rien
+        } catch (RemoteException err) {
+            System.out.println("Erreur lors de la création du registre");
+        }
+
+        try {
+            GestionnaireNotificationImpl GestionnaireNotification  = new GestionnaireNotificationImpl();
+            Naming.rebind("notification", GestionnaireNotification);
             leGestionnaire = (Gestionnaire) Naming.lookup("rmi://localhost:1099/LeGestionnaire");
             int choix, intervalle, duree;
-            String idCapteur;
+            String idCapteur, idActionneur;
             MainAppUser.afficher(Textes.ACCUEIL);
             while (true) {
                 MainAppUser.afficher(Textes.FCT);
@@ -134,7 +173,7 @@ public abstract class MainAppUser {
                     }
 
                     case 7 -> { // 7 - Obtenir des statistiques sur les relevés (moyenne et tendances)
-                        duree = MainAppUser.demanderDuree();
+                        duree = MainAppUser.demanderDureeStat();
                         MainAppUser.afficher(leGestionnaire.statsCapteurs(duree));
                     }
 
@@ -148,12 +187,33 @@ public abstract class MainAppUser {
                         MainAppUser.afficher(leGestionnaire.modifierIntervalleTous(intervalle));
                     }
 
-                    case 10 -> { // 10 - Quitter Agriconnect
+                    case 10 -> { // 10 - Ajouter un actionneur
+                        idActionneur = MainAppUser.demanderActionneur();
+                        MainAppUser.afficher(leGestionnaire.ajouterActionneur(idActionneur));
+                    }
+
+                    case 11 -> { // 11 - Retirer un actionneur
+                        idActionneur = MainAppUser.demanderActionneur();
+                        MainAppUser.afficher(leGestionnaire.retirerActionneur(idActionneur));
+                    }
+
+                    case 12 -> { // 12 - Déclencher l'arrosage
+                        idActionneur = MainAppUser.demanderActionneur();
+                        duree = MainAppUser.demanderDureeArrosage();
+                        MainAppUser.afficher(leGestionnaire.demarrerArrosage(idActionneur, duree));
+                    }
+
+                    case 13 -> { // 13 - Obtenir l'état de l'arrosage
+                        idActionneur = MainAppUser.demanderActionneur();
+                        MainAppUser.afficher(leGestionnaire.etatArrosage(idActionneur));
+                    }
+
+                    case 14 -> { // 10 - Quitter Agriconnect
                         MainAppUser.afficher(Textes.ABIENTOT);
                         System.exit(0);
                     }
 
-                    default -> MainAppUser.afficher(Textes.ERR_SAISI_FCT); // Erreur de saisie
+                    default -> MainAppUser.afficher(Textes.ERR_SAISIE_FCT); // Erreur de saisie
                 }
                 MainAppUser.afficher("Nombre de capteur actif : " + leGestionnaire.nbCapteurActif());
             }
@@ -161,9 +221,9 @@ public abstract class MainAppUser {
             throw new RuntimeException(e);
         } catch (NotBoundException e) {
             throw new RuntimeException(e);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch(RemoteException e) {
             throw new RuntimeException(e);
         }
     }

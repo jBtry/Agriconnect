@@ -22,7 +22,8 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
     private String identifiant;
 
     /**
-     * Un capteur possède des coordonnées GPS
+     * Un actionneur possède des coordonnées GPS
+     * gps[O] => latitude, gps[1] => longitude
      */
     private float[] gps;
 
@@ -42,6 +43,14 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
     private volatile boolean actif; // volatile pour être accessible par différents threads
 
     /**
+     * Taux d'humidité fixe relevé par un capteur
+     * Sert uniquement à montrer l'impact du système d'arrosage...
+     * Par défaut, c'est-à-dire avant arrosage le taux d'humidité lors d'un relevé est 50%.
+     * Il s'incrémente par la suite en fonction des différents cycles d'arrosage successif
+     */
+    float simulationTauxHumidite;
+
+    /**
      * Par défaut :
      * - un capteur effectue un relevé toutes les 5 secondes
      * - un capteur est inactif actif = false
@@ -55,6 +64,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
         leGestionnaire = null;
         intervalle = 5;
         actif = false;
+        simulationTauxHumidite = 50;
     }
 
     /**
@@ -91,7 +101,6 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
 
     /**
      * Affecte un gestionnaire au Capteur
-     *
      * @param leGestionnaire gestionnaire a affecté au capteur
      */
     @Override
@@ -106,7 +115,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
         /* Génération de la température */
         float temp = Outils.genererTemperatureAleatoire();
         /* Génération d'un taux d'humidité */
-        float tauxH = Outils.genererTauxHumiditeAleatoire();
+        float tauxH = simulationTauxHumidite; // Outils.genererTauxHumiditeAleatoire(); => pas utilisé dans la V3
         /* Génération de l'horodatage */
         String horodatage = Outils.horodatage();
         return new Releve(temp, tauxH, horodatage);
@@ -121,7 +130,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
     }
 
     /**
-     * Change l'état de travail du capteur (actif)
+     * Change l'état de travail du capteur (variable actif)
      */
     @Override
     public void onOff() throws RemoteException {
@@ -145,7 +154,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
         * dans le cas où cela implique d'inclure run() comme une méthode distante.
         * ----------------------------------------
         */
-        Thread releve = new Thread(new Runnable() { // Classe interne Anonyme implémentant Runnable, on pourrait utiliser une expression lambda pour simplifier la syntaxe (mois évident à comprendre au premier coup d'œil).
+        Thread releve = new Thread(new Runnable() { // Classe interne Anonyme implémentant Runnable, on pourrait utiliser une expression lambda pour simplifier la syntaxe ...
             @Override
             public void run() {
                 while (actif) {
@@ -162,5 +171,14 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
             }
         });
         releve.start();
+    }
+
+    /**
+     * Méthode permettant d'influer sur le taux humidité
+     * Utile uniquement pour simuler l'impact de l'arrosage
+     */
+    @Override
+    public void influerTauxHumidite() throws RemoteException {
+        simulationTauxHumidite++;
     }
 }

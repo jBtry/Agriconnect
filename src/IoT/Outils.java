@@ -47,6 +47,7 @@ public abstract class Outils {
 
     /**
      * @return un taux d'humidité aléatoire
+     * /!\ Inutilisé dans la Version 3, afin de bien montrer que l'arrosage à un impact ... /!\
      */
     protected static float genererTauxHumiditeAleatoire() {
         float resultat, ajustement;;
@@ -70,7 +71,7 @@ public abstract class Outils {
      */
     protected static String horodatage() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // On a défini le format de l'horodatage
-        String horodatage = LocalDateTime.now().format(format); // On récupère l'horodatage, on lui applique le format
+        String horodatage = LocalDateTime.now().format(format); // On récupère l'horodatage actuel, on lui applique le format
         return  horodatage;
     }
 

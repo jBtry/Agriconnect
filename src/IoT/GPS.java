@@ -9,7 +9,8 @@ import java.util.Arrays;
  */
 public abstract class GPS {
 
-    /* À partir de la troisième décimale, la précision est autour de 100m.
+    /*
+     * À partir de la troisième décimale, la précision est autour de 100m.
      * On fait donc varier après la troisième décimale afin qu'un actionneur soit dans la même zone
      * que trois capteurs.
      */

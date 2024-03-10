@@ -1,4 +1,6 @@
 package Gestionnaire;
+import ApplicationUtilisateur.GestionnaireNotification;
+import IoT.Actionneur;
 import IoT.Capteur;
 
 import java.net.MalformedURLException;
@@ -7,6 +9,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -33,12 +37,25 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     private HashMap<String, Capteur> listeCapteursActif;
 
+    /**
+     * Contient la liste des objets actionneurs actifs (en train d'arroser)
+     * HashMap <Identifiant Actionneur, objet Actionneur>
+     */
+    private HashMap<String, Actionneur> listeActionneursActif;
 
+
+    /**
+     * Crée un objet GestionnaireImpl, cet objet implémente les méthodes de l'interface Gestionnaire
+     * @throws RemoteException si erreur lors de la communication.
+     * @throws SQLException si erreur lors de la création des tables
+     * @throws ClassNotFoundException si erreur lors de l'établissement de la connexion à la base de données
+     */
     public GestionnaireImpl() throws RemoteException, SQLException, ClassNotFoundException {
         super();
         this.c = connexion();
         nom = "Gestionnaire Agriconnect";
         listeCapteursActif = new HashMap<>();
+        listeActionneursActif = new HashMap<>();
     }
 
     @Override
@@ -109,12 +126,12 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
                 return "Le capteur effectue deja des relevés !";
             } // else, on démarre le capteur
             listeCapteursActif.put(idCapteur, leCapteur); // On enregistre le capteur dans la liste des capteurs actif.
-            leCapteur.setGestionnaire(this); // On affecte ce gestionnaire à la gestion du capteur
+            leCapteur.setGestionnaire((Gestionnaire) Naming.lookup("rmi://localhost:1099/LeGestionnaire")); // On affecte ce gestionnaire à la gestion du capteur via sa référence dans le registre RMI (et non pas avec this) pour que celui-ci soit accessible à distance
             leCapteur.demarrerEnregistrementReleve();
             return "Le capteur a bien été démarré !";
         } else {
             return "Erreur, le capteur n'est pas enregistré !";
-        }
+        } // TODO : préciser que on ne traite pas le cas ou le capteur se déconnecte et donc plus accessible dans RMI....
     }
 
     /**
@@ -392,18 +409,6 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     }
 
     /**
-     * Permet de vérifier si un capteur est enregistré dans la BD.
-     * Si le capteur n'est pas enregistré dans la BD, on n'enregistre pas ses relevés.
-     * On le considère comme inconnu
-     */
-    private boolean estCeQueLeCapteurEstEnregistre(String idCapteur) throws SQLException {
-        PreparedStatement instructions = c.prepareStatement(RequeteSQL.EXISTENCE_CAPTEUR); // On utilise PreparedStatement pour éviter les injections SQL
-        instructions.setString(1, idCapteur);
-        ResultSet retourSQL = instructions.executeQuery();
-        return retourSQL.next() ? true : false;  // Vérifier si le capteur existe (retourSQL.next() retourne True si au moins une ligne est retournée)
-    }
-
-    /**
      * @return le nombre de capteurs actif (c'est-à-dire en train d'effectuer des relevés)
      */
     @Override
@@ -413,7 +418,6 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet d'ajouter un actionneur dans la base de données du gestionnaire contenant la liste des actionneurs.
-     *
      * @param idActionneur chaine de caractère identifiant l'actionneur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      * @throws SQLException    si erreur lors de l'insertion dans la base de données.
@@ -421,7 +425,43 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public String ajouterActionneur(String idActionneur) throws RemoteException, SQLException {
-        return null; // TODO :coder
+        try {
+            if (estCeQueLActionneurEstEnregistre(idActionneur)) { // est-il deja dans la base ?
+                return "L'actionneur a deja été ajouté";
+            } // else
+            Actionneur lActionneur = (Actionneur) Naming.lookup("rmi://localhost:1099/" + idActionneur); // On essaye de récupérer un actionneur distant au sein du registre RMI, si pas d'exception alors l'actionneur recherché existe
+            PreparedStatement instructions = c.prepareStatement(RequeteSQL.INSERTION_ACTIONNEUR);
+            instructions.setString(1, idActionneur); // On utilise PreparedStatement pour éviter les injections SQL
+            instructions.setFloat(2, lActionneur.getGps()[0]);
+            instructions.setFloat(3, lActionneur.getGps()[1]);
+            instructions.executeUpdate();
+            return "L'actionneur a été ajouté !";
+        } catch (NotBoundException | ClassCastException | MalformedURLException err) {
+            return "L'actionneur n'existe pas ou n'est pas actif";
+        }
+    }
+
+    /**
+     * Permet de retirer un actionneur dans la base de données du gestionnaire contenant la liste des actionneurs.
+     * @param idActionneur chaine de caractère identifiant le capteur.
+     * @return une chaine de caractère spécifiant si l'opération a réussi ou non
+     * @throws RemoteException si erreur lors de la communication.
+     * @throws SQLException    si erreur lors de la recherche dans la base de données.
+     */
+    @Override
+    public String retirerActionneur(String idActionneur) throws RemoteException, SQLException {
+        if (estCeQueLActionneurEstEnregistre(idActionneur)) { // l'actionneur est enregistré.
+            if(listeActionneursActif.containsKey(idActionneur)) {
+                return "Impossible de retirer l'actionneur pour l'instant car l'arrosage n'est pas terminé ....\n"
+                        +etatArrosage(idActionneur);
+            } // else
+            PreparedStatement instructions = c.prepareStatement(RequeteSQL.SUPPRESSION_ACTIONNEUR); // On utilise PreparedStatement pour éviter les injections SQL
+            instructions.setString(1, idActionneur);
+            instructions.executeUpdate();
+            return "L'actionneur a bien été retiré !";
+        } else {
+            return "Erreur, l'actionneur n'est pas enregistré !";
+        }
     }
 
     /**
@@ -435,35 +475,116 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * @throws NotBoundException     si l'objet distant est introuvable
      */
     @Override
-    public String demarrerArrosage(String idActionneur, int duree) throws SQLException, MalformedURLException, NotBoundException {
-        return null;  // TODO :coder
-    }
-
-    /**
-     * Permet de retirer un actionneur dans la base de données du gestionnaire contenant la liste des actionneurs.
-     * @param idActionneur chaine de caractère identifiant le capteur.
-     * @return une chaine de caractère spécifiant si l'opération a réussi ou non
-     * @throws RemoteException si erreur lors de la communication.
-     * @throws SQLException    si erreur lors de la recherche dans la base de données.
-     */
-    @Override
-    public String retirerActionneur(String idActionneur) throws RemoteException, SQLException {
-        return null;  // TODO :coder
+    public String demarrerArrosage(String idActionneur, int duree) throws SQLException, MalformedURLException, NotBoundException, RemoteException {
+        if(estCeQueLActionneurEstEnregistre(idActionneur)) {
+            Actionneur lActionneur = (Actionneur) Naming.lookup("rmi://localhost:1099/" + idActionneur); // on récupère l'actionneur distant enregistré dans le registre RMI
+            if (lActionneur.enFonction()) { // si l'arrosage est deja en cours
+                return etatArrosage(idActionneur);
+            } // else, on démarre l'arrosage
+            lActionneur.setGestionnaire((Gestionnaire) Naming.lookup("rmi://localhost:1099/LeGestionnaire")); // On affecte ce gestionnaire à la gestion du capteur via sa référence dans le registre RMI (et non pas avec this) pour que celui-ci soit accessible à distance
+            listeActionneursActif.put(idActionneur, lActionneur); // On enregistre l'actionneur dans la liste des actionneurs actif. (Arrosage en cours)
+            lActionneur.declencherArrosage(duree);
+            return "L'arrosage vient de débuter pour une durée de " + duree + " minute";
+        } else {
+            return "Erreur, l'actionneur n'est pas enregistré !";
+        } // TODO : préciser que on ne traite pas le cas ou le capteur se déconnecte et donc plus accessible dans RMI....
     }
 
     /**
      * Permet de connaître l'état de l'arrosage actuel.
      * Exemple de retour possible :
-     * - Arrosage en cours, fini dans ...
+     * - L'arrosage fini dans ...
      * - L'arrosage n'a jamais été effectué
      * - Le dernier arrosage a été fait le ... à ... pendant ....
      * @param idActionneur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      * @throws RemoteException si erreur lors de la communication.
-     * @throws SQLException    si erreur lors de la recherche dans la base de données.
+     * @throws SQLException si erreur lors de la recherche dans la base de données.
      */
     @Override
-    public String etatArrosage(String idActionneur) throws RemoteException {
-        return null;  // TODO :coder
+    public String etatArrosage(String idActionneur) throws RemoteException, SQLException {
+        if (estCeQueLActionneurEstEnregistre(idActionneur)) { // l'actionneur est enregistré.
+            if(listeActionneursActif.containsKey(idActionneur)) {
+                int tempsRestant = listeActionneursActif.get(idActionneur).obtenirTempsRestantArrosage();
+                String aRetourner =  tempsRestant < 60 ? tempsRestant + " secondes" : (tempsRestant/60) + " minutes et " + (tempsRestant%60) + " secondes";
+                return "L'arrosage fini dans " + aRetourner;
+            } // else
+            PreparedStatement instructions = c.prepareStatement(RequeteSQL.ETAT_ARROSAGE); // On utilise PreparedStatement pour éviter les injections SQL
+            instructions.setString(1, idActionneur);
+            ResultSet retourSQL = instructions.executeQuery();
+            if (retourSQL.next()) {
+                String dateHeure = retourSQL.getString("DernierArrosage");
+                if(dateHeure != null) {
+                    String split[] = dateHeure.split(" "); // split[0] => Date split[1] => Heure
+                    return "Le dernier arrosage a été fait le " + split[0] + " à " + split[1] + " pendant " + retourSQL.getInt("Duree")/60 + " minute"; // on récupère la valeur en seconde, on la convertie en minute
+                } else {
+                    return "L'arrosage n'a jamais été effectué";
+                }
+            } // else ... on est sûr de recevoir une ligne puisque l'on vérifie avant que l'actionneur est enregistré.
+            return "";
+        } else {
+            return "Erreur, l'actionneur n'est pas enregistré !";
+        }
     }
+
+    /**
+     * Notifie la fin de l'arrosage
+     * @param idActionneur identifiant de l'actionneur qui vient de finir l'arrosage.
+     * @param dureeDeLarrosage entier représentant la durée de l'arrosage (en MINUTE)
+     * @throws RemoteException si erreur lors de la communication.
+     */
+    @Override
+    public void notificationFinArrosage(String idActionneur, int dureeDeLarrosage) throws RemoteException, SQLException {
+        try {
+            GestionnaireNotification gestionnaireNotif = (GestionnaireNotification) Naming.lookup("rmi://localhost:1099/notification"); // On essaye de récupérer le gestionnaire de notification distant au sein du registre RMI, si pas d'exception alors l'objet recherché existe
+            gestionnaireNotif.notification("----------------------------------\n"
+                                             + "Information de l'actionneur "
+                                             + idActionneur
+                                             + "\nL'arrosage est terminé\n"
+                                             + "----------------------------------"
+                                          ); // On informe l'application de l'utilisateur
+        } catch (NotBoundException | ClassCastException | MalformedURLException err) {
+            System.out.println("Impossible de notifier l'application cliente\n");
+        } finally {
+            listeActionneursActif.remove(idActionneur); // comme l'arrosage est terminé, on retire l'actionneur de la liste des actionneurs en train d'arroser.
+            PreparedStatement instructions = c.prepareStatement(RequeteSQL.INSERTION_ETAT_ARROSAGE); // On utilise PreparedStatement pour éviter les injections SQL
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // On a défini le format de l'horodatage
+            String horodatage = LocalDateTime.now().format(format); // On récupère l'horodatage actuel, on lui applique le format
+            instructions.setString(1, horodatage);
+            instructions.setInt(2, dureeDeLarrosage*60); // on stocke en seconde dans la BD
+            instructions.setString(3,idActionneur);
+            instructions.executeUpdate();
+        }
+    }
+
+    /**
+     * Permet de vérifier si un capteur est enregistré dans la BD.
+     * Si le capteur n'est pas enregistré dans la BD, on n'enregistre pas ses relevés et on ne peut pas le contrôler.
+     * On le considère comme inconnu
+     * @param idCapteur l'identifiant du capteur que l'on recherche
+     * @throws SQLException si erreur lors de la recherche dans la base de données.
+     */
+    private boolean estCeQueLeCapteurEstEnregistre(String idCapteur) throws SQLException {
+        PreparedStatement instructions = c.prepareStatement(RequeteSQL.EXISTENCE_CAPTEUR); // On utilise PreparedStatement pour éviter les injections SQL
+        instructions.setString(1, idCapteur);
+        ResultSet retourSQL = instructions.executeQuery();
+        return retourSQL.next() ? true : false;  // Vérifier si le capteur existe (retourSQL.next() retourne True si au moins une ligne est retournée)
+    }
+
+    /**
+     * Permet de vérifier si un actionneur est enregistré dans la BD.
+     * Si l'actionneur n'est pas enregistré dans la BD, on ne peut pas le contrôler
+     * On le considère comme inconnu
+     * @param idActionneur l'identifiant de l'actionneur que l'on recherche
+     * @throws SQLException si erreur lors de la recherche dans la base de données.
+     */
+    private boolean estCeQueLActionneurEstEnregistre(String idActionneur) throws SQLException {
+        PreparedStatement instructions = c.prepareStatement(RequeteSQL.EXISTENCE_ACTIONNEUR); // On utilise PreparedStatement pour éviter les injections SQL
+        instructions.setString(1, idActionneur);
+        ResultSet retourSQL = instructions.executeQuery();
+        return retourSQL.next() ? true : false;  // Vérifier si l'actionneur existe (retourSQL.next() retourne True si au moins une ligne est retournée)
+    }
+
+
+
 }

@@ -10,16 +10,19 @@ public abstract class RequeteSQL {
 
     private static final String NOM_TABLE_CAPTEUR = "capteurs";
     private static final String NOM_TABLE_RELEVE = "releves";
+    private static final String NOM_TABLE_ACTIONNEURS = "actionneurs";
 
     /** Requête SQL permettant de créer la table contenant la liste des capteurs, si celle-ci n'existe pas deja */
-    protected static final String CREATION_TABLE_CAPTEURS = "CREATE TABLE IF NOT EXISTS capteurs"
+    protected static final String CREATION_TABLE_CAPTEURS =
+            "CREATE TABLE IF NOT EXISTS " + NOM_TABLE_CAPTEUR
             + "(Id varchar(10) PRIMARY KEY,"
             + " Latitude DECIMAL(8,6) NOT NULL,"
             + " Longitude DECIMAL(9,6) NOT NULL"
             + ");";
 
     /** Requête SQL permettant de créer la table contenant la liste des relevés, si celle-ci n'existe pas deja */
-    protected static final String CREATION_TABLE_RELEVES = "CREATE TABLE IF NOT EXISTS releves"
+    protected static final String CREATION_TABLE_RELEVES =
+            "CREATE TABLE IF NOT EXISTS " + NOM_TABLE_RELEVE
             + "(IdCapteur varchar(10) NOT NULL,"
             + " Temperature DECIMAL(3,1) NOT NULL,"
             + " TauxHumidite DECIMAL(3,1) NOT NULL,"
@@ -27,8 +30,24 @@ public abstract class RequeteSQL {
             + " PRIMARY KEY (IdCapteur, Horodatage)"
             + ");";
 
+    /** Requête SQL permettant de créer la table contenant la liste des actionneurs, si celle-ci n'existe pas deja */
+    protected static final String CREATION_TABLE_ACTIONNEURS =
+            "CREATE TABLE IF NOT EXISTS " + NOM_TABLE_ACTIONNEURS
+            + "(Id varchar(10) PRIMARY KEY,"
+            + " Latitude DECIMAL(8,6) NOT NULL,"
+            + " Longitude DECIMAL(9,6) NOT NULL,"
+            + " DernierArrosage DATETIME,"
+            + " Duree NUMBER SMALLINT" // durée sauvegardée en seconde
+            + ");";
+
+    /** Requête SQL permettant d'ajouter un capteur dans la table ACTIONNEUR */
+    protected static final String INSERTION_ACTIONNEUR = "INSERT INTO "+NOM_TABLE_ACTIONNEURS+"(id, Latitude, Longitude) VALUES(?,?,?)";
+
     /** Requête SQL permettant d'ajouter un capteur dans la table CAPTEUR */
     protected static final String INSERTION_CAPTEUR = "INSERT INTO "+NOM_TABLE_CAPTEUR+" VALUES(?,?,?)";
+
+    /** Requête SQL permettant de supprimer un capteur dans la table ACTIONNEUR */
+    protected static final String SUPPRESSION_ACTIONNEUR = "DELETE FROM "+NOM_TABLE_ACTIONNEURS+" WHERE id=?";
 
     /** Requête SQL permettant de supprimer un capteur dans la table CAPTEUR */
     protected static final String SUPPRESSION_CAPTEUR = "DELETE FROM "+NOM_TABLE_CAPTEUR+" WHERE id=?";
@@ -41,7 +60,10 @@ public abstract class RequeteSQL {
 
     /** Requête SQL permettant de vérifier si un capteur existe */
     protected static final String EXISTENCE_CAPTEUR= "SELECT * FROM "+NOM_TABLE_CAPTEUR+" WHERE id=?";
-  
+
+    /** Requête SQL permettant de vérifier si un actionneur existe */
+    protected static final String EXISTENCE_ACTIONNEUR= "SELECT * FROM "+NOM_TABLE_ACTIONNEURS+" WHERE id=?";
+
     /** Requête SQL permettant d'obtenir les températures relevées sur la dernière 1H */  
     protected static final String RELEVE_TEMPERATURE_1H= "SELECT Temperature FROM "+NOM_TABLE_RELEVE+" WHERE Horodatage > datetime('now', '-1 hour');";
 
@@ -56,4 +78,9 @@ public abstract class RequeteSQL {
 
     /** Requête SQL permettant de récupérer le dernier relevé d'un capteur donné */
     protected static final String DERNIERE_INFO_CAPTEUR= "SELECT * FROM "+NOM_TABLE_RELEVE+" WHERE idCapteur=? ORDER BY Horodatage DESC LIMIT 1";
+
+    /** Requête SQL permettant de consulter le dernier état connu d'arrosage */
+    protected static final String ETAT_ARROSAGE= "SELECT DernierArrosage, Duree FROM "+NOM_TABLE_ACTIONNEURS+" WHERE id=?";
+
+    protected static final String INSERTION_ETAT_ARROSAGE= "UPDATE "+NOM_TABLE_ACTIONNEURS+" SET DernierArrosage=?, Duree=? WHERE id=?";
 }

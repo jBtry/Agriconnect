@@ -1,14 +1,12 @@
 package IoT;
 
-import Gestionnaire.Gestionnaire;
-
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
  * Méthode accessible à distance pour un Capteur
+ * Hérite de l'interface ObjetConnecte qui, elle-même, hérite de l'interface java.rmi.remote
  */
-public interface Capteur extends IOT {
+public interface Capteur extends ObjetConnecte {
 
     /**
      * Modifie l'intervalle entre deux relevés
@@ -18,26 +16,14 @@ public interface Capteur extends IOT {
     public void modifierIntervalle(int intervalle) throws RemoteException;
 
     /**
-     * Affecte un gestionnaire au Capteur
-     * @param leGestionnaire gestionnaire a affecté au capteur
-     */
-    public void setGestionnaire(Gestionnaire leGestionnaire) throws RemoteException;
-
-    /**
-     * Retourne l'état de travail du capteur (actif ou inactif)
-     */
-    public boolean enFonction() throws RemoteException;
-
-    /**
-     * Change l'état de travail du capteur (actif/inactif)
-     * Principe de l'interrupteur ....
-     */
-    public void onOff() throws RemoteException;
-
-    /**
      * Démarre les relevés
      * (intervalle de 5 secondes par défaut)
      */
     public void demarrerEnregistrementReleve() throws RemoteException;
 
+    /**
+     * Méthode permettant d'influer sur le taux humidité
+     * Utile pour simuler l'impact de l'arrosage
+     */
+    void influerTauxHumidite() throws RemoteException;
 }

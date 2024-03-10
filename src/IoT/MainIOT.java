@@ -1,7 +1,5 @@
 package IoT;
 
-import Gestionnaire.GestionnaireImpl;
-
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -37,7 +35,7 @@ public abstract class MainIOT {
 
             /* Création des 2 actionneurs */
             for(int i=1; i <= 2; i++) {
-                ActionneurImpl unActionneur = new ActionneurImpl(idActionneur+i,GPS.listeGPSActionneurs.get(i-1)[0], GPS.listeGPSActionneurs.get(i-1)[1]);
+                ActionneurImpl unActionneur = new ActionneurImpl(idActionneur+i,GPS.listeGPSActionneurs.get(i-1)[0], GPS.listeGPSActionneurs.get(i-1)[1], "Zone "+i);
                 Naming.rebind(idActionneur+i, unActionneur);
                 System.out.println("L'Actionneur numéro " + i + " a été créé et enregistré dans le registre RMI, voici ses attributs : "+"\n"+unActionneur);
             }

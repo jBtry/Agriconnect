@@ -125,7 +125,7 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @throws NotBoundException si l'objet distant est introuvable
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      */
-    public String demarrerArrosage (String idActionneur, int duree) throws SQLException, MalformedURLException, NotBoundException;;
+    public String demarrerArrosage (String idActionneur, int duree) throws SQLException, MalformedURLException, NotBoundException, RemoteException;;
 
     /**
      * Permet de retirer un actionneur dans la base de données du gestionnaire contenant la liste des actionneurs.
@@ -147,6 +147,16 @@ public interface Gestionnaire extends java.rmi.Remote {
      * @throws SQLException si erreur lors de la recherche dans la base de données.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
      */
-    public String etatArrosage (String idActionneur) throws RemoteException;
+    public String etatArrosage (String idActionneur) throws RemoteException, SQLException;
+
+    /**
+     * Notifie la fin de l'arrosage
+     * @param idActionneur identifiant de l'actionneur qui vient de finir l'arrosage.
+     * @param dureeDeLarrosage entier représentant la durée de l'arrosage (en MINUTE)
+     * @throws java.rmi.RemoteException si erreur lors de la communication.
+     */
+    public void notificationFinArrosage(String idActionneur, int dureeDeLarrosage) throws RemoteException, SQLException;
+
+
 
 }
