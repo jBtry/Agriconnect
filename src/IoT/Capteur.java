@@ -25,5 +25,5 @@ public interface Capteur extends ObjetConnecte {
      * Méthode permettant d'influer sur le taux humidité
      * Utile pour simuler l'impact de l'arrosage
      */
-    void influerTauxHumidite() throws RemoteException;
+    public void influerTauxHumidite() throws RemoteException;
 }
