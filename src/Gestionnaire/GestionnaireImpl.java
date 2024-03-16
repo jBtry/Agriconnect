@@ -24,12 +24,12 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     /**
      * Contient la connexion/session avec la base de données afin d'effectuer des opérations sur celle-ci
      */
-    private Connection c;
+    private final Connection c;
 
     /**
      * Un gestionnaire est caractérisé par un nom
      */
-    private String nom;
+    private final String nom;
 
     /**
      * Contient la liste des objets capteurs actifs (en train de faire des relevés)
@@ -76,7 +76,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     @Override
     public String ajouterCapteur(String idCapteur) throws RemoteException, SQLException {
         try {
-            if (estCeQueLeCapteurEstEnregistre(idCapteur)) { // est-il deja dans la base ?
+            if (Outils.estCeQueLeCapteurEstEnregistre(idCapteur,c)) { // est-il deja dans la base ?
                 return "Le capteur a deja été ajouté";
             } // else
             Capteur leCapteur = (Capteur) Naming.lookup("rmi://localhost:1099/" + idCapteur); // On essaye de récupérer un capteur distant au sein du registre RMI, si pas d'exception alors le capteur recherché existe
@@ -99,7 +99,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public String retirerCapteur(String idCapteur) throws RemoteException, SQLException {
-        if (estCeQueLeCapteurEstEnregistre(idCapteur)) {
+        if (Outils.estCeQueLeCapteurEstEnregistre(idCapteur, c)) {
             if (listeCapteursActif.containsKey(idCapteur)) { // le capteur est enregistré et actif
                 stopperCapteur(idCapteur);
             } // else
@@ -120,7 +120,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public String demarrerCapteur(String idCapteur) throws RemoteException, SQLException, MalformedURLException, NotBoundException {
-        if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
+        if(Outils.estCeQueLeCapteurEstEnregistre(idCapteur,c)) {
             Capteur leCapteur = (Capteur) Naming.lookup("rmi://localhost:1099/" + idCapteur); // on récupère le capteur distant enregistré dans le registre RMI
             if (leCapteur.enFonction()) { // si le capteur effectue deja des relevés
                 return "Le capteur effectue deja des relevés !";
@@ -142,7 +142,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public String stopperCapteur(String idCapteur) throws RemoteException, SQLException {
-        if (estCeQueLeCapteurEstEnregistre(idCapteur)) {
+        if (Outils.estCeQueLeCapteurEstEnregistre(idCapteur,c)) {
             if (listeCapteursActif.containsKey(idCapteur)) { // le capteur est enregistré et actif
                 Capteur leCapteur = listeCapteursActif.get(idCapteur);
                 leCapteur.onOff(); // on passe actif à false.
@@ -173,7 +173,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
             resultat.append(retourSQL.getFloat("Latitude")).append(" ");
             resultat.append(retourSQL.getFloat("Longitude")).append("\n");
         }
-        if (resultat.length() == 0) { // Aucune ligne retournée
+        if (resultat.isEmpty()) { // Aucune ligne retournée
             return "Aucun capteur n'a été enregistré pour le moment ...";
         }
         return resultat.toString();
@@ -188,7 +188,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     @Override
     public String dernierReleve(String idCapteur) throws RemoteException, SQLException {
         String resultats = "";
-        if (estCeQueLeCapteurEstEnregistre(idCapteur)) {
+        if (Outils.estCeQueLeCapteurEstEnregistre(idCapteur,c)) {
             PreparedStatement instructions = c.prepareStatement(RequeteSQL.DERNIERE_INFO_CAPTEUR); // On utilise PreparedStatement pour éviter les injections SQL
             instructions.setString(1, idCapteur);
             ResultSet retourSQL = instructions.executeQuery();
@@ -202,158 +202,128 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     }
 
     /**
-     * Permet d'obtenir des statistiques sur les relevés d'un capteur (moyenne et tendances) pour une durée (1H ou 24H).
-     * @param duree durée sur laquelle on mesure les statistiques (1H ou 24H).
+     * Permet d'obtenir des statistiques sur les relevés stockés en base de données (moyenne et tendances) pour une durée de 1H.
      * @return une chaine de caractère contenant les stats
      * @throws RemoteException si erreur lors de la communication.
      */
     @Override
-    public String statsCapteurs(int duree) throws RemoteException, SQLException { // TODO : A améliorer
-        float sommeTemperature = 0;
-        float nombreTemperature = 0;
-        float moyenneTemperature = 0;
-        float derniereTemperature = Float.MIN_VALUE; // Utilisé pour calculer la hausseTemperature
-        float baisseTemperature = 0;
-        float hausseTemperature = 0;
+    public String statsCapteursUneHeure() throws RemoteException, SQLException {
 
-        float sommeTauxHumidite = 0;
-        float nombreTauxHumidite = 0;
-        float moyenneTauxHumidite = 0;
-        float dernierTauxHumidite = Float.MIN_VALUE; // Utilisé pour calculer la hausseTauxHumidite
-        float baisseTauxHumidite = 0;
-        float hausseTauxHumidite = 0;
+        float moyenneUn, moyenneDeux;
+        String resultat = ""; // Retour fait à l'utilisateur
 
-        String tendance = "";
-        String resultat = "";
+        /* Obtention des données dans la base de données */
+        PreparedStatement instructions = c.prepareStatement(RequeteSQL.RELEVE_TEMPERATURE);
+        instructions.setString(1, "-1 hour");
+        ResultSet retourSQLTempUn = instructions.executeQuery(); // Retour de tous les relevés de température sur la dernière heure
+        instructions = c.prepareStatement(RequeteSQL.RELEVE_TEMPERATURE_INTERVALLE);
+        instructions.setString(1, "-2 hour");
+        instructions.setString(2, "-1 hour");
+        ResultSet retourSQLTempDeux = instructions.executeQuery(); // Retour de tous les relevés de température compris entre 2 heures avant maintenant et 1 heure avant maintenant. → Pour le calcul de la tendance ...
+        instructions = c.prepareStatement(RequeteSQL.RELEVE_TAUXHUMIDITE);
+        instructions.setString(1, "-1 hour");
+        ResultSet retourSQLTauxHUn = instructions.executeQuery(); // Retour de tous les relevés de taux d'humidité sur la dernière heure
+        instructions = c.prepareStatement(RequeteSQL.RELEVE_TAUXHUMIDITE_INTERVALLE);
+        instructions.setString(1, "-2 hour");
+        instructions.setString(2, "-1 hour");
+        ResultSet retourSQLTauxHDeux = instructions.executeQuery(); // Retour de tous les relevés de taux d'humidité compris entre 2 heures avant maintenant et 1 heure avant maintenant. → Pour le calcul de la tendance ...
 
-        if (duree == 1) { // Sur une heure
-            Statement instructions = c.createStatement();
-            ResultSet retourSQL = instructions.executeQuery(RequeteSQL.RELEVE_TEMPERATURE_1H); // Retour de tous les relevés de température
-
-            while (retourSQL.next()) {
-                float TemperatureActuelle = retourSQL.getFloat(1);
-                sommeTemperature += TemperatureActuelle;
-                nombreTemperature++;
-                if (derniereTemperature != Float.MIN_VALUE && TemperatureActuelle > derniereTemperature) {
-                    hausseTemperature++;
-                }
-                if (derniereTemperature != Float.MIN_VALUE && TemperatureActuelle < derniereTemperature) {
-                    baisseTemperature++;
-                }
-                derniereTemperature = TemperatureActuelle;
+        /* Calcul de la température moyenne sur h-1 et sur l'intervalle H-1 H-2 afin d'obtenir une tendance */
+        moyenneUn = Outils.moyenne(retourSQLTempUn);
+        moyenneDeux = Outils.moyenne(retourSQLTempDeux);
+        resultat += !Float.isNaN(moyenneUn) ? "Moyenne de la température sur la dernière heure : " + moyenneUn + "\n" : "Pas de données de température disponibles sur cet intervalle.\n"; // Voir Outils.moyenne() pour plus d'info...
+        /* Recherche de la tendance pour la température */
+        if (Float.isNaN(moyenneDeux) || Float.isNaN(moyenneUn)) { // Peut-on calculer une tendance ?
+            resultat += "Tendance indisponible pour le moment, il faut plus de relevés....\n";
+        } else { // on compare la moyenne actuelle sur les relevés précédents afin d'obtenir une tendance
+            if (moyenneUn > moyenneDeux) {
+                resultat += "Tendance de la température : en HAUSSE\n";
+            } else if (moyenneUn < moyenneDeux) {
+                resultat += "Tendance de la température : en BAISSE\n";
+            } else { // moyenneUn == moyenneDeux → possible, mais peu probable
+                resultat += "La température moyenne est constante\n";
             }
-
-            if (nombreTemperature > 0) { // calcul de la moyenne de la température
-                moyenneTemperature = sommeTemperature / nombreTemperature;
-                resultat += "Moyenne de la température : " + moyenneTemperature + "\n";
-
-            } else {
-                resultat += "Pas de données de température disponibles sur cet intervalle." + "\n";
-            }
-
-            if (hausseTemperature - baisseTemperature > 0) { // Vérification de la tendance de la température
-                tendance = "Hausse";
-                resultat += "Tendance de la température : " + tendance + "\n";
-            } else if (hausseTemperature - baisseTemperature < 0) {
-                tendance = "Baisse";
-                resultat += "Tendance de la température : " + tendance + "\n";
-            } else resultat += "Il n'y a pas de tendance" + "\n"; // possible si deux valeurs générées successivement sont égales (peu probable)
-
-
-            retourSQL = instructions.executeQuery(RequeteSQL.RELEVE_TAUXHUMIDITE_1H); // Retour de tous les relevés du taux d'humidité
-            while (retourSQL.next()) {
-                float TauxHumiditeActuel = retourSQL.getFloat(1);
-                sommeTauxHumidite += TauxHumiditeActuel;
-                nombreTauxHumidite++;
-                if (dernierTauxHumidite != Float.MIN_VALUE && TauxHumiditeActuel > dernierTauxHumidite) {
-                    hausseTauxHumidite++;
-                }
-                if (dernierTauxHumidite != Float.MIN_VALUE && TauxHumiditeActuel < dernierTauxHumidite) {
-                    baisseTauxHumidite++;
-                }
-                dernierTauxHumidite = TauxHumiditeActuel;
-            }
-            if (nombreTemperature > 0) { // calcul de la moyenne du taux d'humidité
-                moyenneTauxHumidite = sommeTauxHumidite / nombreTauxHumidite;
-                resultat += "Moyenne du taux d'humidité : " + moyenneTauxHumidite + "\n";
-            } else {
-                resultat += "Pas de données du taux d'humidité disponibles sur cet intervalle." + "\n";
-            }
-
-            if (hausseTauxHumidite - baisseTauxHumidite > 0) { // Vérification de la tendance du taux d'humidité
-                tendance = "Hausse";
-                resultat += "Tendance du taux humidite : " + tendance + "\n";
-            } else if (hausseTauxHumidite - baisseTauxHumidite < 0) {
-                tendance = "Baisse";
-                resultat += "Tendance du taux humidite : " + tendance + "\n";
-            } else resultat += "Il n'y a pas de tendance" + "\n";
-
-            return resultat;
-
-        } else if (duree == 24) { // Sur 24 heures
-            Statement instructions = c.createStatement();
-            ResultSet retourSQL = instructions.executeQuery(RequeteSQL.RELEVE_TEMPERATURE_24H); // Retour de tous les relevés de température
-
-            while (retourSQL.next()) {
-                float TemperatureActuelle = retourSQL.getFloat(1);
-                sommeTemperature += TemperatureActuelle;
-                nombreTemperature++;
-                if (derniereTemperature != Float.MIN_VALUE && TemperatureActuelle > derniereTemperature) {
-                    hausseTemperature++;
-                }
-                if (derniereTemperature != Float.MIN_VALUE && TemperatureActuelle < derniereTemperature) {
-                    baisseTemperature++;
-                }
-                derniereTemperature = TemperatureActuelle;
-            }
-
-            if (nombreTemperature > 0) {// calcul de la moyenne de la température
-                moyenneTemperature = sommeTemperature / nombreTemperature;
-                resultat += "Moyenne de la température : " + moyenneTemperature + "\n";
-
-            } else {
-                resultat += "Pas de données de température disponibles sur cet intervalle." + "\n";
-            }
-
-            if (hausseTemperature - baisseTemperature > 0) { // Vérification de la tendance de la température
-                tendance = "Hausse";
-                resultat += "Tendance de la température : " + tendance + "\n";
-            } else if (hausseTemperature - baisseTemperature < 0) {
-                tendance = "Baisse";
-                resultat += "Tendance de la température : " + tendance + "\n";
-            } else resultat += "Il n'y a pas de tendance" + "\n";
-
-
-            retourSQL = instructions.executeQuery(RequeteSQL.RELEVE_TAUXHUMIDITE_24H); // Retour de tous les relevés du taux d'humidité
-            while (retourSQL.next()) {
-                float TauxHumiditeActuel = retourSQL.getFloat(1);
-                sommeTauxHumidite += TauxHumiditeActuel;
-                nombreTauxHumidite++;
-                if (dernierTauxHumidite != Float.MIN_VALUE && TauxHumiditeActuel > dernierTauxHumidite) {
-                    hausseTauxHumidite++;
-                }
-                if (dernierTauxHumidite != Float.MIN_VALUE && TauxHumiditeActuel < dernierTauxHumidite) {
-                    baisseTauxHumidite++;
-                }
-                dernierTauxHumidite = TauxHumiditeActuel;
-            }
-            if (nombreTemperature > 0) { // calcul de la moyenne du taux d'humidité
-                moyenneTauxHumidite = sommeTauxHumidite / nombreTauxHumidite;
-                resultat += "Moyenne du taux d'humidité : " + moyenneTauxHumidite + "\n";
-            } else {
-                resultat += "Pas de données du taux d'humidité disponibles sur cet intervalle." + "\n";
-            }
-
-            if (hausseTauxHumidite - baisseTauxHumidite > 0) { // Vérification de la tendance du taux d'humidité
-                tendance = "Hausse";
-                resultat += "Tendance du taux humidite : " + tendance;
-            } else if (hausseTauxHumidite - baisseTauxHumidite < 0) {
-                tendance = "Baisse";
-                resultat += "Tendance du taux humidite : " + tendance;
-            } else resultat += "Il n'y a pas de tendance";
-
-            return resultat;
         }
+
+        /* Calcul du taux d'humidité moyen sur h-1 et sur l'intervalle H-1 H-2 afin d'obtenir une tendance */
+        moyenneUn = Outils.moyenne(retourSQLTauxHUn);
+        moyenneDeux = Outils.moyenne(retourSQLTauxHDeux);
+        resultat += !Float.isNaN(moyenneUn) ? "Moyenne du taux d'humidité sur la dernière heure : " + moyenneUn + "\n" : "Pas de données sur le taux d'humidité disponibles sur cet intervalle.\n"; // Voir Outils.moyenne() pour plus d'info...
+        /* Recherche de la tendance pour le taux d'humidité */
+        if (Float.isNaN(moyenneDeux) || Float.isNaN(moyenneUn)) { // Peut-on calculer une tendance ?
+            resultat += "Tendance indisponible pour le moment, il faut plus de relevés....\n";
+        } else { // on compare la moyenne actuelle sur les relevés précédents afin d'obtenir une tendance
+            if (moyenneUn > moyenneDeux) {
+                resultat += "Tendance du taux d'humidité : en HAUSSE\n";
+            } else if (moyenneUn < moyenneDeux) {
+                resultat += "Tendance du taux d'humidité : en BAISSE\n";
+            } else { // moyenneUn == moyenneDeux → possible, mais peu probable
+                resultat += "Le taux d'humidité moyen est constant\n";
+            }
+        }
+
+        return resultat;
+    }
+
+    /**
+     * Permet d'obtenir des statistiques sur les relevés d'un capteur (moyenne et tendances) pour une durée de 24H.
+     * @throws java.rmi.RemoteException si erreur lors de la communication.
+     * @return une chaine de caractère contenant les stats
+     */
+    public String statsCapteursUneJournee() throws RemoteException, SQLException {
+        float moyenneUn, moyenneDeux;
+        String resultat = ""; // Retour fait à l'utilisateur
+
+        /* Obtention des données dans la base de données */
+        PreparedStatement instructions = c.prepareStatement(RequeteSQL.RELEVE_TEMPERATURE);
+        instructions.setString(1, "-24 hour");
+        ResultSet retourSQLTempUn = instructions.executeQuery(); // Retour de tous les relevés de température sur les dernières 24 heures
+        instructions = c.prepareStatement(RequeteSQL.RELEVE_TEMPERATURE_INTERVALLE);
+        instructions.setString(1, "-48 hour");
+        instructions.setString(2, "-24 hour");
+        ResultSet retourSQLTempDeux = instructions.executeQuery(); // Retour de tous les relevés de température compris entre 48 heures avant maintenant et 24 heures avant maintenant. → Pour le calcul de la tendance ...
+        instructions = c.prepareStatement(RequeteSQL.RELEVE_TAUXHUMIDITE);
+        instructions.setString(1, "-24 hour");
+        ResultSet retourSQLTauxHUn = instructions.executeQuery(); // Retour de tous les relevés de taux d'humidité sur les dernières 24 heures
+        instructions = c.prepareStatement(RequeteSQL.RELEVE_TAUXHUMIDITE_INTERVALLE);
+        instructions.setString(1, "-48 hour");
+        instructions.setString(2, "-24 hour");
+        ResultSet retourSQLTauxHDeux = instructions.executeQuery(); // Retour de tous les relevés de taux d'humidité compris entre 48 heures avant maintenant et 24 heures avant maintenant. → Pour le calcul de la tendance ...
+
+        /* Calcul de la température moyenne sur h-24 et sur l'intervalle H-24 H-48 afin d'obtenir une tendance */
+        moyenneUn = Outils.moyenne(retourSQLTempUn);
+        moyenneDeux = Outils.moyenne(retourSQLTempDeux);
+        resultat += !Float.isNaN(moyenneUn) ? "Moyenne de la température sur les dernières 24H : " + moyenneUn + "\n" : "Pas de données de température disponibles sur cet intervalle.\n"; // Voir Outils.moyenne() pour plus d'info...
+        /* Recherche de la tendance pour la température */
+        if (Float.isNaN(moyenneDeux) || Float.isNaN(moyenneUn)) { // Peut-on calculer une tendance ?
+            resultat += "Tendance indisponible pour le moment, il faut plus de relevés....\n";
+        } else { // on compare la moyenne actuelle sur les relevés précédents afin d'obtenir une tendance
+            if (moyenneUn > moyenneDeux) {
+                resultat += "Tendance de la température : en HAUSSE\n";
+            } else if (moyenneUn < moyenneDeux) {
+                resultat += "Tendance de la température : en BAISSE\n";
+            } else { // moyenneUn == moyenneDeux → possible, mais peu probable
+                resultat += "La température moyenne est constante\n";
+            }
+        }
+
+        /* Calcul du taux d'humidité moyen sur h-1 et sur l'intervalle H-1 H-2 afin d'obtenir une tendance */
+        moyenneUn = Outils.moyenne(retourSQLTauxHUn);
+        moyenneDeux = Outils.moyenne(retourSQLTauxHDeux);
+        resultat += !Float.isNaN(moyenneUn) ? "Moyenne du taux d'humidité sur la dernière heure : " + moyenneUn + "\n" : "Pas de données sur le taux d'humidité disponibles sur cet intervalle.\n"; // Voir Outils.moyenne() pour plus d'info...
+        /* Recherche de la tendance pour le taux d'humidité */
+        if (Float.isNaN(moyenneDeux) || Float.isNaN(moyenneUn)) { // Peut-on calculer une tendance ?
+            resultat += "Tendance indisponible pour le moment, il faut plus de relevés....\n";
+        } else { // on compare la moyenne actuelle sur les relevés précédents afin d'obtenir une tendance
+            if (moyenneUn > moyenneDeux) {
+                resultat += "Tendance du taux d'humidité : en HAUSSE\n";
+            } else if (moyenneUn < moyenneDeux) {
+                resultat += "Tendance du taux d'humidité : en BAISSE\n";
+            } else { // moyenneUn == moyenneDeux → possible, mais peu probable
+                resultat += "Le taux d'humidité moyen est constant\n";
+            }
+        }
+
         return resultat;
     }
 
@@ -366,7 +336,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public String modifierIntervalle(int intervalle, String idCapteur) throws RemoteException, SQLException {
-        if(estCeQueLeCapteurEstEnregistre(idCapteur)) {
+        if(Outils.estCeQueLeCapteurEstEnregistre(idCapteur,c)) {
             listeCapteursActif.get(idCapteur).modifierIntervalle(intervalle);
             return "L'intervalle de mesure du capteur : " + idCapteur + " est maintenant de " + intervalle + " secondes";
         } else {
@@ -426,7 +396,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     @Override
     public String ajouterActionneur(String idActionneur) throws RemoteException, SQLException {
         try {
-            if (estCeQueLActionneurEstEnregistre(idActionneur)) { // est-il deja dans la base ?
+            if (Outils.estCeQueLActionneurEstEnregistre(idActionneur,c)) { // est-il deja dans la base ?
                 return "L'actionneur a deja été ajouté";
             } // else
             Actionneur lActionneur = (Actionneur) Naming.lookup("rmi://localhost:1099/" + idActionneur); // On essaye de récupérer un actionneur distant au sein du registre RMI, si pas d'exception alors l'actionneur recherché existe
@@ -450,7 +420,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public String retirerActionneur(String idActionneur) throws RemoteException, SQLException {
-        if (estCeQueLActionneurEstEnregistre(idActionneur)) { // l'actionneur est enregistré.
+        if (Outils.estCeQueLActionneurEstEnregistre(idActionneur,c)) { // l'actionneur est enregistré.
             if(listeActionneursActif.containsKey(idActionneur)) {
                 return "Impossible de retirer l'actionneur pour l'instant car l'arrosage n'est pas terminé ....\n"
                         +etatArrosage(idActionneur);
@@ -476,7 +446,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public String demarrerArrosage(String idActionneur, int duree) throws SQLException, MalformedURLException, NotBoundException, RemoteException {
-        if(estCeQueLActionneurEstEnregistre(idActionneur)) {
+        if(Outils.estCeQueLActionneurEstEnregistre(idActionneur,c)) {
             Actionneur lActionneur = (Actionneur) Naming.lookup("rmi://localhost:1099/" + idActionneur); // on récupère l'actionneur distant enregistré dans le registre RMI
             if (lActionneur.enFonction()) { // si l'arrosage est deja en cours
                 return etatArrosage(idActionneur);
@@ -503,7 +473,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      */
     @Override
     public String etatArrosage(String idActionneur) throws RemoteException, SQLException {
-        if (estCeQueLActionneurEstEnregistre(idActionneur)) { // l'actionneur est enregistré.
+        if (Outils.estCeQueLActionneurEstEnregistre(idActionneur, c)) { // l'actionneur est enregistré.
             if(listeActionneursActif.containsKey(idActionneur)) {
                 int tempsRestant = listeActionneursActif.get(idActionneur).obtenirTempsRestantArrosage();
                 String aRetourner =  tempsRestant < 60 ? tempsRestant + " secondes" : (tempsRestant/60) + " minutes et " + (tempsRestant%60) + " secondes";
@@ -515,7 +485,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
             if (retourSQL.next()) {
                 String dateHeure = retourSQL.getString("DernierArrosage");
                 if(dateHeure != null) {
-                    String split[] = dateHeure.split(" "); // split[0] => Date split[1] => Heure
+                    String[] split = dateHeure.split(" "); // split[0] => Date split[1] => Heure
                     return "Le dernier arrosage a été fait le " + split[0] + " à " + split[1] + " pendant " + retourSQL.getInt("Duree")/60 + " minute"; // on récupère la valeur en seconde, on la convertie en minute
                 } else {
                     return "L'arrosage n'a jamais été effectué";
@@ -556,35 +526,4 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
             instructions.executeUpdate();
         }
     }
-
-    /**
-     * Permet de vérifier si un capteur est enregistré dans la BD.
-     * Si le capteur n'est pas enregistré dans la BD, on n'enregistre pas ses relevés et on ne peut pas le contrôler.
-     * On le considère comme inconnu
-     * @param idCapteur l'identifiant du capteur que l'on recherche
-     * @throws SQLException si erreur lors de la recherche dans la base de données.
-     */
-    private boolean estCeQueLeCapteurEstEnregistre(String idCapteur) throws SQLException {
-        PreparedStatement instructions = c.prepareStatement(RequeteSQL.EXISTENCE_CAPTEUR); // On utilise PreparedStatement pour éviter les injections SQL
-        instructions.setString(1, idCapteur);
-        ResultSet retourSQL = instructions.executeQuery();
-        return retourSQL.next() ? true : false;  // Vérifier si le capteur existe (retourSQL.next() retourne True si au moins une ligne est retournée)
-    }
-
-    /**
-     * Permet de vérifier si un actionneur est enregistré dans la BD.
-     * Si l'actionneur n'est pas enregistré dans la BD, on ne peut pas le contrôler
-     * On le considère comme inconnu
-     * @param idActionneur l'identifiant de l'actionneur que l'on recherche
-     * @throws SQLException si erreur lors de la recherche dans la base de données.
-     */
-    private boolean estCeQueLActionneurEstEnregistre(String idActionneur) throws SQLException {
-        PreparedStatement instructions = c.prepareStatement(RequeteSQL.EXISTENCE_ACTIONNEUR); // On utilise PreparedStatement pour éviter les injections SQL
-        instructions.setString(1, idActionneur);
-        ResultSet retourSQL = instructions.executeQuery();
-        return retourSQL.next() ? true : false;  // Vérifier si l'actionneur existe (retourSQL.next() retourne True si au moins une ligne est retournée)
-    }
-
-
-
 }

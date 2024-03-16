@@ -66,12 +66,18 @@ public interface Gestionnaire extends java.rmi.Remote {
     public String dernierReleve(String idCapteur) throws RemoteException, SQLException;
 
     /**
-     * Permet d'obtenir des statistiques sur les relevés d'un capteur (moyenne et tendances) pour une durée (1H ou 24H).
-     * @param duree durée sur laquelle on mesure les statistiques (1H ou 24H).
+     * Permet d'obtenir des statistiques sur les relevés d'un capteur (moyenne et tendances) pour une durée 1H.
      * @throws java.rmi.RemoteException si erreur lors de la communication.
      * @return une chaine de caractère contenant les stats
      */
-    public String statsCapteurs(int duree) throws RemoteException, SQLException;
+    public String statsCapteursUneHeure() throws RemoteException, SQLException;
+
+    /**
+     * Permet d'obtenir des statistiques sur les relevés d'un capteur (moyenne et tendances) pour une durée 24H.
+     * @throws java.rmi.RemoteException si erreur lors de la communication.
+     * @return une chaine de caractère contenant les stats
+     */
+    public String statsCapteursUneJournee() throws RemoteException, SQLException;
 
     /**
      * Permet de modifier l'intervalle de mesure pour un capteur en particulier

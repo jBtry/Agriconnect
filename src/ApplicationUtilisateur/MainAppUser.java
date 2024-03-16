@@ -174,7 +174,12 @@ public abstract class MainAppUser {
 
                     case 7 -> { // 7 - Obtenir des statistiques sur les relevés (moyenne et tendances)
                         duree = MainAppUser.demanderDureeStat();
-                        MainAppUser.afficher(leGestionnaire.statsCapteurs(duree));
+                        if (duree == 1) {
+                            MainAppUser.afficher(leGestionnaire.statsCapteursUneHeure());
+                        } else { //  duree == 24
+                            MainAppUser.afficher(leGestionnaire.statsCapteursUneJournee());
+                        }
+
                     }
 
                     case 8 -> { // 8 - Modifier l'intervalle de mesure pour un capteur
