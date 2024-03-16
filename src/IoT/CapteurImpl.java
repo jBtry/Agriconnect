@@ -150,8 +150,8 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
         * L'interface Capteur ne peut pas implémenter à la fois java.rmi.Remote et java.lang.Runnable
         * En effet, en RMI, toutes les méthodes d'une interface distante doivent déclarer la possible propagation de l'exception java.rmi.RemoteException.
         * Cependant, la méthode run() de l'interface Runnable ne déclare (pas de throws) aucune exception, et certainement donc pas RemoteException.
-        * On ne peut ainsi pas directement créer un objet distant RMI à partir d'une interface capteur qui implémente Runnable
-        * dans le cas où cela implique d'inclure run() comme une méthode distante.
+        * On ne peut ainsi pas directement créer un objet distant RMI à partir d'une interface capteur qui implémenterait Runnable
+        * dans le cas où cela implique d'inclure run() comme une méthode distante...
         * ----------------------------------------
         */
         Thread releve = new Thread(new Runnable() { // Classe interne Anonyme implémentant Runnable, on pourrait utiliser une expression lambda pour simplifier la syntaxe ...
