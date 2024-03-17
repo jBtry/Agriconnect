@@ -46,9 +46,9 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Crée un objet GestionnaireImpl, cet objet implémente les méthodes de l'interface Gestionnaire
-     * @throws RemoteException si erreur lors de la communication.
-     * @throws SQLException si erreur lors de la création des tables
-     * @throws ClassNotFoundException si erreur lors de l'établissement de la connexion à la base de données
+     * @throws RemoteException
+     * @throws SQLException
+     * @throws ClassNotFoundException
      */
     public GestionnaireImpl() throws RemoteException, SQLException, ClassNotFoundException {
         super();
@@ -58,6 +58,9 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
         listeActionneursActif = new HashMap<>();
     }
 
+    /**
+     * @return les informations de l'actionneur sous la forme d'une chaine de caractères
+     */
     @Override
     public String toString() {
         return "GestionnaireImpl{" +
@@ -66,12 +69,12 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     }
 
     /**
-     * Vérifie si le capteur existe
-     * et ajoute celui-ci dans la base de données du gestionnaire contenant la liste des capteurs.
+     * Vérifie si le capteur existe et ajoute celui-ci dans la base de données 
+     * du gestionnaire contenant la liste des capteurs.
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
-     * @throws SQLException    si erreur lors de l'insertion dans la base de données.
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws SQLException   
+     * @throws RemoteException
      */
     @Override
     public String ajouterCapteur(String idCapteur) throws RemoteException, SQLException {
@@ -95,7 +98,8 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * Permet de retirer un capteur dans la base de données du gestionnaire contenant la liste des capteurs.
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException
+     * @throws SQLException
      */
     @Override
     public String retirerCapteur(String idCapteur) throws RemoteException, SQLException {
@@ -116,7 +120,10 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * Permet de démarrer l'enregistrement de relevé pour un capteur
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException
+     * @throws SQLException
+     * @throws MalformedURLException
+     * @throws NotBoundException
      */
     @Override
     public String demarrerCapteur(String idCapteur) throws RemoteException, SQLException, MalformedURLException, NotBoundException {
@@ -131,14 +138,14 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
             return "Le capteur a bien été démarré !";
         } else {
             return "Erreur, le capteur n'est pas enregistré !";
-        } // TODO : préciser que on ne traite pas le cas ou le capteur se déconnecte et donc plus accessible dans RMI....
+        }
     }
 
     /**
      * Permet de stopper l'enregistrement de relevé pour un capteur
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException  
      */
     @Override
     public String stopperCapteur(String idCapteur) throws RemoteException, SQLException {
@@ -160,8 +167,8 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     /**
      * Permet de lister les capteurs enregistrés par l'utilisateur
      * @return une chaine de caractère représentant la liste des capteurs
-     * @throws SQLException    si erreur lors de l'insertion dans la base de données.
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws SQLException     
+     * @throws RemoteException  
      */
     @Override
     public String listeCapteurs() throws RemoteException, SQLException {
@@ -183,7 +190,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * Permet de visualiser le dernier relevé d'un capteur
      * @param idCapteur chaine de caractère identifiant le capteur.
      * @return une chaine de caractère représentant le dernier relevé du capteur
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException  
      */
     @Override
     public String dernierReleve(String idCapteur) throws RemoteException, SQLException {
@@ -204,7 +211,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     /**
      * Permet d'obtenir des statistiques sur les relevés stockés en base de données (moyenne et tendances) pour une durée de 1H.
      * @return une chaine de caractère contenant les stats
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException  
      */
     @Override
     public String statsCapteursUneHeure() throws RemoteException, SQLException {
@@ -267,7 +274,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet d'obtenir des statistiques sur les relevés d'un capteur (moyenne et tendances) pour une durée de 24H.
-     * @throws java.rmi.RemoteException si erreur lors de la communication.
+     * @throws RemoteException
      * @return une chaine de caractère contenant les stats
      */
     public String statsCapteursUneJournee() throws RemoteException, SQLException {
@@ -332,7 +339,8 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * @param intervalle nouvel intervalle de mesure
      * @param idCapteur  chaine de caractère identifiant le capteur.
      * @return une chaine de caractère contenant les stats
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException
+     * @throws SQLException
      */
     @Override
     public String modifierIntervalle(int intervalle, String idCapteur) throws RemoteException, SQLException {
@@ -348,7 +356,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * Permet de modifier l'intervalle de mesure pour tous les capteurs
      * @param intervalle nouvel intervalle de mesure
      * @return une chaine de caractère contenant les stats
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException  
      */
     @Override
     public String modifierIntervalleTous(int intervalle) throws RemoteException {
@@ -365,8 +373,8 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * @param temp       flottant représentant la température relevé par le capteur.
      * @param tauxH      flottant représentant le taux d'humidité relevé par le capteur.
      * @param horodatage date et heure du relevé
-     * @throws SQLException    si erreur lors de l'insertion dans la base de données.
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws SQLException     
+     * @throws RemoteException  
      */
     @Override
     public void enregistrerValeur(String idCapteur, float temp, float tauxH, String horodatage) throws RemoteException, SQLException {
@@ -390,8 +398,8 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * Permet d'ajouter un actionneur dans la base de données du gestionnaire contenant la liste des actionneurs.
      * @param idActionneur chaine de caractère identifiant l'actionneur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
-     * @throws SQLException    si erreur lors de l'insertion dans la base de données.
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws SQLException     
+     * @throws RemoteException  
      */
     @Override
     public String ajouterActionneur(String idActionneur) throws RemoteException, SQLException {
@@ -413,9 +421,9 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Permet de retirer un actionneur dans la base de données du gestionnaire contenant la liste des actionneurs.
-     * @param idActionneur chaine de caractère identifiant le capteur.
+     * @param idActionneur chaine de caractère identifiant l'actionneur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException  
      * @throws SQLException    si erreur lors de la recherche dans la base de données.
      */
     @Override
@@ -436,13 +444,13 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Ordonne à un actionneur de démarrer l'arrosage
-     * @param idActionneur chaine de caractère identifiant le capteur.
+     * @param idActionneur chaine de caractère identifiant l'actionneur.
      * @param duree        entier représentant la durée de l'arrosage (en MINUTE)
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
-     * @throws RemoteException       si erreur lors de la communication.
-     * @throws SQLException          si erreur lors de la recherche dans la base de données.
-     * @throws MalformedURLException si l'objet distant est introuvable
-     * @throws NotBoundException     si l'objet distant est introuvable
+     * @throws RemoteException        
+     * @throws SQLException
+     * @throws MalformedURLException
+     * @throws NotBoundException
      */
     @Override
     public String demarrerArrosage(String idActionneur, int duree) throws SQLException, MalformedURLException, NotBoundException, RemoteException {
@@ -457,7 +465,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
             return "L'arrosage vient de débuter pour une durée de " + duree + " minute";
         } else {
             return "Erreur, l'actionneur n'est pas enregistré !";
-        } // TODO : préciser que on ne traite pas le cas ou le capteur se déconnecte et donc plus accessible dans RMI....
+        } 
     }
 
     /**
@@ -466,10 +474,10 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * - L'arrosage fini dans ...
      * - L'arrosage n'a jamais été effectué
      * - Le dernier arrosage a été fait le ... à ... pendant ....
-     * @param idActionneur chaine de caractère identifiant le capteur.
+     * @param idActionneur chaine de caractère identifiant l'actionneur.
      * @return une chaine de caractère spécifiant si l'opération a réussi ou non
-     * @throws RemoteException si erreur lors de la communication.
-     * @throws SQLException si erreur lors de la recherche dans la base de données.
+     * @throws RemoteException  
+     * @throws SQLException
      */
     @Override
     public String etatArrosage(String idActionneur) throws RemoteException, SQLException {
@@ -501,7 +509,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
      * Notifie la fin de l'arrosage
      * @param idActionneur identifiant de l'actionneur qui vient de finir l'arrosage.
      * @param dureeDeLarrosage entier représentant la durée de l'arrosage (en MINUTE)
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException  
      */
     @Override
     public void notificationFinArrosage(String idActionneur, int dureeDeLarrosage) throws RemoteException, SQLException {
@@ -530,8 +538,8 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
     /**
      * Permet de lister les actionneurs enregistrés par l'utilisateur
      * @return une chaine de caractère représentant la liste des actionneurs
-     * @throws SQLException    si erreur lors de l'insertion dans la base de données.
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws SQLException     
+     * @throws RemoteException  
      */
     @Override
     public String listeActionneur() throws RemoteException, SQLException {

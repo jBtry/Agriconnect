@@ -12,13 +12,13 @@ public interface ObjetConnecte extends Remote {
 
     /**
      * @return les coordonnées GPS de l'objet connecté (Capteur ou Actionneur) sous forme de tableau de flottant (latitude, longitude).
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException
      */
     public float[] getGps() throws RemoteException;
 
     /**
      * Retourne l'état de travail de l'objet connecté (actif ou inactif)
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException
      */
     public boolean enFonction() throws RemoteException;
 

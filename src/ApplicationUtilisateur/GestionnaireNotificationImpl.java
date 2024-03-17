@@ -12,7 +12,7 @@ public class GestionnaireNotificationImpl extends UnicastRemoteObject implements
 
     /**
      * Constructeur par défaut
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException
      */
     protected GestionnaireNotificationImpl() throws RemoteException {
         super();
@@ -21,10 +21,10 @@ public class GestionnaireNotificationImpl extends UnicastRemoteObject implements
     /**
      * Permet de notifier l'application utilisateur d'un évènement
      * @param event chaine de caractère décrivant l'exception.
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException
      */
     @Override
     public void notification(String event) throws RemoteException {
-        MainAppUser.afficher(event);
+        Outils.afficher(event);
     }
 }

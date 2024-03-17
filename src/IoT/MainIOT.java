@@ -5,6 +5,9 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
+/**
+ * Crée les objets connectés (Actionneurs et Capteurs) et les rend accessibles à distance
+ */
 public abstract class MainIOT {
 
     /**
@@ -12,12 +15,12 @@ public abstract class MainIOT {
      * crée 6 capteurs et 2 actionneurs et enregistre ceux-ci dans le registre RMI
      * @param args non utilisés
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Crée le registre RMI (s'il n'existe pas deja) */
         try {
             LocateRegistry.createRegistry(1099);
         } catch(java.rmi.server.ExportException e) {
-            ; // Un registre RMI existe deja sur le port 1099 ... on ne fait donc rien
+            // Un registre RMI existe deja sur le port 1099 ... on ne fait donc rien
         } catch (RemoteException err) {
             System.out.println("Erreur lors de la création du registre");
         }
@@ -39,9 +42,7 @@ public abstract class MainIOT {
                 Naming.rebind(idActionneur+i, unActionneur);
                 System.out.println("L'Actionneur numéro " + i + " a été créé et enregistré dans le registre RMI, voici ses attributs : "+"\n"+unActionneur);
             }
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        } catch (RemoteException e) {
+        } catch (MalformedURLException | RemoteException e) {
             throw new RuntimeException(e);
         }
     }
