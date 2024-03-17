@@ -4,8 +4,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>150</x>
-      <y>60</y>
+      <x>140</x>
+      <y>110</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -16,8 +16,8 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>550</x>
-      <y>60</y>
+      <x>540</x>
+      <y>110</y>
       <w>240</w>
       <h>30</h>
     </coordinates>
@@ -28,8 +28,8 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
-      <y>80</y>
+      <x>640</x>
+      <y>130</y>
       <w>30</w>
       <h>640</h>
     </coordinates>
@@ -39,8 +39,8 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>190</x>
-      <y>80</y>
+      <x>180</x>
+      <y>130</y>
       <w>30</w>
       <h>630</h>
     </coordinates>
@@ -50,8 +50,8 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>200</x>
-      <y>120</y>
+      <x>190</x>
+      <y>170</y>
       <w>470</w>
       <h>40</h>
     </coordinates>
@@ -62,8 +62,8 @@ leGestionnaire.retirerCapteur(String idCapteur) : String</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>650</x>
-      <y>110</y>
+      <x>640</x>
+      <y>160</y>
       <w>20</w>
       <h>550</h>
     </coordinates>
@@ -73,8 +73,8 @@ leGestionnaire.retirerCapteur(String idCapteur) : String</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>190</x>
-      <y>110</y>
+      <x>180</x>
+      <y>160</y>
       <w>20</w>
       <h>60</h>
     </coordinates>
@@ -84,20 +84,8 @@ leGestionnaire.retirerCapteur(String idCapteur) : String</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>150</y>
-      <w>630</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-leGestionnaire.estCeQueLeCapteurEstEnregistre(String idCapteur) : boolean</panel_attributes>
-    <additional_attributes>10.0;40.0;80.0;40.0;80.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>200</x>
-      <y>310</y>
+      <x>190</x>
+      <y>360</y>
       <w>470</w>
       <h>40</h>
     </coordinates>
@@ -108,8 +96,8 @@ Retourne un message d'erreur</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>190</x>
-      <y>310</y>
+      <x>180</x>
+      <y>360</y>
       <w>20</w>
       <h>40</h>
     </coordinates>
@@ -119,8 +107,8 @@ Retourne un message d'erreur</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>190</x>
-      <y>600</y>
+      <x>180</x>
+      <y>650</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -130,8 +118,8 @@ Retourne un message d'erreur</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>200</x>
-      <y>590</y>
+      <x>190</x>
+      <y>640</y>
       <w>470</w>
       <h>40</h>
     </coordinates>
@@ -142,8 +130,8 @@ Retourne un message de confirmation</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>160</x>
-      <y>230</y>
+      <x>150</x>
+      <y>280</y>
       <w>1190</w>
       <h>490</h>
     </coordinates>
@@ -165,8 +153,8 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>540</y>
+      <x>650</x>
+      <y>590</y>
       <w>660</w>
       <h>40</h>
     </coordinates>
@@ -177,8 +165,8 @@ Ordonne la suppression du capteur</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>460</y>
+      <x>650</x>
+      <y>510</y>
       <w>290</w>
       <h>60</h>
     </coordinates>
@@ -189,8 +177,8 @@ stopperCapteur(idCapteur)</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>600</x>
-      <y>410</y>
+      <x>590</x>
+      <y>460</y>
       <w>430</w>
       <h>110</h>
     </coordinates>
@@ -205,19 +193,19 @@ fg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1300</x>
-      <y>80</y>
+      <x>1290</x>
+      <y>520</y>
       <w>30</w>
-      <h>620</h>
+      <h>230</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;600.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;210.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1300</x>
-      <y>540</y>
+      <x>1290</x>
+      <y>590</y>
       <w>20</w>
       <h>60</h>
     </coordinates>
@@ -227,8 +215,8 @@ fg=green</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1240</x>
-      <y>60</y>
+      <x>1200</x>
+      <y>500</y>
       <w>130</w>
       <h>30</h>
     </coordinates>
@@ -239,13 +227,71 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>570</y>
+      <x>650</x>
+      <y>620</y>
       <w>660</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 Confirme l'action</panel_attributes>
     <additional_attributes>10.0;20.0;640.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1240</x>
+      <y>120</y>
+      <w>220</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Outils
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1340</x>
+      <y>140</y>
+      <w>30</w>
+      <h>710</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;690.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1340</x>
+      <y>190</y>
+      <w>20</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>220</y>
+      <w>710</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Retourne True ou False suivant si le capteur est enregistré</panel_attributes>
+    <additional_attributes>10.0;20.0;690.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>190</y>
+      <w>710</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Outils.estCeQueLeCapteurEstEnregistre(String idCapteur, Connection c) : boolean</panel_attributes>
+    <additional_attributes>690.0;20.0;10.0;20.0</additional_attributes>
   </element>
 </diagram>

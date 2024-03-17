@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public abstract class MainAppUser {
 
     /** Le gestionnaire distant */
-    protected static Gestionnaire leGestionnaire;
+    private static Gestionnaire leGestionnaire;
 
     /* -----------MAIN----------- */
     public static void main(String[] args) {

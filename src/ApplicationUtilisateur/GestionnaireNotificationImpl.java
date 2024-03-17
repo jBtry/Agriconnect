@@ -14,7 +14,7 @@ public class GestionnaireNotificationImpl extends UnicastRemoteObject implements
      * Constructeur par défaut
      * @throws RemoteException
      */
-    protected GestionnaireNotificationImpl() throws RemoteException {
+    public GestionnaireNotificationImpl() throws RemoteException {
         super();
     }
 

@@ -6,7 +6,7 @@
     <id>UMLUseCase</id>
     <coordinates>
       <x>648</x>
-      <y>279</y>
+      <y>306</y>
       <w>153</w>
       <h>36</h>
     </coordinates>
@@ -18,7 +18,7 @@
     <id>UMLUseCase</id>
     <coordinates>
       <x>648</x>
-      <y>234</y>
+      <y>261</y>
       <w>153</w>
       <h>36</h>
     </coordinates>
@@ -29,7 +29,7 @@
     <id>UMLUseCase</id>
     <coordinates>
       <x>585</x>
-      <y>189</y>
+      <y>216</y>
       <w>279</w>
       <h>36</h>
     </coordinates>
@@ -40,7 +40,7 @@
     <id>UMLUseCase</id>
     <coordinates>
       <x>594</x>
-      <y>135</y>
+      <y>162</y>
       <w>252</w>
       <h>45</h>
     </coordinates>
@@ -51,7 +51,7 @@
     <id>UMLActor</id>
     <coordinates>
       <x>315</x>
-      <y>333</y>
+      <y>360</y>
       <w>171</w>
       <h>99</h>
     </coordinates>
@@ -62,7 +62,7 @@
     <id>Relation</id>
     <coordinates>
       <x>477</x>
-      <y>243</y>
+      <y>270</y>
       <w>189</w>
       <h>153</h>
     </coordinates>
@@ -74,7 +74,7 @@
     <id>Relation</id>
     <coordinates>
       <x>477</x>
-      <y>288</y>
+      <y>315</y>
       <w>189</w>
       <h>108</h>
     </coordinates>
@@ -86,7 +86,7 @@
     <id>Relation</id>
     <coordinates>
       <x>477</x>
-      <y>198</y>
+      <y>225</y>
       <w>126</w>
       <h>198</h>
     </coordinates>
@@ -98,7 +98,7 @@
     <id>Relation</id>
     <coordinates>
       <x>477</x>
-      <y>153</y>
+      <y>180</y>
       <w>135</w>
       <h>243</h>
     </coordinates>
@@ -110,19 +110,19 @@
     <id>UMLUseCase</id>
     <coordinates>
       <x>648</x>
-      <y>324</y>
-      <w>153</w>
+      <y>351</y>
+      <w>252</w>
       <h>36</h>
     </coordinates>
-    <panel_attributes>Lister les capteur
-</panel_attributes>
+    <panel_attributes>Lister les capteurs
+enregistrés</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>477</x>
-      <y>333</y>
+      <y>360</y>
       <w>189</w>
       <h>63</h>
     </coordinates>
@@ -134,7 +134,7 @@
     <id>UMLUseCase</id>
     <coordinates>
       <x>594</x>
-      <y>369</y>
+      <y>405</y>
       <w>288</w>
       <h>54</h>
     </coordinates>
@@ -145,19 +145,19 @@
     <id>Relation</id>
     <coordinates>
       <x>477</x>
-      <y>369</y>
+      <y>396</y>
       <w>135</w>
-      <h>45</h>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>130.0;30.0;10.0;10.0</additional_attributes>
+    <additional_attributes>130.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
       <x>585</x>
-      <y>81</y>
+      <y>108</y>
       <w>252</w>
       <h>45</h>
     </coordinates>
@@ -169,7 +169,7 @@ d'un ou de tous les capteurs</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>477</x>
-      <y>99</y>
+      <y>126</y>
       <w>126</w>
       <h>297</h>
     </coordinates>
@@ -181,7 +181,7 @@ d'un ou de tous les capteurs</panel_attributes>
     <id>UMLUseCase</id>
     <coordinates>
       <x>594</x>
-      <y>432</y>
+      <y>477</y>
       <w>450</w>
       <h>45</h>
     </coordinates>
@@ -192,31 +192,31 @@ d'un ou de tous les capteurs</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>477</x>
-      <y>369</y>
-      <w>162</w>
-      <h>153</h>
+      <y>396</y>
+      <w>153</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>160.0;150.0;10.0;10.0</additional_attributes>
+    <additional_attributes>150.0;180.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>477</x>
-      <y>369</y>
-      <w>171</w>
-      <h>315</h>
+      <y>396</y>
+      <w>162</w>
+      <h>342</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>170.0;330.0;10.0;10.0</additional_attributes>
+    <additional_attributes>160.0;360.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>630</x>
-      <y>648</y>
+      <x>621</x>
+      <y>702</y>
       <w>153</w>
       <h>36</h>
     </coordinates>
@@ -227,8 +227,8 @@ d'un ou de tous les capteurs</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>630</x>
-      <y>594</y>
+      <x>621</x>
+      <y>648</y>
       <w>153</w>
       <h>36</h>
     </coordinates>
@@ -240,19 +240,19 @@ d'un ou de tous les capteurs</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>477</x>
-      <y>369</y>
-      <w>171</w>
-      <h>261</h>
+      <y>396</y>
+      <w>162</w>
+      <h>288</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>170.0;270.0;10.0;10.0</additional_attributes>
+    <additional_attributes>160.0;300.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>621</x>
-      <y>540</y>
+      <x>612</x>
+      <y>594</y>
       <w>216</w>
       <h>36</h>
     </coordinates>
@@ -263,19 +263,19 @@ d'un ou de tous les capteurs</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>477</x>
-      <y>369</y>
-      <w>162</w>
-      <h>207</h>
+      <y>396</y>
+      <w>153</w>
+      <h>234</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>160.0;210.0;10.0;10.0</additional_attributes>
+    <additional_attributes>150.0;240.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>621</x>
-      <y>486</y>
+      <x>612</x>
+      <y>540</y>
       <w>216</w>
       <h>36</h>
     </coordinates>
@@ -286,12 +286,37 @@ d'un ou de tous les capteurs</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>477</x>
-      <y>369</y>
+      <y>396</y>
       <w>135</w>
-      <h>99</h>
+      <h>117</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>130.0;90.0;10.0;10.0</additional_attributes>
+    <additional_attributes>130.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>612</x>
+      <y>756</y>
+      <w>225</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Lister les actionneurs
+enregistrés
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>477</x>
+      <y>396</y>
+      <w>153</w>
+      <h>396</h>
+    </coordinates>
+    <panel_attributes>lt=-
+</panel_attributes>
+    <additional_attributes>150.0;420.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

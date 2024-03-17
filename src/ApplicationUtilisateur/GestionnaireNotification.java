@@ -13,7 +13,7 @@ public interface GestionnaireNotification extends Remote {
     /**
      * Permet de notifier l'application utilisateur d'un évènement
      * @param event chaine de caractère décrivant l'évènement.
-     * @throws java.rmi.RemoteException si erreur lors de la communication.
+     * @throws RemoteException
      */
     public void notification(String event) throws RemoteException;
 }

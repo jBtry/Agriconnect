@@ -51,7 +51,7 @@ bg=red</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>150</x>
-      <y>210</y>
+      <y>190</y>
       <w>470</w>
       <h>40</h>
     </coordinates>
@@ -82,18 +82,6 @@ leGestionnaire.ajouterCapteur(String idCapteur) : String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>610</x>
-      <y>240</y>
-      <w>630</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-leGestionnaire.estCeQueLeCapteurEstEnregistre(String idCapteur) : boolean</panel_attributes>
-    <additional_attributes>10.0;40.0;80.0;40.0;80.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLFrame</id>
     <coordinates>
       <x>100</x>
@@ -121,29 +109,29 @@ fg=red</panel_attributes>
     <coordinates>
       <x>610</x>
       <y>580</y>
-      <w>730</w>
+      <w>770</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 Insertion des informations du capteur</panel_attributes>
-    <additional_attributes>710.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>750.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>610</x>
       <y>610</y>
-      <w>730</w>
+      <w>770</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 Confirmation insertion</panel_attributes>
-    <additional_attributes>10.0;20.0;710.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;750.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1320</x>
+      <x>1360</x>
       <y>590</y>
       <w>20</w>
       <h>50</h>
@@ -154,7 +142,7 @@ Confirmation insertion</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1320</x>
+      <x>1360</x>
       <y>180</y>
       <w>30</w>
       <h>490</h>
@@ -165,7 +153,7 @@ Confirmation insertion</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1260</x>
+      <x>1300</x>
       <y>160</y>
       <w>130</w>
       <h>30</h>
@@ -211,7 +199,7 @@ Retourne un message d'erreur</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1110</x>
+      <x>1140</x>
       <y>480</y>
       <w>160</w>
       <h>30</h>
@@ -223,26 +211,26 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1180</x>
+      <x>1210</x>
       <y>500</y>
       <w>30</w>
-      <h>100</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>610</x>
       <y>470</y>
-      <w>520</w>
+      <w>550</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;create&gt;&gt;
 (Capteur) Naming.lookup("rmi://localhost:1099/" + idCapteur);</panel_attributes>
-    <additional_attributes>500.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>530.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -255,5 +243,63 @@ bg=blue</panel_attributes>
     <panel_attributes>lt=&lt;-
 Retourne un message de confirmation</panel_attributes>
     <additional_attributes>10.0;20.0;450.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>610</x>
+      <y>210</y>
+      <w>630</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Outils.estCeQueLeCapteurEstEnregistre(String idCapteur, Connection c) : boolean</panel_attributes>
+    <additional_attributes>610.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>610</x>
+      <y>240</y>
+      <w>630</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Retourne True ou False suivant si le capteur est enregistré</panel_attributes>
+    <additional_attributes>10.0;20.0;610.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1220</x>
+      <y>180</y>
+      <w>30</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1220</x>
+      <y>210</y>
+      <w>20</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1190</x>
+      <y>160</y>
+      <w>80</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Outils
+bg=yellow</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

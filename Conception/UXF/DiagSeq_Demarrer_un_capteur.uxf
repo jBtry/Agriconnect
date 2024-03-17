@@ -4,8 +4,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>153</x>
-      <y>45</y>
+      <x>180</x>
+      <y>90</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -16,8 +16,8 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>513</x>
-      <y>45</y>
+      <x>540</x>
+      <y>90</y>
       <w>198</w>
       <h>27</h>
     </coordinates>
@@ -28,8 +28,8 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>603</x>
-      <y>63</y>
+      <x>630</x>
+      <y>108</y>
       <w>27</w>
       <h>720</h>
     </coordinates>
@@ -39,8 +39,8 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>189</x>
-      <y>63</y>
+      <x>216</x>
+      <y>108</y>
       <w>27</w>
       <h>666</h>
     </coordinates>
@@ -50,8 +50,8 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>198</x>
-      <y>99</y>
+      <x>225</x>
+      <y>144</y>
       <w>423</w>
       <h>36</h>
     </coordinates>
@@ -62,8 +62,8 @@ leGestionnaire.demarrerCapteur(String idCapteur) : String</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>603</x>
-      <y>90</y>
+      <x>630</x>
+      <y>135</y>
       <w>18</w>
       <h>648</h>
     </coordinates>
@@ -73,8 +73,8 @@ leGestionnaire.demarrerCapteur(String idCapteur) : String</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>189</x>
-      <y>90</y>
+      <x>216</x>
+      <y>135</y>
       <w>18</w>
       <h>54</h>
     </coordinates>
@@ -82,22 +82,10 @@ leGestionnaire.demarrerCapteur(String idCapteur) : String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>612</x>
-      <y>126</y>
-      <w>567</w>
-      <h>54</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-leGestionnaire.estCeQueLeCapteurEstEnregistre(String idCapteur) : boolean</panel_attributes>
-    <additional_attributes>10.0;40.0;80.0;40.0;80.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>135</x>
-      <y>405</y>
+      <x>162</x>
+      <y>450</y>
       <w>1188</w>
       <h>324</h>
     </coordinates>
@@ -118,8 +106,8 @@ fg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>198</x>
-      <y>270</y>
+      <x>225</x>
+      <y>315</y>
       <w>423</w>
       <h>36</h>
     </coordinates>
@@ -130,8 +118,8 @@ Retourne un message d'erreur</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>189</x>
-      <y>270</y>
+      <x>216</x>
+      <y>315</y>
       <w>18</w>
       <h>36</h>
     </coordinates>
@@ -141,8 +129,8 @@ Retourne un message d'erreur</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>189</x>
-      <y>657</y>
+      <x>216</x>
+      <y>702</y>
       <w>18</w>
       <h>18</h>
     </coordinates>
@@ -152,8 +140,8 @@ Retourne un message d'erreur</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1062</x>
-      <y>360</y>
+      <x>1242</x>
+      <y>405</y>
       <w>144</w>
       <h>27</h>
     </coordinates>
@@ -164,32 +152,32 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1125</x>
-      <y>378</y>
+      <x>1305</x>
+      <y>423</y>
       <w>27</w>
-      <h>315</h>
+      <h>324</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;330.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;340.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
-      <y>351</y>
-      <w>468</w>
+      <x>639</x>
+      <y>396</y>
+      <w>621</w>
       <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;create&gt;&gt;
 (Capteur) Naming.lookup("rmi://localhost:1099/" + idCapteur);</panel_attributes>
-    <additional_attributes>500.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>670.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>198</x>
-      <y>648</y>
+      <x>225</x>
+      <y>693</y>
       <w>423</w>
       <h>36</h>
     </coordinates>
@@ -200,8 +188,8 @@ Retourne un message de confirmation</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1125</x>
-      <y>603</y>
+      <x>1305</x>
+      <y>648</y>
       <w>18</w>
       <h>63</h>
     </coordinates>
@@ -211,8 +199,8 @@ Retourne un message de confirmation</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
-      <y>540</y>
+      <x>639</x>
+      <y>585</y>
       <w>369</w>
       <h>54</h>
     </coordinates>
@@ -223,21 +211,21 @@ listeCapteursActif.put(idCapteur, leCapteur);</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
-      <y>594</y>
-      <w>531</w>
+      <x>639</x>
+      <y>639</y>
+      <w>684</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-leCapteur.setGestionnaire(this)</panel_attributes>
-    <additional_attributes>570.0;20.0;10.0;20.0</additional_attributes>
+leCapteur.setGestionnaire((Gestionnaire) Naming.lookup("rmi://localhost:1099/LeGestionnaire"))</panel_attributes>
+    <additional_attributes>740.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>171</x>
-      <y>198</y>
-      <w>1161</w>
+      <x>198</x>
+      <y>243</y>
+      <w>1206</w>
       <h>558</h>
     </coordinates>
     <panel_attributes>alt
@@ -258,8 +246,8 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>198</x>
-      <y>468</y>
+      <x>225</x>
+      <y>513</y>
       <w>423</w>
       <h>36</h>
     </coordinates>
@@ -270,8 +258,8 @@ Retourne un message d'erreur</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>189</x>
-      <y>468</y>
+      <x>216</x>
+      <y>513</y>
       <w>18</w>
       <h>36</h>
     </coordinates>
@@ -281,13 +269,71 @@ Retourne un message d'erreur</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
-      <y>621</y>
-      <w>531</w>
+      <x>639</x>
+      <y>666</y>
+      <w>684</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 leCapteur.demarrerEnregistrementReleve();</panel_attributes>
-    <additional_attributes>570.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>740.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>639</x>
+      <y>162</y>
+      <w>567</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Outils.estCeQueLeCapteurEstEnregistre(String idCapteur, Connection c) : boolean</panel_attributes>
+    <additional_attributes>610.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>639</x>
+      <y>189</y>
+      <w>567</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Retourne True ou False suivant si le capteur est enregistré</panel_attributes>
+    <additional_attributes>10.0;20.0;610.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1188</x>
+      <y>117</y>
+      <w>27</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1188</x>
+      <y>144</y>
+      <w>18</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1161</x>
+      <y>99</y>
+      <w>72</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Outils
+bg=yellow</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

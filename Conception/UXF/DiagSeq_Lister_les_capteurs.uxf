@@ -158,23 +158,9 @@ d'une chaine de caractères formatée</panel_attributes>
       <x>180</x>
       <y>444</y>
       <w>24</w>
-      <h>120</h>
+      <h>48</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>192</x>
-      <y>468</y>
-      <w>504</w>
-      <h>96</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-Affichage de la chaine de caractères contenant 
-le listing des capteurs
-</panel_attributes>
-    <additional_attributes>10.0;60.0;70.0;60.0;70.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
