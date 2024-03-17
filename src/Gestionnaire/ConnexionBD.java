@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import static Gestionnaire.RequeteSQL.CREATION_TABLE_CAPTEURS;
 import static Gestionnaire.RequeteSQL.CREATION_TABLE_RELEVES;
+import static Gestionnaire.RequeteSQL.CREATION_TABLE_ACTIONNEURS;
 
 /**
  * Permet de se connecter à la base de données
@@ -26,6 +27,7 @@ public abstract class ConnexionBD {
      * Crée une connexion à la base de données SQLite "Capteurs"
      * et crée la table contenant la liste des capteurs, si celle-ci n'existe pas deja
      * @return une connexion à la base de données SQLite "Capteurs"
+     * @throws ClassNotFoundException
      */
     public static Connection connexion() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC"); // Chargement du driver JDBC SQLite
@@ -34,6 +36,7 @@ public abstract class ConnexionBD {
         Statement instructions = c.createStatement();
         instructions.execute(CREATION_TABLE_CAPTEURS); // Création de la table CAPTEURS si elle n'existe pas
         instructions.execute(CREATION_TABLE_RELEVES);  // Création de la table RELEVES si elle n'existe pas
+        instructions.execute(CREATION_TABLE_ACTIONNEURS);  // Création de la table ACTIONNEURS si elle n'existe pas
         return c;
     }
 }

@@ -19,12 +19,13 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
     /**
      * Un capteur est identifié par un code unique
      */
-    private String identifiant;
+    private final String identifiant;
 
     /**
      * Un capteur possède des coordonnées GPS
+     * gps[O] → latitude, gps[1] → longitude
      */
-    private float[] gps;
+    private final float[] gps;
 
     /**
      * Un capteur possède un gestionnaire
@@ -42,12 +43,19 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
     private volatile boolean actif; // volatile pour être accessible par différents threads
 
     /**
+     * Taux d'humidité fixe relevé par un capteur
+     * Sert uniquement à montrer l'impact du système d'arrosage...
+     * Par défaut, c'est-à-dire avant arrosage le taux d'humidité lors d'un relevé est 50%.
+     * Il s'incrémente par la suite en fonction des différents cycles d'arrosage successif
+     */
+    float simulationTauxHumidite;
+
+    /**
      * Par défaut :
      * - un capteur effectue un relevé toutes les 5 secondes
-     * - un capteur est inactif actif = false
+     * - un capteur est inactif (actif = false)
      * - un capteur n'a pas de gestionnaire
-     *
-     * @throws RemoteException si erreur lors de la communication
+     * @throws RemoteException 
      */
     public CapteurImpl(String identifiant, float latitude, float longitude) throws RemoteException {
         super();
@@ -56,6 +64,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
         leGestionnaire = null;
         intervalle = 5;
         actif = false;
+        simulationTauxHumidite = 50;
     }
 
     /**
@@ -72,7 +81,9 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
 
 
     /**
+     * Permet d'obtenir les coordonnées GPS du capteur
      * @return les coordonnées GPS sous forme de tableau de flottant (latitude, longitude).
+     * @throws RemoteException
      */
     @Override
     public float[] getGps() throws RemoteException {
@@ -83,7 +94,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
      * Modifie l'intervalle entre deux relevés
      *
      * @param intervalle entier représentant la valeur du nouvel intervalle de temps (en seconde) entre deux relevés
-     * @throws RemoteException si erreur lors de la communication.
+     * @throws RemoteException .
      */
     @Override
     public void modifierIntervalle(int intervalle) throws RemoteException {
@@ -92,8 +103,8 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
 
     /**
      * Affecte un gestionnaire au Capteur
-     *
      * @param leGestionnaire gestionnaire a affecté au capteur
+     * @throws RemoteException
      */
     @Override
     public void setGestionnaire(Gestionnaire leGestionnaire) throws RemoteException {
@@ -107,7 +118,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
         /* Génération de la température */
         float temp = Outils.genererTemperatureAleatoire();
         /* Génération d'un taux d'humidité */
-        float tauxH = Outils.genererTauxHumiditeAleatoire();
+        float tauxH = simulationTauxHumidite; // Outils.genererTauxHumiditeAleatoire(); => pas utilisé dans la V3
         /* Génération de l'horodatage */
         String horodatage = Outils.horodatage();
         return new Releve(temp, tauxH, horodatage);
@@ -115,6 +126,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
 
     /**
      * Retourne l'état de travail du capteur (actif ou inactif)
+     * @throws RemoteException
      */
     @Override
     public boolean enFonction() throws RemoteException {
@@ -122,7 +134,8 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
     }
 
     /**
-     * Change l'état de travail du capteur (actif)
+     * Change l'état de travail du capteur (variable actif)
+     * @throws RemoteException
      */
     @Override
     public void onOff() throws RemoteException {
@@ -132,6 +145,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
     /**
      * Démarre les relevés
      * (intervalle de 5 secondes par défaut)
+     * @throws RemoteException
      */
     @Override
     public void demarrerEnregistrementReleve() throws RemoteException {
@@ -142,18 +156,18 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
         * L'interface Capteur ne peut pas implémenter à la fois java.rmi.Remote et java.lang.Runnable
         * En effet, en RMI, toutes les méthodes d'une interface distante doivent déclarer la possible propagation de l'exception java.rmi.RemoteException.
         * Cependant, la méthode run() de l'interface Runnable ne déclare (pas de throws) aucune exception, et certainement donc pas RemoteException.
-        * On ne peut ainsi pas directement créer un objet distant RMI à partir d'une interface capteur qui implémente Runnable
-        * dans le cas où cela implique d'inclure run() comme une méthode distante.
+        * On ne peut ainsi pas directement créer un objet distant RMI à partir d'une interface capteur qui implémenterait Runnable
+        * dans le cas où cela implique d'inclure run() comme une méthode distante...
         * ----------------------------------------
         */
-        Thread releve = new Thread(new Runnable() { // Classe interne Anonyme implémentant Runnable, on pourrait utiliser une expression lambda pour simplifier la syntaxe (mois évident à comprendre au premier coup d'œil).
+        Thread releve = new Thread(new Runnable() { // Classe interne Anonyme implémentant Runnable, on pourrait utiliser une expression lambda pour simplifier la syntaxe ...
             @Override
             public void run() {
                 while (actif) {
                     Releve unReleve = faireUnRelever();
                     try {
                         leGestionnaire.enregistrerValeur(identifiant, unReleve.temperature(), unReleve.tauxHumidite(), unReleve.Horodatage());
-                        System.out.println("Relevé de " + identifiant + " => " + unReleve.toString() + "\n");
+                        System.out.println("Relevé de " + identifiant + " => " + unReleve + "\n");
                         Thread.sleep(intervalle * 1000); // 1000 ms = 1 sec.
                     } catch (InterruptedException | SQLException | RemoteException e) { // Gestion de l'interruption du thread
                         System.out.println("Erreur lors d'un relevé, celui-ci n'a pas été enregistré");
@@ -163,5 +177,15 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
             }
         });
         releve.start();
+    }
+
+    /**
+     * Méthode permettant d'influer sur le taux humidité
+     * Utile uniquement pour simuler l'impact de l'arrosage
+     * @throws RemoteException
+     */
+    @Override
+    public void influerTauxHumidite() throws RemoteException {
+        simulationTauxHumidite++;
     }
 }
