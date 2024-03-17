@@ -108,7 +108,7 @@ public class ActionneurImpl extends UnicastRemoteObject implements Actionneur  {
                     if(nbSeconde == 10) { // +1% d'humidité toute les 10 secondes
                         for(Capteur capteur : listeCapteursZone) {
                             try {
-                                capteur.influerTauxHumidite(); // on influence les relevés des capteuirs
+                                capteur.influerTauxHumidite(); // on influence les relevés des capteurs
                             } catch (RemoteException e) {
                                 ; /* On ne fait rien, la communication a échoué, mais l'application doit continuer à fonctionner
                                    * Très peu probable que ce cas arrive => localhost.

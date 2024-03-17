@@ -164,5 +164,11 @@ public interface Gestionnaire extends java.rmi.Remote {
     public void notificationFinArrosage(String idActionneur, int dureeDeLarrosage) throws RemoteException, SQLException;
 
 
-
+    /**
+     * Permet de lister les actionneurs enregistrés par l'utilisateur
+     * @throws SQLException si erreur lors de l'insertion dans la base de données.
+     * @throws java.rmi.RemoteException si erreur lors de la communication.
+     * @return une chaine de caractère représentant la liste des actionneurs
+     */
+    String listeActionneur() throws RemoteException, SQLException;
 }

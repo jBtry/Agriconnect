@@ -32,8 +32,9 @@ public abstract class Textes {
             "11 - Retirer un actionneur\n" +
             "12 - Déclencher l'arrosage\n" +
             "13 - Obtenir l'état de l'arrosage\n" +
+            "14 - Lister les actionneurs\n" +
             "----------------------Quitter---------------------\n"+
-            "14 - Quitter Agriconnect";
+            "15 - Quitter Agriconnect";
 
     /** Demande de faire un choix à l'utilisateur */
     protected static final String CHOIX = "Que souhaitez-vous faire ?";

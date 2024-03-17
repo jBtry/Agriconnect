@@ -10,21 +10,20 @@ import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public abstract class MainAppUser {
-    /**
-     * Application de l'utilisateur
-     * Met à disposition les fonctionnalités suivantes :
-     * - Ajouter un capteur
-     * - Démarrer un capteur
-     * - Stopper un capteur
-     * - Retirer un capteur
-     * - Lister les capteurs
-     * - Voir le dernier relevé d'un capteur
-     * - Obtenir des statistiques sur les relevés (moyenne et tendances)
-     * - Modifier l'intervalle de mesure pour un ou bien tous les capteurs
-     * @param args non utilisés
-     */
 
+/**
+ * Application de l'utilisateur
+ * Met à disposition les fonctionnalités suivantes :
+ * - Ajouter un capteur
+ * - Démarrer un capteur
+ * - Stopper un capteur
+ * - Retirer un capteur
+ * - Lister les capteurs
+ * - Voir le dernier relevé d'un capteur
+ * - Obtenir des statistiques sur les relevés (moyenne et tendances)
+ * - Modifier l'intervalle de mesure pour un ou bien tous les capteurs
+ */
+public abstract class MainAppUser {
 
     /** Le gestionnaire */
     protected static Gestionnaire leGestionnaire;
@@ -121,13 +120,13 @@ public abstract class MainAppUser {
 
     // TODO : expliquer que l'on crée les gestionnaires dans le cas ou on est pas sur le même machine ....
     /* -----------MAIN----------- */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         /* Crée le registre RMI (s'il n'existe pas deja) */
         try {
             LocateRegistry.createRegistry(1099);
         } catch(java.rmi.server.ExportException e) {
-            ; // Un registre RMI existe deja sur le port 1099 ... on ne fait donc rien
+            // Un registre RMI existe deja sur le port 1099 ... on ne fait donc rien
         } catch (RemoteException err) {
             System.out.println("Erreur lors de la création du registre");
         }
@@ -213,7 +212,9 @@ public abstract class MainAppUser {
                         MainAppUser.afficher(leGestionnaire.etatArrosage(idActionneur));
                     }
 
-                    case 14 -> { // 10 - Quitter Agriconnect
+                    case 14 -> MainAppUser.afficher(leGestionnaire.listeActionneur()); // 14 - Lister les actionneurs
+
+                    case 15 -> { // 15 - Quitter Agriconnect
                         MainAppUser.afficher(Textes.ABIENTOT);
                         System.exit(0);
                     }

@@ -58,6 +58,9 @@ public abstract class RequeteSQL {
     /** Requête SQL permettant de lister les capteurs */
     protected static final String SELECT_CAPTEUR= "SELECT * FROM "+NOM_TABLE_CAPTEUR;
 
+    /** Requête SQL permettant de lister les capteurs */
+    protected static final String SELECT_ACTIONNEUR= "SELECT Id, Latitude, Longitude FROM "+NOM_TABLE_ACTIONNEURS;
+
     /** Requête SQL permettant de vérifier si un capteur existe */
     protected static final String EXISTENCE_CAPTEUR= "SELECT * FROM "+NOM_TABLE_CAPTEUR+" WHERE id=?";
 

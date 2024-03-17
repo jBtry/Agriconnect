@@ -526,4 +526,26 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
             instructions.executeUpdate();
         }
     }
+
+    /**
+     * Permet de lister les actionneurs enregistrés par l'utilisateur
+     * @return une chaine de caractère représentant la liste des actionneurs
+     * @throws SQLException    si erreur lors de l'insertion dans la base de données.
+     * @throws RemoteException si erreur lors de la communication.
+     */
+    @Override
+    public String listeActionneur() throws RemoteException, SQLException {
+        Statement instructions = c.createStatement();
+        ResultSet retourSQL = instructions.executeQuery(RequeteSQL.SELECT_ACTIONNEUR);
+        StringBuilder resultat = new StringBuilder();
+        while (retourSQL.next()) {
+            resultat.append(retourSQL.getString("Id")).append(" ");
+            resultat.append(retourSQL.getFloat("Latitude")).append(" ");
+            resultat.append(retourSQL.getFloat("Longitude")).append("\n");
+        }
+        if (resultat.isEmpty()) { // Aucune ligne retournée
+            return "Aucun actionneur n'a été enregistré pour le moment ...";
+        }
+        return resultat.toString();
+    }
 }
