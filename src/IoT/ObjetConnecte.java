@@ -11,6 +11,7 @@ import java.rmi.RemoteException;
 public interface ObjetConnecte extends Remote {
 
     /**
+     * Permet d'obtenir les coordonnées GPS de l'objet connecté
      * @return les coordonnées GPS de l'objet connecté (Capteur ou Actionneur) sous forme de tableau de flottant (latitude, longitude).
      * @throws RemoteException
      */

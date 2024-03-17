@@ -90,5 +90,6 @@ public abstract class RequeteSQL {
     /** Requête SQL permettant de consulter le dernier état connu d'arrosage */
     protected static final String ETAT_ARROSAGE= "SELECT DernierArrosage, Duree FROM "+NOM_TABLE_ACTIONNEURS+" WHERE id=?";
 
+    /** Requête SQL permettant de mettre à jour le dernier état connu d'arrosage */
     protected static final String INSERTION_ETAT_ARROSAGE= "UPDATE "+NOM_TABLE_ACTIONNEURS+" SET DernierArrosage=?, Duree=? WHERE id=?";
 }

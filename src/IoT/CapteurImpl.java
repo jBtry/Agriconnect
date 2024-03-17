@@ -81,6 +81,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
 
 
     /**
+     * Permet d'obtenir les coordonnées GPS du capteur
      * @return les coordonnées GPS sous forme de tableau de flottant (latitude, longitude).
      * @throws RemoteException
      */

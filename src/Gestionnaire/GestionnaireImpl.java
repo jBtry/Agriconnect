@@ -33,13 +33,11 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
 
     /**
      * Contient la liste des objets capteurs actifs (en train de faire des relevés)
-     * HashMap <Identifiant Capteur, objet Capteur>
      */
     private HashMap<String, Capteur> listeCapteursActif;
 
     /**
      * Contient la liste des objets actionneurs actifs (en train d'arroser)
-     * HashMap <Identifiant Actionneur, objet Actionneur>
      */
     private HashMap<String, Actionneur> listeActionneursActif;
 

@@ -70,6 +70,7 @@ public class ActionneurImpl extends UnicastRemoteObject implements Actionneur  {
     }
 
     /**
+     * Permet d'obtenir les coordonnées GPS de l'actionneur
      * @return les coordonnées GPS sous forme de tableau de flottant (latitude, longitude).
      * @throws RemoteException 
      */
@@ -141,6 +142,7 @@ public class ActionneurImpl extends UnicastRemoteObject implements Actionneur  {
     }
 
     /**
+     * Permet d'obtenir le temps restant avant la fin de l'arrosage
      * @return le temps restant avant la fin de l'arrosage en SECONDE
      * @throws RemoteException 
      */
