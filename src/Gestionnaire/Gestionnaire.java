@@ -111,7 +111,8 @@ public interface Gestionnaire extends Remote {
     public void enregistrerValeur(String idCapteur, float temp, float tauxH, String horodatage) throws RemoteException, SQLException;
 
     /**
-     * @return le nombre de capteur actif (c'est-à-dire en train d'effectuer des relevés)
+     * Indique le nombre de capteurs actif
+     * @return le nombre de capteurs actif (c'est-à-dire en train d'effectuer des relevés)
      */
     public int nbCapteurActif() throws RemoteException;
 

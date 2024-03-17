@@ -8,8 +8,11 @@ package Gestionnaire;
  */
 public abstract class RequeteSQL {
 
+    /** Nom de la table contenant les capteurs */
     private static final String NOM_TABLE_CAPTEUR = "capteurs";
+    /** Nom de la table contenant les relevés */
     private static final String NOM_TABLE_RELEVE = "releves";
+    /** Nom de la table contenant les actionneurs */
     private static final String NOM_TABLE_ACTIONNEURS = "actionneurs";
 
     /** Requête SQL permettant de créer la table contenant la liste des capteurs, si celle-ci n'existe pas deja */
