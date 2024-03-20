@@ -60,7 +60,7 @@ public class ActionneurImpl extends UnicastRemoteObject implements Actionneur  {
      * @param Zone zone d'influence de l'actionneur
      * @throws RemoteException
      */
-    protected ActionneurImpl(String identifiant, float latitude, float longitude, String Zone) throws RemoteException {
+    public ActionneurImpl(String identifiant, float latitude, float longitude, String Zone) throws RemoteException {
         this.identifiant = identifiant;
         gps = new float[]{latitude, longitude};
         leGestionnaire = null;

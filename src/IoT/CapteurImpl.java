@@ -48,7 +48,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
      * Par défaut, c'est-à-dire avant arrosage le taux d'humidité lors d'un relevé est 50%.
      * Il s'incrémente par la suite en fonction des différents cycles d'arrosage successif
      */
-    float simulationTauxHumidite;
+    private float simulationTauxHumidite;
 
     /**
      * Par défaut :
@@ -114,7 +114,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
     /**
      * Le capteur relève la température ambiante et le taux d'humidité à instant T.
      */
-    private Releve faireUnRelever() {
+    private Releve faireUnReleve() {
         /* Génération de la température */
         float temp = Outils.genererTemperatureAleatoire();
         /* Génération d'un taux d'humidité */
@@ -164,7 +164,7 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
             @Override
             public void run() {
                 while (actif) {
-                    Releve unReleve = faireUnRelever();
+                    Releve unReleve = faireUnReleve();
                     try {
                         leGestionnaire.enregistrerValeur(identifiant, unReleve.temperature(), unReleve.tauxHumidite(), unReleve.Horodatage());
                         System.out.println("Relevé de " + identifiant + " => " + unReleve + "\n");
