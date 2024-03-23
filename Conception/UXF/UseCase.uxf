@@ -5,8 +5,8 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>648</x>
-      <y>306</y>
+      <x>576</x>
+      <y>270</y>
       <w>153</w>
       <h>36</h>
     </coordinates>
@@ -17,8 +17,8 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>648</x>
-      <y>261</y>
+      <x>576</x>
+      <y>225</y>
       <w>153</w>
       <h>36</h>
     </coordinates>
@@ -28,8 +28,8 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>585</x>
-      <y>216</y>
+      <x>513</x>
+      <y>180</y>
       <w>279</w>
       <h>36</h>
     </coordinates>
@@ -39,8 +39,8 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>594</x>
-      <y>162</y>
+      <x>522</x>
+      <y>126</y>
       <w>252</w>
       <h>45</h>
     </coordinates>
@@ -50,8 +50,8 @@
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>315</x>
-      <y>360</y>
+      <x>243</x>
+      <y>324</y>
       <w>171</w>
       <h>99</h>
     </coordinates>
@@ -61,8 +61,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>270</y>
+      <x>405</x>
+      <y>234</y>
       <w>189</w>
       <h>153</h>
     </coordinates>
@@ -73,8 +73,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>315</y>
+      <x>405</x>
+      <y>279</y>
       <w>189</w>
       <h>108</h>
     </coordinates>
@@ -85,8 +85,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>225</y>
+      <x>405</x>
+      <y>189</y>
       <w>126</w>
       <h>198</h>
     </coordinates>
@@ -97,8 +97,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>180</y>
+      <x>405</x>
+      <y>144</y>
       <w>135</w>
       <h>243</h>
     </coordinates>
@@ -109,9 +109,9 @@
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>648</x>
-      <y>351</y>
-      <w>252</w>
+      <x>540</x>
+      <y>315</y>
+      <w>234</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>Lister les capteurs
@@ -121,20 +121,20 @@ enregistrés</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>360</y>
-      <w>189</w>
+      <x>405</x>
+      <y>324</y>
+      <w>153</w>
       <h>63</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>10.0;50.0;190.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;150.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>594</x>
-      <y>405</y>
+      <x>522</x>
+      <y>369</y>
       <w>288</w>
       <h>54</h>
     </coordinates>
@@ -144,8 +144,8 @@ enregistrés</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>396</y>
+      <x>405</x>
+      <y>360</y>
       <w>135</w>
       <h>54</h>
     </coordinates>
@@ -156,8 +156,8 @@ enregistrés</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>585</x>
-      <y>108</y>
+      <x>513</x>
+      <y>72</y>
       <w>252</w>
       <h>45</h>
     </coordinates>
@@ -168,8 +168,8 @@ d'un ou de tous les capteurs</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>126</y>
+      <x>405</x>
+      <y>90</y>
       <w>126</w>
       <h>297</h>
     </coordinates>
@@ -180,8 +180,8 @@ d'un ou de tous les capteurs</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>594</x>
-      <y>477</y>
+      <x>522</x>
+      <y>441</y>
       <w>450</w>
       <h>45</h>
     </coordinates>
@@ -191,8 +191,8 @@ d'un ou de tous les capteurs</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>396</y>
+      <x>405</x>
+      <y>360</y>
       <w>153</w>
       <h>180</h>
     </coordinates>
@@ -203,8 +203,8 @@ d'un ou de tous les capteurs</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>396</y>
+      <x>405</x>
+      <y>360</y>
       <w>162</w>
       <h>342</h>
     </coordinates>
@@ -215,8 +215,8 @@ d'un ou de tous les capteurs</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>621</x>
-      <y>702</y>
+      <x>549</x>
+      <y>666</y>
       <w>153</w>
       <h>36</h>
     </coordinates>
@@ -227,8 +227,8 @@ d'un ou de tous les capteurs</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>621</x>
-      <y>648</y>
+      <x>549</x>
+      <y>612</y>
       <w>153</w>
       <h>36</h>
     </coordinates>
@@ -239,8 +239,8 @@ d'un ou de tous les capteurs</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>396</y>
+      <x>405</x>
+      <y>360</y>
       <w>162</w>
       <h>288</h>
     </coordinates>
@@ -251,8 +251,8 @@ d'un ou de tous les capteurs</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>612</x>
-      <y>594</y>
+      <x>540</x>
+      <y>558</y>
       <w>216</w>
       <h>36</h>
     </coordinates>
@@ -262,8 +262,8 @@ d'un ou de tous les capteurs</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>396</y>
+      <x>405</x>
+      <y>360</y>
       <w>153</w>
       <h>234</h>
     </coordinates>
@@ -274,8 +274,8 @@ d'un ou de tous les capteurs</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>612</x>
-      <y>540</y>
+      <x>540</x>
+      <y>504</y>
       <w>216</w>
       <h>36</h>
     </coordinates>
@@ -285,8 +285,8 @@ d'un ou de tous les capteurs</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>396</y>
+      <x>405</x>
+      <y>360</y>
       <w>135</w>
       <h>117</h>
     </coordinates>
@@ -297,8 +297,8 @@ d'un ou de tous les capteurs</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>612</x>
-      <y>756</y>
+      <x>540</x>
+      <y>720</y>
       <w>225</w>
       <h>54</h>
     </coordinates>
@@ -310,8 +310,8 @@ enregistrés
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>396</y>
+      <x>405</x>
+      <y>360</y>
       <w>153</w>
       <h>396</h>
     </coordinates>

@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>45</x>
+      <y>81</y>
+      <w>90</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>MainAppUser
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>504</x>
+      <y>81</y>
+      <w>198</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>leGestionnaire:GESTIONNAIRE
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>99</y>
+      <w>27</w>
+      <h>720</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;780.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>81</x>
+      <y>99</y>
+      <w>27</w>
+      <h>666</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;720.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>135</y>
+      <w>522</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+leGestionnaire.demarrerArrosage(String idActionneur, int duree) : String</panel_attributes>
+    <additional_attributes>560.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>594</x>
+      <y>126</y>
+      <w>18</w>
+      <h>648</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>81</x>
+      <y>126</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>171</x>
+      <y>441</y>
+      <w>1143</w>
+      <h>324</h>
+    </coordinates>
+    <panel_attributes>alt
+--
+                                              L'actionneur est deja actif (arrosage en cours)
+--
+
+
+
+
+
+                                          L'actionneur est inactif
+--
+fg=MAGENTA</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>306</y>
+      <w>522</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Retourne un message d'erreur</panel_attributes>
+    <additional_attributes>10.0;20.0;560.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>81</x>
+      <y>306</y>
+      <w>18</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>81</x>
+      <y>693</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1206</x>
+      <y>396</y>
+      <w>198</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>unActionneur:ACTIONNEUR
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1269</x>
+      <y>414</y>
+      <w>27</w>
+      <h>324</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;340.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>603</x>
+      <y>387</y>
+      <w>621</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;create&gt;&gt;
+(Actionneur) Naming.lookup("rmi://localhost:1099/" + idActionneur);</panel_attributes>
+    <additional_attributes>670.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>684</y>
+      <w>522</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Retourne un message de confirmation</panel_attributes>
+    <additional_attributes>10.0;20.0;560.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1269</x>
+      <y>585</y>
+      <w>18</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>603</x>
+      <y>621</y>
+      <w>423</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+listeActionneursActif.put(idActionneur, unActionneur)</panel_attributes>
+    <additional_attributes>10.0;40.0;80.0;40.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>603</x>
+      <y>585</y>
+      <w>684</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+unActionneur.setGestionnaire((Gestionnaire) Naming.lookup("rmi://localhost:1099/LeGestionnaire"))</panel_attributes>
+    <additional_attributes>740.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>162</x>
+      <y>234</y>
+      <w>1251</w>
+      <h>558</h>
+    </coordinates>
+    <panel_attributes>alt
+--
+                                                                                                        L'actionneur n'est pas enregistré
+--
+
+
+
+
+
+
+                                                                                                       L'actionneur est enregistré
+--
+fg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>504</y>
+      <w>522</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Retourne un message indiquant 
+que l'arrosage est en cours</panel_attributes>
+    <additional_attributes>10.0;20.0;560.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>81</x>
+      <y>504</y>
+      <w>18</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>603</x>
+      <y>666</y>
+      <w>684</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+unActionneur.declencherArrosage(duree);</panel_attributes>
+    <additional_attributes>740.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>603</x>
+      <y>153</y>
+      <w>630</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Outils.estCeQueLActionneurEstEnregistre(String idActionneur, Connection c) : boolean</panel_attributes>
+    <additional_attributes>680.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>603</x>
+      <y>180</y>
+      <w>630</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Retourne True ou False suivant si l'actionneur est enregistré</panel_attributes>
+    <additional_attributes>10.0;20.0;680.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1215</x>
+      <y>108</y>
+      <w>27</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1215</x>
+      <y>135</y>
+      <w>18</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1188</x>
+      <y>90</y>
+      <w>72</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Outils
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

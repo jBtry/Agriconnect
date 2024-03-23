@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
   <help_text/>
-  <zoom_level>11</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>88</x>
-      <y>110</y>
-      <w>110</w>
-      <h>33</h>
+      <x>248</x>
+      <y>208</y>
+      <w>80</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>MainAppUser
 bg=orange</panel_attributes>
@@ -17,10 +17,10 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>682</x>
-      <y>110</y>
-      <w>242</w>
-      <h>33</h>
+      <x>680</x>
+      <y>208</y>
+      <w>176</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>leGestionnaire:GESTIONNAIRE
 bg=red</panel_attributes>
@@ -29,32 +29,32 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>792</x>
-      <y>132</y>
-      <w>33</w>
-      <h>594</h>
+      <x>760</x>
+      <y>224</y>
+      <w>24</w>
+      <h>512</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;520.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;620.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>132</x>
-      <y>132</y>
-      <w>33</w>
+      <x>280</x>
+      <y>224</y>
+      <w>24</w>
       <h>528</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;460.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;640.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>803</x>
-      <y>374</y>
-      <w>396</w>
-      <h>44</h>
+      <x>768</x>
+      <y>536</y>
+      <w>288</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 Outils.moyenne(ResultSet donnees) : float</panel_attributes>
@@ -63,22 +63,22 @@ Outils.moyenne(ResultSet donnees) : float</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>143</x>
-      <y>176</y>
-      <w>671</w>
-      <h>44</h>
+      <x>288</x>
+      <y>392</y>
+      <w>488</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-leGestionnaire.statsCapteurs(int duree) : String</panel_attributes>
+leGestionnaire.statsCapteursUneHeure() : String</panel_attributes>
     <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>792</x>
-      <y>165</y>
-      <w>22</w>
-      <h>495</h>
+      <x>760</x>
+      <y>248</y>
+      <w>16</w>
+      <h>456</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -86,10 +86,10 @@ leGestionnaire.statsCapteurs(int duree) : String</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>132</x>
-      <y>165</y>
-      <w>22</w>
-      <h>66</h>
+      <x>280</x>
+      <y>248</y>
+      <w>16</w>
+      <h>224</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -97,10 +97,10 @@ leGestionnaire.statsCapteurs(int duree) : String</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>803</x>
-      <y>209</y>
-      <w>550</w>
-      <h>44</h>
+      <x>768</x>
+      <y>440</y>
+      <w>400</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 Demande des données</panel_attributes>
@@ -109,10 +109,10 @@ Demande des données</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1265</x>
-      <y>110</y>
-      <w>143</w>
-      <h>33</h>
+      <x>1104</x>
+      <y>208</y>
+      <w>104</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>Base de données
 bg=green</panel_attributes>
@@ -121,10 +121,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1331</x>
-      <y>132</y>
-      <w>33</w>
-      <h>473</h>
+      <x>1152</x>
+      <y>224</y>
+      <w>24</w>
+      <h>344</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;410.0</additional_attributes>
@@ -132,10 +132,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1331</x>
-      <y>198</y>
-      <w>22</w>
-      <h>110</h>
+      <x>1152</x>
+      <y>448</y>
+      <w>16</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -143,10 +143,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>803</x>
-      <y>264</y>
-      <w>550</w>
-      <h>44</h>
+      <x>768</x>
+      <y>464</y>
+      <w>400</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 Envoie des données (ResultatSet)</panel_attributes>
@@ -155,10 +155,10 @@ Envoie des données (ResultatSet)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>143</x>
-      <y>473</y>
-      <w>671</w>
-      <h>55</h>
+      <x>288</x>
+      <y>672</y>
+      <w>488</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 Retourne les statistiques sous la forme 
@@ -168,10 +168,10 @@ d'une chaine de caractères formatée</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>132</x>
-      <y>374</y>
-      <w>22</w>
-      <h>242</h>
+      <x>280</x>
+      <y>672</y>
+      <w>16</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -179,10 +179,10 @@ d'une chaine de caractères formatée</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1133</x>
-      <y>319</y>
-      <w>121</w>
-      <h>33</h>
+      <x>1008</x>
+      <y>496</y>
+      <w>88</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>Outils
 bg=yellow</panel_attributes>
@@ -191,10 +191,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1177</x>
-      <y>341</y>
-      <w>33</w>
-      <h>253</h>
+      <x>1040</x>
+      <y>512</y>
+      <w>24</w>
+      <h>184</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;210.0</additional_attributes>
@@ -202,10 +202,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1177</x>
-      <y>374</y>
-      <w>22</w>
-      <h>110</h>
+      <x>1040</x>
+      <y>536</y>
+      <w>16</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -213,14 +213,70 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>803</x>
-      <y>418</y>
-      <w>396</w>
-      <h>55</h>
+      <x>768</x>
+      <y>568</y>
+      <w>288</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 Retourne la moyenne sur les données
 passées en paramêtres de la fonction</panel_attributes>
     <additional_attributes>10.0;20.0;340.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>248</x>
+      <y>288</y>
+      <w>544</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>alt
+--
+L'utilisateur choisit d'obtenir les statistiques sur les dernières 24h.
+--
+
+
+
+L'utilisateur choisit d'obtenir les statistiques sur la dernière heure.
+--
+fg=BLUE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>288</x>
+      <y>336</y>
+      <w>488</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+leGestionnaire.statsCapteursUneJournee() : String</panel_attributes>
+    <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>288</x>
+      <y>248</y>
+      <w>328</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Demande à l'utilisateur de choisir une durée</panel_attributes>
+    <additional_attributes>10.0;30.0;80.0;30.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>768</x>
+      <y>624</y>
+      <w>192</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Calcul de la tendance</panel_attributes>
+    <additional_attributes>10.0;50.0;70.0;50.0;70.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

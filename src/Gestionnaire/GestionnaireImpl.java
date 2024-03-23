@@ -551,7 +551,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
         }
         if (resultat.isEmpty()) { // Aucune ligne retournée
             return "Aucun actionneur n'a été enregistré pour le moment ...";
-        }
+        } // else
         return resultat.toString();
     }
 }
