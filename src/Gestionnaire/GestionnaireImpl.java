@@ -492,7 +492,7 @@ public class GestionnaireImpl extends UnicastRemoteObject implements Gestionnair
                 String dateHeure = retourSQL.getString("DernierArrosage");
                 if(dateHeure != null) {
                     String[] split = dateHeure.split(" "); // split[0] => Date split[1] => Heure
-                    return "Le dernier arrosage a été fait le " + split[0] + " à " + split[1] + " pendant " + retourSQL.getInt("Duree")/60 + " minute"; // on récupère la valeur en seconde, on la convertie en minute
+                    return "Le dernier arrosage a été fait le " + split[0] + " à " + split[1] + " pendant " + retourSQL.getInt("Duree")/60 + " minute(s)"; // on récupère la valeur en seconde, on la convertie en minute
                 } else {
                     return "L'arrosage n'a jamais été effectué";
                 }
