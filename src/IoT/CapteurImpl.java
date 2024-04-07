@@ -152,10 +152,10 @@ public class CapteurImpl extends UnicastRemoteObject implements Capteur {
         actif = !actif; // Change l'état du capteur sur "actif" (this.actif = true)
 
        /* ----------- Explication sur l'utilisation d'une classe interne anonyme ----------
-        * La méthode run doit être accessible à distance pour que le Gestionnaire puisse démarrer, à distance, sur le capteur, l'enregistrement des relevés
+        * La méthode run doit être accessible à distance pour que le Gestionnaire puisse justement, démarrer, à distance, sur le capteur, l'enregistrement des relevés
         * L'interface Capteur ne peut pas implémenter à la fois java.rmi.Remote et java.lang.Runnable
         * En effet, en RMI, toutes les méthodes d'une interface distante doivent déclarer la possible propagation de l'exception java.rmi.RemoteException.
-        * Cependant, la méthode run() de l'interface Runnable ne déclare (pas de throws) aucune exception, et certainement donc pas RemoteException.
+        * Cependant, la méthode run() de l'interface Runnable ne déclare aucune exception, et certainement donc pas RemoteException.
         * On ne peut ainsi pas directement créer un objet distant RMI à partir d'une interface capteur qui implémenterait Runnable
         * dans le cas où cela implique d'inclure run() comme une méthode distante...
         * ----------------------------------------
