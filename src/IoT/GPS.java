@@ -16,16 +16,16 @@ public abstract class GPS {
      */
 
     /* Zone 1 */
-    protected static final float[] gpsActionneurUn = {43.25559455064179F, 2.1979315888215214F};
-    protected static final float[] gpsCapteurUn = {43.25557673597238F, 2.197868717022648F};
-    protected static final float[] gpsCapteurDeux = {43.25537390428052F, 2.197073181933987F};
-    protected static final float[] gpsCapteurTrois = {43.25556685369287F, 2.1972723988140626F};
+    protected static final float[] gpsActionneurUn = {43.255594F, 2.197931F};
+    protected static final float[] gpsCapteurUn = {43.255576F, 2.197868F};
+    protected static final float[] gpsCapteurDeux = {43.2553739F, 2.197073F};
+    protected static final float[] gpsCapteurTrois = {43.255566F, 2.197272F};
 
     /* Zone 2 */
-    protected static final float[] gpsActionneurDeux = {42.671257221872615F, 2.693490736082865F};
-    protected static final float[] gpsCapteurQuatre = {42.67117582072808F, 2.693765996305087F};
-    protected static final float[] gpsCapteurCinq = {42.67171205114392F, 2.6930402509392385F};
-    protected static final float[] gpsCapteurSix = {42.67182898636013F, 2.6933751154983643F};
+    protected static final float[] gpsActionneurDeux = {42.671257F, 2.693490F};
+    protected static final float[] gpsCapteurQuatre = {42.671175F, 2.693765F};
+    protected static final float[] gpsCapteurCinq = {42.671712F, 2.693040F};
+    protected static final float[] gpsCapteurSix = {42.671828F, 2.693375F};
 
     /* Liste récapitulative des coordonnées GPS des capteurs */
     protected static final ArrayList<float[]> listeGPSCapteurs = new ArrayList<>(Arrays.asList(gpsCapteurUn,
