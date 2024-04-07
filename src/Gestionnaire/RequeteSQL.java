@@ -19,16 +19,16 @@ public abstract class RequeteSQL {
     protected static final String CREATION_TABLE_CAPTEURS =
             "CREATE TABLE IF NOT EXISTS " + NOM_TABLE_CAPTEUR
             + "(Id varchar(10) PRIMARY KEY,"
-            + " Latitude DECIMAL(8,6) NOT NULL,"
-            + " Longitude DECIMAL(9,6) NOT NULL"
+            + " Latitude REAL NOT NULL,"
+            + " Longitude REAL NOT NULL"
             + ");";
 
     /** Requête SQL permettant de créer la table contenant la liste des relevés, si celle-ci n'existe pas deja */
     protected static final String CREATION_TABLE_RELEVES =
             "CREATE TABLE IF NOT EXISTS " + NOM_TABLE_RELEVE
             + "(IdCapteur varchar(10) NOT NULL,"
-            + " Temperature DECIMAL(3,1) NOT NULL,"
-            + " TauxHumidite DECIMAL(3,1) NOT NULL,"
+            + " Temperature REAL NOT NULL,"
+            + " TauxHumidite REAL NOT NULL,"
             + " Horodatage DATETIME NOT NULL,"
             + " PRIMARY KEY (IdCapteur, Horodatage)"
             + ");";
@@ -37,8 +37,8 @@ public abstract class RequeteSQL {
     protected static final String CREATION_TABLE_ACTIONNEURS =
             "CREATE TABLE IF NOT EXISTS " + NOM_TABLE_ACTIONNEURS
             + "(Id varchar(10) PRIMARY KEY,"
-            + " Latitude DECIMAL(8,6) NOT NULL,"
-            + " Longitude DECIMAL(9,6) NOT NULL,"
+            + " Latitude REAL NOT NULL,"
+            + " Longitude REAL NOT NULL,"
             + " DernierArrosage DATETIME,"
             + " Duree NUMBER SMALLINT" // durée sauvegardée en seconde
             + ");";
